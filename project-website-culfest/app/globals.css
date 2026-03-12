@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  height: auto;
+}
+
 h1 {
   font-family: var(--font-efco-brookshire), sans-serif;
 }
