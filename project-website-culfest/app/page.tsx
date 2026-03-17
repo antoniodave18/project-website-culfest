@@ -190,14 +190,14 @@ export default function Home() {
                   </div>
                   <div className='w-[70%] self-end'>
                     <Image
-                    src="/images/linimasa/chileko.png"
-                    alt="character day 1"
-                    width={80}
-                    height={100}
-                    className="w-full h-auto object-contain"
-                  />
+                      src="/images/linimasa/chileko.png"
+                      alt="character day 1"
+                      width={80}
+                      height={100}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
-                  
+
                 </AnimateOnView>
 
                 {/* Day 2 */}
@@ -214,14 +214,14 @@ export default function Home() {
                   </div>
                   <div className='w-[80%] self-end'>
                     <Image
-                    src="/images/linimasa/chitala.png"
-                    alt="character day 2"
-                    width={80}
-                    height={100}
-                    className="w-full h-auto object-contain"
-                  />
+                      src="/images/linimasa/chitala.png"
+                      alt="character day 2"
+                      width={80}
+                      height={100}
+                      className="w-full h-auto object-contain"
+                    />
                   </div>
-                  
+
                 </AnimateOnView>
 
                 {/* Lotus */}
@@ -295,120 +295,120 @@ export default function Home() {
                   />
                 </div>
 
-                
 
-                  {/* 3 Cards stacked */}
-                  <div className="flex flex-col justify-between w-[90%] h-full z-[4] pb-5">
 
-                    {/* Card — Asrama */}
-                    <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
-                      <div className="
+                {/* 3 Cards stacked */}
+                <div className="flex flex-col justify-between w-[90%] h-full z-[4] pb-5">
+
+                  {/* Card — Asrama */}
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
+                    <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
-                        
-                        {/* Leaf right */}
-                        <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
-                          <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
-                        </div>
 
-                        <h3
-                          className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
-                          style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
-                        >
-                          Asrama
-                        </h3>
-                        <p className="text-[11px] text-blue-100 leading-relaxed">
-                          Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                          sebagai media untuk mempermudah memahami keragaman ruangnya.
-                          Terdapat tiga jenis peta utama, yaitu peta umum.
-                        </p>
-                        <div className="flex justify-end mt-3">
-                          <button className="
+                      {/* Leaf right */}
+                      <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
+                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                      </div>
+
+                      <h3
+                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
+                      >
+                        Asrama
+                      </h3>
+                      <p className="text-[11px] text-blue-100 leading-relaxed">
+                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
+                        sebagai media untuk mempermudah memahami keragaman ruangnya.
+                        Terdapat tiga jenis peta utama, yaitu peta umum.
+                      </p>
+                      <div className="flex justify-end mt-3">
+                        <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
               ">
-                            Lihat Detail →
-                          </button>
-                        </div>
+                          Lihat Detail →
+                        </button>
                       </div>
-                    </AnimateOnView>
+                    </div>
+                  </AnimateOnView>
 
-                    {/* Card — Ormada */}
-                    <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-end">
-                      <div className="
+                  {/* Card — Ormada */}
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-end">
+                    <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
-                        <div className="absolute w-[10%] -translate-y-1/2 -translate-x-1/2 top-0 left-0 -z-1">
-                          <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
-                        </div>
+                      <div className="absolute w-[10%] -translate-y-1/2 -translate-x-1/2 top-0 left-0 -z-1">
+                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                      </div>
 
-                        <h3
-                          className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
-                          style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
-                        >
-                          Ormada
-                        </h3>
-                        <p className="text-[11px] text-blue-100 leading-relaxed">
-                          Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                          sebagai media untuk mempermudah memahami keragaman ruangnya.
-                          Terdapat tiga jenis peta utama, yaitu peta umum.
-                        </p>
-                        <div className="flex justify-end mt-3">
-                          <button className="
+                      <h3
+                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
+                      >
+                        Ormada
+                      </h3>
+                      <p className="text-[11px] text-blue-100 leading-relaxed">
+                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
+                        sebagai media untuk mempermudah memahami keragaman ruangnya.
+                        Terdapat tiga jenis peta utama, yaitu peta umum.
+                      </p>
+                      <div className="flex justify-end mt-3">
+                        <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
               ">
-                            Lihat Detail →
-                          </button>
-                        </div>
+                          Lihat Detail →
+                        </button>
                       </div>
-                    </AnimateOnView>
+                    </div>
+                  </AnimateOnView>
 
-                    {/* Card — Fakultas */}
-                    <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
-                      <div className="
+                  {/* Card — Fakultas */}
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
+                    <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
-                        
-                        <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
-                          <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
-                        </div>
 
-                        <h3
-                          className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
-                          style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
-                        >
-                          Fakultas
-                        </h3>
-                        <p className="text-xm text-blue-100 leading-relaxed">
-                          Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                          sebagai media untuk mempermudah memahami keragaman ruangnya.
-                          Terdapat tiga jenis peta utama, yaitu peta umum.
-                        </p>
-                        <div className="flex justify-end mt-3">
-                          <button className="
+                      <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
+                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                      </div>
+
+                      <h3
+                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
+                      >
+                        Fakultas
+                      </h3>
+                      <p className="text-xm text-blue-100 leading-relaxed">
+                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
+                        sebagai media untuk mempermudah memahami keragaman ruangnya.
+                        Terdapat tiga jenis peta utama, yaitu peta umum.
+                      </p>
+                      <div className="flex justify-end mt-3">
+                        <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
               ">
-                            Lihat Detail →
-                          </button>
-                        </div>
+                          Lihat Detail →
+                        </button>
                       </div>
-                    </AnimateOnView>
+                    </div>
+                  </AnimateOnView>
 
-                  </div>
+                </div>
 
               </section>
             </div>
@@ -417,11 +417,87 @@ export default function Home() {
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-[1]" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -300vh' }} />
-              <section className="relative z-[2] w-[80%] mx-auto h-screen flex items-center justify-center">
-                <div className="text-center text-amber-900">
-                  <h2 className="text-3xl font-bold">Kompetisi</h2>
-                  <p className="mt-2 text-sm">Konten akan ditambahkan</p>
+
+              <section className="relative z-[2] w-[80%] mx-auto h-screen flex items-center justify-center overflow-hidden">
+                {/* Card */}
+                <div className="
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      border-4 border-[#4d1101]
+                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+                      flex flex-col items-center gap-6
+                    ">
+
+                  {/* Title frame */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 flex items-center justify-center">
+                    <Image
+                      src="/images/kompetisi/title-kompetisi.png"
+                      alt="frame title"
+                      width={320}
+                      height={50}
+                      className="w-full object-contain"
+                    />
+                  </div>
+
+                  <p className="text-justify text-amber-900 md:text-base">
+                    Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
+                    mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
+                    peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
+                    karakteristik berbeda. Peta umum menggambarkan permukaan bumi secara menyeluruh dan berfungsi
+                    memberikan informasi dasar tentang kenampakan alam maupun buatan.
+                  </p>
+
+
+                  <div className="flex flex-row justify-around gap-3 w-full">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div
+                        key={i}
+                        className="
+                            w-[112px] h-[160px] rounded-xl
+                            bg-amber-200/60 border-2 border-amber-700/40
+                            flex items-center justify-center
+                          "
+                      >
+                        <span className="text-amber-700/40 text-xs">Foto {i}</span>
+                      </div>
+                    ))}
+                  </div>
+
+
+                  <button
+                    className="w-fit rounded-[8px] bg-gradient-to-r from-[#ab3400] to-[#451500]
+                                     px-7 py-4 mt-10 text-1xl uppercase tracking-widest
+                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
+                  >
+                    Baca Selengkapnya
+                  </button>
                 </div>
+
+                <AnimateOnView
+                  animation="animate-slideInLeft"
+                  className="absolute left-4 bottom-0 z-5"
+                >
+                  <Image
+                    src="/images/kompetisi/wave-left.png"
+                    alt="wave-left"
+                    width={1920}
+                    height={300}
+                    className="object-cover w-full h-auto"
+                  />
+                </AnimateOnView>
+
+                <AnimateOnView
+                  animation="animate-slideInRight"
+                  className="absolute right-4 bottom-0 z-5"
+                >
+                  <Image
+                    src="/images/kompetisi/wave-right.png"
+                    alt="wave-right"
+                    width={1920}
+                    height={300}
+                    className="object-cover w-full h-auto"
+                  />
+                </AnimateOnView>
+
               </section>
             </div>
 
