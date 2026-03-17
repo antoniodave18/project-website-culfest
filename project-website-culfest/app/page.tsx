@@ -282,7 +282,7 @@ export default function Home() {
                 />
               </AnimateOnView>
 
-              <section className="relative z-[2] h-screen w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5 mb-0 pb-0">
+              <section className="relative z-[2] h-screen w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5 ">
 
                 {/* Title frame — top right (relative flow) */}
                 <div className="relative self-end mx-5 mb-13 z-[5] ">
@@ -298,7 +298,7 @@ export default function Home() {
 
 
                 {/* 3 Cards stacked */}
-                <div className="flex flex-col justify-between w-[90%] h-full z-[4] pb-5">
+                <div className="flex flex-col justify-between w-[90%] h-full z-[4] pb-5 mb-5">
 
                   {/* Card — Asrama */}
                   <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
@@ -474,7 +474,7 @@ export default function Home() {
 
                 <AnimateOnView
                   animation="animate-slideInLeft"
-                  className="absolute left-4 bottom-0 z-5"
+                  className="absolute left-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/kompetisi/wave-left.png"
@@ -487,7 +487,7 @@ export default function Home() {
 
                 <AnimateOnView
                   animation="animate-slideInRight"
-                  className="absolute right-4 bottom-0 z-5"
+                  className="absolute right-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/kompetisi/wave-right.png"
@@ -505,27 +505,136 @@ export default function Home() {
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-[1]" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -400vh' }} />
+              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-[1]" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
+
+              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
+                <Image
+                  src="/images/game/title-game.png"
+                  alt="title game"
+                  width={320}
+                  height={65}
+                  className="object-contain"
+                  style={{ width: 'auto', height: 'auto' }}
+                />
+              </div>
+
+              {/* Clouds — absolute relative to section */}
+              <div className="absolute -left-10 bottom-50 animate-cloudLeft transition-opacity duration-500 z-3">
+                <Image src="/images/awan.png" alt="cloud left" width={260} height={95} className="object-fill" />
+              </div>
+
+              <div className="absolute -right-50 top-40 animate-cloudRight transition-opacity duration-500 z-3">
+                <Image src="/images/awan.png" alt="cloud right" width={430} height={180} className="object-fill" />
+              </div>
+
               <section className="relative z-[2] w-[80%] mx-auto h-screen flex items-center justify-center">
-                <div className="text-center text-amber-900">
-                  <h2 className="text-3xl font-bold">Game</h2>
-                  <p className="mt-2 text-sm">Konten akan ditambahkan</p>
+
+                <div className="
+          w-[90%] rounded-2xl px-10 py-20
+          bg-gradient-to-r from-[#de8402]/80 from-[0%] via-[#ffd286]/80 via-[80%] to-[#de8402]/80 to-[100%] 
+          border-2 border-[#461500]
+          shadow-2xl flex flex-col gap-6
+        ">
+                  {/* Description */}
+                  <p className="text-xs text-amber-900 leading-relaxed text-justify">
+                    Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai
+                    media untuk mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta
+                    utama, yaitu peta umum, peta khusus (tematik), dan peta kartometrik, yang
+                    masing-masing memiliki fungsi dan karakteristik berbeda. Peta umum
+                    menggambarkan permukaan bumi secara menyeluruh dan berfungsi memberikan
+                    informasi dasar tentang kenampakan alam maupun buatan.
+                  </p>
+
+                  {/* Button */}
+                  <div className="flex justify-center">
+                    <button className="
+              px-6 py-2 text-[11px] tracking-widest uppercase
+              bg-amber-800 text-yellow-100 rounded
+              hover:bg-amber-700 transition-colors duration-200
+              border border-amber-600 cursor-pointer
+            ">
+                      Lihat Detail →
+                    </button>
+                  </div>
                 </div>
+
               </section>
+
+              <AnimateOnView
+                animation='animate-slideInLeft'
+                className="absolute -bottom-5 right-0 w-full z-[2] ">
+                <Image
+                  src="/images/game/gold-wave.png"
+                  alt="wave"
+                  width={1920}
+                  height={300}
+                  className="w-full h-auto object-cover"
+                />
+              </AnimateOnView>
+
             </div>
 
             {/* Row 6 — Sponsor & Media Partner */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-[1]" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -500vh' }} />
-              <section className="relative z-[2] w-[80%] mx-auto h-screen flex items-center justify-center">
-                <div className="text-center text-amber-900">
-                  <h2 className="text-3xl font-bold">Sponsor & Media Partner</h2>
-                  <p className="mt-2 text-sm">Konten akan ditambahkan</p>
+              <section className="relative z-[2] w-[80%] mx-auto h-screen flex flex-col items-center justify-center">
+
+                <div className="
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      border-4 border-[#4d1101]
+                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+                      flex flex-col items-center gap-6
+                    ">
+
+                  {/* Title frame */}
+                  <div className="absolute w-[30%] top-0 -translate-x-11/12 -translate-y-1/2 w-1/2 flex items-center justify-center">
+                    <Image
+                      src="/images/sponsor/title-sponsor.png"
+                      alt="frame title"
+                      width={320}
+                      height={60}
+                      className="w-full object-contain"
+                    />
+                  </div>
                 </div>
+
+                <div className="
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      border-4 border-[#4d1101]
+                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+                      flex flex-col items-center gap-6
+                    ">
+
+                  {/* Title frame */}
+                  <div className="absolute w-[30%] top-0 translate-x-11/12 -translate-y-1/2 w-1/2 flex items-center justify-center">
+                    <Image
+                      src="/images/sponsor/title-media.png"
+                      alt="frame title"
+                      width={320}
+                      height={60}
+                      className="w-full object-contain"
+                    />
+                  </div>
+                </div>
+
               </section>
             </div>
+          
+            
 
           </div>
+
+          {/* Scroll bottom rod */}
+            <div className="relative bottom-20 w-[95%] z-[2] drop-shadow-2xl animate-unroll">
+              <Image
+                src="/images/scroll-top-bottom.png"
+                alt="scroll top"
+                width={1920}
+                height={60}
+                className="w-full object-contain"
+              />
+            </div>
 
         </div>
       )}
