@@ -4,6 +4,12 @@ h1 {
   font-family: var(--font-efco-brookshire), sans-serif;
 }
 
+p {
+  font-family: var(--font-merriweather), serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 @keyframes waveFloat {
 
   0%,
@@ -81,7 +87,12 @@ h1 {
   100% { transform: translateX(0vw); }
 }
 
-@keyframes revealFromBottom {
+@keyframes slideInRight {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(0vw); }
+}
+
+@keyframes fadeInUp {
   0% {
     opacity: 0;
     transform: translateY(20px); /* Start slightly lower */
@@ -120,6 +131,10 @@ h1 {
   animation: slideInLeft 1s ease-out forwards;
 }
 
-.animate-revealFromBottom {
-  animation: revealFromBottom 1400ms ease-out forwards;
+.animate-slideInRight {
+  animation: slideInRight 1s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1400ms ease-out forwards;
 }
