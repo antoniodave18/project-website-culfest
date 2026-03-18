@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Merriweather } from 'next/font/google';
+import { Merriweather, Montserrat } from 'next/font/google';
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -9,8 +9,14 @@ const efcoBrookshire = localFont({
 });
 
 const merriweather = Merriweather({
+  weight: ['300', '400', '700', '900'],
   subsets: ['latin'],
   variable: '--font-merriweather',
+});
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
 });
 
 
@@ -27,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${efcoBrookshire.variable} ${merriweather.variable} antialiased`}
+        className={`${efcoBrookshire.variable} ${merriweather.variable} ${montserrat.variable} antialiased`}
       >
         {children}
       </body>

@@ -14,11 +14,11 @@ p {
 
   0%,
   100% {
-    transform: translateX(2px);
+    transform: translateX(4px);
   }
 
   50% {
-    transform: translateX(8px);
+    transform: translateX(16px);
   }
 }
 
@@ -30,7 +30,7 @@ p {
   }
 
   50% {
-    transform: translateX(-10px);
+    transform: translateX(-20px);
   }
 }
 
@@ -42,7 +42,7 @@ p {
   }
 
   50% {
-    transform: translateX(10px);
+    transform: translateX(20px);
   }
 }
 
