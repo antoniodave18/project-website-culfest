@@ -605,7 +605,7 @@ export default function Home() {
           </div>
 
           {/* Scroll bottom rod */}
-          <div className="relative z-10 bottom-20 w-[95%] drop-shadow-[0_18px_24px_rgba(0,0,0,0.8)] animate-unroll">
+          <div className="relative z-10 bottom-20 max-md:bottom-10 w-[95%] drop-shadow-[0_10px_10px_rgba(0,0,0,0.7)] animate-unroll">
                 <Image
               src="/images/scroll-top-bottom.png"
               alt="scroll bottom"
@@ -625,7 +625,7 @@ export default function Home() {
         >
 
           {/* Main footer content */}
-          <div className="relative z-2 w-full px-12 pt-10 pb-6">
+          <div className="relative z-2 w-full px-12 max-md:px-6 pt-10 max-md:pt-20 pb-6">
 
             {/* Top row */}
             <div className="flex justify-between items-start w-full">
@@ -644,7 +644,7 @@ export default function Home() {
                     Cultural Festival 15
                   </span>
                 </div>
-                <p className="text-white/70 text-[11px] leading-relaxed">
+                <p className="text-white/70 text-[11px] max-md:text-xs leading-relaxed">
                   Jl. Bhinneka Tunggal Ika, Bulaksumur, Caturtunggal, Depok,
                   Sleman, Daerah Istimewa Yogyakarta 55281.
                 </p>
@@ -652,7 +652,7 @@ export default function Home() {
 
               
               {/* Right — Links */}
-              <div className="flex gap-16">
+              <div className="flex gap-16 max-md:gap-5">
                 <div className="flex flex-col gap-1">
                   <span className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Pages</span>
                   <Link href="/" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Culfest</Link>
