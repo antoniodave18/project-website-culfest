@@ -487,9 +487,9 @@ export default function Home() {
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -400vh' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
+              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
-              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
+              <div className='absolute top-0 w-full max-md:min-w-[70%] h-28 bg-[#03005e] z-1 flex items-center justify-center'>
                 <Image
                   src="/images/game/title-game.png"
                   alt="title game"
@@ -501,18 +501,18 @@ export default function Home() {
               </div>
 
               {/* Clouds — absolute relative to section */}
-              <div className="absolute -left-10 bottom-50 animate-cloudLeft transition-opacity duration-500 z-3">
+              <div className="absolute -left-10 max-md:-left-45 bottom-50 animate-cloudLeft transition-opacity duration-500 z-3">
                 <Image src="/images/awan.png" alt="cloud left" width={260} height={95} className="object-fill" />
               </div>
 
-              <div className="absolute -right-50 top-40 animate-cloudRight transition-opacity duration-500 z-3">
+              <div className="absolute -right-50 max-md:-right-90 top-40 animate-cloudRight transition-opacity duration-500 z-3">
                 <Image src="/images/awan.png" alt="cloud right" width={430} height={180} className="object-fill" />
               </div>
 
               <section className="relative z-2 w-[80%] mx-auto h-screen flex items-center justify-center">
 
                 <div className="
-          w-[90%] rounded-2xl px-10 py-20
+          w-[90%] rounded-2xl px-10 max-md:px-5 py-20 max-md:py-5
           bg-linear-to-r from-[#de8402]/80 from-0% via-[#ffd286]/80 via-80% to-[#de8402]/80 to-100% 
           border-2 border-[#461500]
           shadow-2xl flex flex-col gap-6
