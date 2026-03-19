@@ -281,7 +281,7 @@ export default function Home() {
                   {/* Card — Asrama */}
                   <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
                     <div className="
-            relative w-full rounded-xl px-6 py-4
+            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -292,17 +292,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Asrama
                       </h3>
-                      <p className="text-xs text-blue-100 leading-relaxed">
+                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end mt-3">
+                      <div className="flex justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -319,7 +319,7 @@ export default function Home() {
                   {/* Card — Ormada */}
                   <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-end">
                     <div className="
-            relative w-full rounded-xl px-6 py-4
+            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -328,17 +328,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Ormada
                       </h3>
-                      <p className="text-xs text-blue-100 leading-relaxed">
+                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end mt-3">
+                      <div className="flex justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -355,7 +355,7 @@ export default function Home() {
                   {/* Card — Fakultas */}
                   <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
                     <div className="
-            relative w-full rounded-xl px-6 py-4
+            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -365,17 +365,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Fakultas
                       </h3>
-                      <p className="text-xs text-blue-100 leading-relaxed">
+                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end mt-3">
+                      <div className="flex justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
