@@ -302,7 +302,7 @@ export default function Home() {
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-center mt-3">
+                      <div className="flex justify-end max-md:justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -338,7 +338,7 @@ export default function Home() {
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-center mt-3">
+                      <div className="flex justify-end max-md:justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -375,7 +375,7 @@ export default function Home() {
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-center mt-3">
+                      <div className="flex justify-end max-md:justify-center mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -402,14 +402,14 @@ export default function Home() {
               <section className="relative z-2 w-[80%] mx-auto h-screen flex items-center justify-center overflow-hidden">
                 {/* Card */}
                 <div className="
-                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      relative w-[90%] rounded-2xl px-15 max-md:px-3 pt-20 max-md:py-8 pb-10 mb-30 max-md:mb-10
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 flex items-center justify-center">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 max-md:min-w-[70%] flex items-center justify-center">
                     <Image
                       src="/images/kompetisi/title-kompetisi.png"
                       alt="frame title"
@@ -419,7 +419,7 @@ export default function Home() {
                     />
                   </div>
 
-                  <p className="text-justify text-amber-900 md:text-base">
+                  <p className="text-justify text-amber-900 text-base max-md:text-xs">
                     Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                     mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                     peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -428,15 +428,16 @@ export default function Home() {
                   </p>
 
 
-                  <div className="flex flex-row justify-around gap-3 w-full">
+                  <div className="flex flex-row justify-around max-md:justify-center gap-3 max-md:gap-5 w-full">
                     {[1, 2, 3, 4].map((i) => (
                       <div
                         key={i}
-                        className="
+                        className={`
                             w-28 h-40 rounded-xl
                             bg-amber-200/60 border-2 border-amber-700/40
                             flex items-center justify-center
-                          "
+                            ${i > 2 ? 'max-md:hidden' : ''}
+                          `}
                       >
                         <span className="text-amber-700/40 text-xs">Foto {i}</span>
                       </div>
@@ -446,7 +447,7 @@ export default function Home() {
 
                   <button
                     className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 mt-10 text-1xl uppercase tracking-widest
+                                     px-7 py-4 mt-10 max-md:mt-0 text-1xl max-md:text-xs uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
                   >
                     Baca Selengkapnya
