@@ -79,7 +79,7 @@ export default function Home() {
                       </div>
 
                       <div className="order-2 flex flex-col gap-10 max-sm:gap-2 md:order-1">
-                        <p className="text-justify text-amber-900">
+                        <p className="text-justify text-lg max-md:text-xs text-amber-900">
                           Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                           mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                           peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -133,51 +133,29 @@ export default function Home() {
                 </div>
 
                 {/* Golden ribbon */}
-                <div className="absolute w-screen bottom-0 -right-20 z-0">
+                <div className="absolute w-full bottom-0 z-0">
                   <Image
                     src="/images/linimasa/ribbon.png"
                     alt="ribbon"
                     width={1920}
                     height={1200}
-                    className="object-contain w-full h-auto"
+                    className="object-contain h-auto"
                   />
                 </div>
 
-                {/* Winding path */}
-                <AnimateOnView animation="animate-fadeIn" className="absolute bottom-[18%] left-1/2 -translate-x-1/2 z-2 w-[55%]">
+                {/* Ampera */}
+                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[50%]  left-1/2 -translate-x-1/2 top-1/2 -translate-y-3/7 z-3">
                   <Image
-                    src="/images/linimasa/path.png"
-                    alt="path"
-                    width={900}
-                    height={200}
-                    className="w-full h-auto object-contain"
-                  />
-                </AnimateOnView>
-
-                {/* Gate left */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[7%] left-[25%] top-[15%] z-3">
-                  <Image
-                    src="/images/linimasa/ampera.png"
-                    alt="gate left"
-                    width={120}
-                    height={200}
-                    className="w-full h-auto object-contain"
-                  />
-                </AnimateOnView>
-
-                {/* Gate right */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[8%] right-[25%] top-[30%] z-3 scale-150">
-                  <Image
-                    src="/images/linimasa/ampera.png"
-                    alt="gate right"
-                    width={120}
-                    height={200}
-                    className="w-full h-auto object-contain"
+                    src="/images/linimasa/ampera-bridge.png"
+                    alt="ampera bridge"
+                    width={955}
+                    height={667}
+                    className="h-auto object-cover"
                   />
                 </AnimateOnView>
 
                 {/* Day 1 */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[7%] left-[35%] top-[30%] z-4 flex flex-col gap-2">
+                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[7%] left-[35%] top-1/2 -translate-y-5/6 z-4 flex flex-col gap-2">
                   <div className="text-right text-white drop-shadow">
                     <p className="text-xs text-right font-bold tracking-widest">
                       Day 1
@@ -201,7 +179,7 @@ export default function Home() {
                 </AnimateOnView>
 
                 {/* Day 2 */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[6%] right-[38%] top-[50%] z-4 flex flex-col gap-2">
+                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[6%] right-[38%] top-1/2 -translate-y-1/4 z-4 flex flex-col gap-2">
                   <div className="text-right text-white drop-shadow">
                     <p className="text-xs font-bold tracking-widest">
                       Day 2
@@ -282,10 +260,10 @@ export default function Home() {
                 />
               </AnimateOnView>
 
-              <section className="relative z-2 h-screen w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5 ">
+              <section className="relative z-2 h-screen w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
 
                 {/* Title frame — top right (relative flow) */}
-                <div className="relative self-end mx-5 mb-13 z-5 ">
+                <div className="relative self-end mx-5 mb-13 max-md:mb-2 z-5 ">
                   <Image
                     src="/images/jelajah/title-jelajah.png"
                     alt="title jelajah"
@@ -298,10 +276,10 @@ export default function Home() {
 
 
                 {/* 3 Cards stacked */}
-                <div className="flex flex-col justify-between w-[90%] h-full z-4 pb-5 mb-5">
+                <div className="flex flex-col justify-center gap-10 max-md:gap-5 w-[90%] h-full z-4 pb-5 mb-5">
 
                   {/* Card — Asrama */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
                     <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
@@ -319,7 +297,7 @@ export default function Home() {
                       >
                         Asrama
                       </h3>
-                      <p className="text-[11px] text-blue-100 leading-relaxed">
+                      <p className="text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
@@ -330,6 +308,7 @@ export default function Home() {
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
+                
               ">
                           Lihat Detail →
                         </button>
@@ -338,7 +317,7 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Card — Ormada */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-end">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-end">
                     <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
@@ -354,7 +333,7 @@ export default function Home() {
                       >
                         Ormada
                       </h3>
-                      <p className="text-[11px] text-blue-100 leading-relaxed">
+                      <p className="text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
@@ -365,6 +344,7 @@ export default function Home() {
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
+                
               ">
                           Lihat Detail →
                         </button>
@@ -373,7 +353,7 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Card — Fakultas */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] self-start">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
                     <div className="
             relative w-full rounded-xl px-6 py-4
             bg-blue-900/90 border border-blue-700
@@ -390,7 +370,7 @@ export default function Home() {
                       >
                         Fakultas
                       </h3>
-                      <p className="text-sm text-blue-100 leading-relaxed">
+                      <p className="text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
@@ -401,6 +381,7 @@ export default function Home() {
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
                 border border-amber-600 cursor-pointer
+                
               ">
                           Lihat Detail →
                         </button>

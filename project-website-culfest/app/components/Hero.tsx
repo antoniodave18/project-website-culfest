@@ -131,7 +131,7 @@ export default function Hero({ onRevealScroll }: HeroProps) {
 					absolute left-1/2 -translate-x-1/2
 					z-6 w-2/3 h-2/3
 					transition-all duration-700
-					${!chestOpen ? 'cursor-pointer hover:scale-105 top-1/2 -translate-y-1/2' : 'top-[10%] translate-y-0 w-[320px] h-70'}
+					${!chestOpen ? 'cursor-pointer hover:scale-105 top-1/2 -translate-y-1/2' : 'top-[10%] translate-y-0 max-md:w-[50%] h-70'}
 				`}
 			>
 				<Image
