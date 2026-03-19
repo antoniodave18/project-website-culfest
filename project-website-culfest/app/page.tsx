@@ -32,6 +32,16 @@ export default function Home() {
 
           {/* Section rows — each bg sits behind its own paper slice */}
           <div className="relative w-full -top-2 animate-unroll">
+            {/* Continuous paper backdrop that follows dynamic total content height */}
+            <div
+              className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none"
+              style={{
+                backgroundImage: "url('/images/paper.png')",
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center top',
+              }}
+            />
 
             {/* Row 1 — About Culfest */}
             <div className="relative w-full">
@@ -40,17 +50,12 @@ export default function Home() {
                 className="absolute inset-0 z-0"
                 style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
               />
-              {/* paper — centered 80% wide, slice of full 600vh image */}
-              <div
-                className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-full z-1"
-                style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center 0' }}
-              />
-              <section className="relative z-2 h-screen">
+              <section className="relative z-2 h-fit">
                 <div className="mx-auto w-[80%] h-full flex items-center justify-center px-15 pb-10 max-md:px-5">
 
                   {/* Card */}
                   <div className="
-                      relative w-full rounded-2xl px-15 py-20 max-md:px-5 max-md:py-7
+                      relative w-full rounded-2xl my-[20%] px-15 py-20 max-md:px-5 max-md:py-7
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -68,7 +73,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid w-full grid-cols-1 items-stretch gap-8 max-sm:gap-2 md:grid-cols-2">
-                      <div className="relative order-1 flex w-full h-auto items-center justify-center max-md:w-[50%] max-md:mx-auto md:order-2">
+                      <div className="relative order-1 flex w-full h-auto items-center justify-center mt-10 max-md:w-[50%] max-md:mx-auto md:order-2">
                         <Image
                           src="/images/beranda/frame-photo.png"
                           alt="photo frame"
@@ -79,7 +84,7 @@ export default function Home() {
                       </div>
 
                       <div className="order-2 flex flex-col gap-10 max-sm:gap-2 md:order-1">
-                        <p className="text-justify text-lg max-md:text-xs text-amber-900">
+                        <p className="text-lg max-md:text-xs text-amber-900">
                           Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                           mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                           peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -116,10 +121,9 @@ export default function Home() {
             {/* Row 2 — Linimasa */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -100vh' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
 
-              <section className="relative z-2 h-screen flex items-center justify-center overflow-hidden">
+              <section className="relative z-2 h-dvh flex items-center justify-center overflow-hidden">
 
                 <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
                   <Image
@@ -230,7 +234,6 @@ export default function Home() {
             {/* Row 3 — Jelajah Bareng */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -200vh' }} />
 
               {/* Pagoda — left */}
               <AnimateOnView
@@ -260,7 +263,7 @@ export default function Home() {
                 />
               </AnimateOnView>
 
-              <section className="relative z-2 h-screen w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
+              <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
 
                 {/* Title frame — top right (relative flow) */}
                 <div className="relative self-end mx-5 mb-13 max-md:mb-2 z-5 ">
@@ -397,12 +400,11 @@ export default function Home() {
             {/* Row 4 — Kompetisi */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -300vh' }} />
 
-              <section className="relative z-2 w-[80%] mx-auto h-screen flex items-center justify-center overflow-hidden">
+              <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
                 <div className="
-                      relative w-[90%] rounded-2xl px-15 max-md:px-3 pt-20 max-md:py-8 pb-10 mb-30 max-md:mb-10
+                      relative w-[90%] rounded-2xl mt-20 px-15 max-md:px-3 pt-20 max-md:py-8 pb-10 mb-50
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -486,17 +488,15 @@ export default function Home() {
             {/* Row 5 — Game */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -400vh' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
-              <div className='absolute top-0 w-full max-md:min-w-[70%] h-28 bg-[#03005e] z-1 flex items-center justify-center'>
+              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
                 <Image
                   src="/images/game/title-game.png"
                   alt="title game"
                   width={320}
                   height={65}
-                  className="object-contain"
-                  style={{ width: 'auto', height: 'auto' }}
+                  className=" object-contain"
                 />
               </div>
 
@@ -509,10 +509,10 @@ export default function Home() {
                 <Image src="/images/awan.png" alt="cloud right" width={430} height={180} className="object-fill" />
               </div>
 
-              <section className="relative z-2 w-[80%] mx-auto h-screen flex items-center justify-center">
+              <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center">
 
                 <div className="
-          w-[90%] rounded-2xl px-10 max-md:px-5 py-20 max-md:py-5
+          w-[90%] rounded-2xl px-10 mt-40 mb-[30%] max-md:px-5 py-20 max-md:py-5
           bg-linear-to-r from-[#de8402]/80 from-0% via-[#ffd286]/80 via-80% to-[#de8402]/80 to-100% 
           border-2 border-[#461500]
           shadow-2xl flex flex-col gap-6
@@ -559,18 +559,17 @@ export default function Home() {
             {/* Row 6 — Sponsor & Media Partner */}
             <div className="relative w-full">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-1" style={{ backgroundImage: "url('/images/paper.png')", backgroundSize: '100% 600vh', backgroundRepeat: 'no-repeat', backgroundPosition: 'center -500vh' }} />
-              <section className="relative z-2 w-[80%] mx-auto h-screen flex flex-col items-center justify-center">
+              <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center">
 
                 <div className="
-                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mt-[10%] mb-10
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute w-[30%] top-0 -translate-x-11/12 -translate-y-1/2 flex items-center justify-center">
+                  <div className="absolute w-[30%] max-md:w-[70%] top-0 -translate-x-11/12 max-md:-translate-x-1/2 max-md:left-1/2 -translate-y-1/2">
                     <Image
                       src="/images/sponsor/title-sponsor.png"
                       alt="frame title"
@@ -582,14 +581,14 @@ export default function Home() {
                 </div>
 
                 <div className="
-                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-30
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-[20%]
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute w-[30%] top-0 translate-x-11/12 -translate-y-1/2 flex items-center justify-center">
+                  <div className="absolute w-[30%] max-md:w-[70%] top-0 -translate-x-11/12 max-md:-translate-x-1/2 max-md:left-1/2 -translate-y-1/2">
                     <Image
                       src="/images/sponsor/title-media.png"
                       alt="frame title"
