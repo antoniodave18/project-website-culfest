@@ -55,7 +55,7 @@ export default function Home() {
 
                   {/* Card */}
                   <div className="
-                      relative w-full rounded-2xl my-[20%] px-15 py-20 max-md:px-5 max-md:py-7
+                      relative w-full rounded-2xl my-[10%] max-md:my-[25%] px-15 py-25 max-md:px-5 max-md:py-7
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -72,18 +72,18 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="grid w-full grid-cols-1 items-stretch gap-8 max-sm:gap-2 md:grid-cols-2">
-                      <div className="relative order-1 flex w-full h-auto items-center justify-center mt-10 max-md:w-[50%] max-md:mx-auto md:order-2">
+                    <div className="grid w-full grid-cols-2 gap-8 max-lg:grid-cols-1">
+                      <div className="order-2 flex w-full h-auto items-center justify-center mt-10 max-md:w-[50%] max-md:mx-auto max-md:order-1">
                         <Image
                           src="/images/beranda/frame-photo.png"
                           alt="photo frame"
                           height={440}
                           width={312}
-                          className="object-contain"
+                          className="object-cover"
                         />
                       </div>
 
-                      <div className="order-2 flex flex-col gap-10 max-sm:gap-2 md:order-1">
+                      <div className="order-1 flex flex-col gap-10  max-lg:order-2">
                         <p className="text-lg max-md:text-xs text-amber-900">
                           Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                           mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
@@ -94,7 +94,7 @@ export default function Home() {
                         <button
                           className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 text-1xl max-md:text-xs uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] max-md:self-center"
+                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] max-lg:self-center"
                         >
                           Baca Selengkapnya
                         </button>
@@ -119,116 +119,104 @@ export default function Home() {
             </div>
 
             {/* Row 2 — Linimasa */}
-            <div className="relative w-full">
+            <div className="relative w-full overflow-visible">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
 
-              <section className="relative z-2 h-dvh flex items-center justify-center overflow-hidden">
+              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-3 flex items-center justify-center'>
+                <Image
+                  src="/images/linimasa/title-linimasa.png"
+                  alt="title linimasa"
+                  width={320}
+                  height={65}
+                  className="object-contain"
+                  style={{ width: 'auto', height: 'auto' }}
+                />
+              </div>
 
-                <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
-                  <Image
-                    src="/images/linimasa/title-linimasa.png"
-                    alt="title linimasa"
-                    width={320}
-                    height={65}
-                    className="object-contain"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
-                </div>
+              
 
-                {/* Golden ribbon */}
-                <div className="absolute w-full bottom-0 z-0">
-                  <Image
-                    src="/images/linimasa/ribbon.png"
-                    alt="ribbon"
-                    width={1920}
-                    height={1200}
-                    className="object-contain h-auto"
-                  />
-                </div>
-
+              <section className="relative z-2 w-[80%] mx-auto h-dvh overflow-hidden">
                 {/* Ampera */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[50%]  left-1/2 -translate-x-1/2 top-1/2 -translate-y-3/7 z-3">
+                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[60%]  left-1/2 -translate-x-1/2 top-1/2 -translate-y-3/7 z-3">
                   <Image
                     src="/images/linimasa/ampera-bridge.png"
                     alt="ampera bridge"
                     width={955}
                     height={667}
-                    className="h-auto object-cover"
+                    className="w-full h-auto object-contain"
                   />
+
+                  {/* Day 1 */}
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] left-[30%] top-[60%] -translate-y-full z-4 flex flex-col gap-2">
+                    <div className="text-right text-white drop-shadow">
+                      <p className="text-xs text-right font-bold tracking-widest">
+                        Day 1
+                      </p>
+                      <p className="text-[12px] text-white/80 mt-1 leading-relaxed ">
+                        Grand Opening<br />
+                        Art Exhibition<br />
+                        Traditional Dance Battle
+                      </p>
+                    </div>
+                    <div className='w-full self-end'>
+                      <Image
+                        src="/images/linimasa/chileko.png"
+                        alt="character day 1"
+                        width={80}
+                        height={100}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </AnimateOnView>
+
+                  {/* Day 2 */}
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] top-[85%] -translate-y-full z-4 flex flex-col gap-2">
+                    <div className="text-right text-white drop-shadow">
+                      <p className="text-xs text-right font-bold tracking-widest">
+                        Day 2
+                      </p>
+                      <p className="text-[12px] text-white/80 mt-1 leading-relaxed ">
+                        Grand Opening<br />
+                        Art Exhibition<br />
+                        Traditional Dance Battle
+                      </p>
+                    </div>
+                    <div className='w-full self-end'>
+                      <Image
+                        src="/images/linimasa/chitala.png"
+                        alt="character day 1"
+                        width={80}
+                        height={100}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </AnimateOnView>
                 </AnimateOnView>
-
-                {/* Day 1 */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[7%] left-[35%] top-1/2 -translate-y-5/6 z-4 flex flex-col gap-2">
-                  <div className="text-right text-white drop-shadow">
-                    <p className="text-xs text-right font-bold tracking-widest">
-                      Day 1
-                    </p>
-                    <p className="text-[12px]! text-white/80 mt-1 leading-relaxed ">
-                      Grand Opening<br />
-                      Art Exhibition<br />
-                      Traditional Dance Battle
-                    </p>
-                  </div>
-                  <div className='w-[70%] self-end'>
-                    <Image
-                      src="/images/linimasa/chileko.png"
-                      alt="character day 1"
-                      width={80}
-                      height={100}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-
-                </AnimateOnView>
-
-                {/* Day 2 */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[6%] right-[38%] top-1/2 -translate-y-1/4 z-4 flex flex-col gap-2">
-                  <div className="text-right text-white drop-shadow">
-                    <p className="text-xs font-bold tracking-widest">
-                      Day 2
-                    </p>
-                    <p className="text-[12px]! text-white/80 mt-1 leading-relaxed max-w-30">
-                      Grand Opening<br />
-                      Art Exhibition<br />
-                      Traditional Dance Battle
-                    </p>
-                  </div>
-                  <div className='w-[80%] self-end'>
-                    <Image
-                      src="/images/linimasa/chitala.png"
-                      alt="character day 2"
-                      width={80}
-                      height={100}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-
-                </AnimateOnView>
-
-                {/* Lotus */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute bottom-0 left-1/2 -translate-x-1/2 z-4">
-                  <Image
-                    src="/images/linimasa/lotus.png"
-                    alt="lotus"
-                    width={200}
-                    height={128}
-                    className="object-cover w-full h-auto"
-                  />
-                </AnimateOnView>
-
-                {/* Lihat Detail button */}
-                <div className="absolute bottom-[6%] right-[15%] z-5">
-                  <button
-                    className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 text-1xl uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
-                  >
-                    Baca Selengkapnya
-                  </button>
-                </div>
-
               </section>
+
+              {/* Lihat Detail button */}
+              <div className="absolute bottom-30 left-1/2 -translate-x-1/2 sm:bottom-40 md:left-[75%] z-5">
+                <button
+                  className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
+                                    px-7 py-4 text-1xl max-md:text-xs uppercase tracking-widest
+                                    text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
+                >
+                  Baca Selengkapnya
+                </button>
+              </div>
+
+              {/* Lotus */}
+              <AnimateOnView animation="animate-fadeInUp" className="absolute w-[35%] md:w-auto bottom-0 sm:-bottom-10 left-1/2 -translate-x-1/2 z-4">
+                <Image
+                  src="/images/linimasa/lotus.png"
+                  alt="lotus"
+                  width={200}
+                  height={128}
+                  className="object-fill w-full h-auto"
+                />
+              </AnimateOnView>
             </div>
 
             {/* Row 3 — Jelajah Bareng */}
@@ -238,7 +226,7 @@ export default function Home() {
               {/* Pagoda — left */}
               <AnimateOnView
                 animation="animate-fadeInUp"
-                className="absolute left-0 bottom-0 w-[12%] z-2"
+                className="absolute left-0 bottom-0 w-[12%] max-md:w-[30%] max-md:-translate-x-[20%] max-md:-left-[10%] z-2"
               >
                 <Image
                   src="/images/jelajah/pagoda.png"
@@ -252,7 +240,7 @@ export default function Home() {
               {/* Moon — right */}
               <AnimateOnView
                 animation="animate-slideInRight"
-                className="absolute w-[40%] -right-[30%] top-1/2 -translate-y-1/2 z-2"
+                className="absolute w-[40%] -right-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-2"
               >
                 <Image
                   src="/images/jelajah/moon.png"
@@ -279,7 +267,7 @@ export default function Home() {
 
 
                 {/* 3 Cards stacked */}
-                <div className="flex flex-col justify-center gap-10 max-md:gap-5 w-[90%] h-full z-4 pb-5 mb-5">
+                <div className="flex flex-col justify-center gap-15 max-md:gap-5 w-[90%] h-full z-4 pb-5 mb-5">
 
                   {/* Card — Asrama */}
                   <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
@@ -404,7 +392,7 @@ export default function Home() {
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
                 <div className="
-                      relative w-[90%] rounded-2xl mt-20 px-15 max-md:px-3 pt-20 max-md:py-8 pb-10 mb-50
+                      relative w-[90%] rounded-2xl mt-20 px-15 max-md:px-3 pt-20 max-md:py-8 pb-70 max-md:pb-40 mb-0
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -458,27 +446,27 @@ export default function Home() {
 
                 <AnimateOnView
                   animation="animate-slideInLeft"
-                  className="absolute left-0 bottom-0 z-5"
+                  className="absolute w-[80%] h-auto left-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/kompetisi/wave-left.png"
                     alt="wave-left"
                     width={1920}
                     height={300}
-                    className="object-cover w-full h-auto"
+                    className="object-cover "
                   />
                 </AnimateOnView>
 
                 <AnimateOnView
                   animation="animate-slideInRight"
-                  className="absolute right-0 bottom-0 z-5"
+                  className="absolute  w-[80%] h-auto right-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/kompetisi/wave-right.png"
                     alt="wave-right"
                     width={1920}
                     height={300}
-                    className="object-cover w-full h-auto"
+                    className="object-fill"
                   />
                 </AnimateOnView>
 
