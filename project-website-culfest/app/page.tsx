@@ -51,18 +51,18 @@ export default function Home() {
                 style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
               />
               <section className="relative z-2 h-fit">
-                <div className="mx-auto w-[80%] h-full flex items-center justify-center px-15 pb-10 max-md:px-5">
+                <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-15 pb-10">
 
                   {/* Card */}
                   <div className="
-                      relative w-full rounded-2xl my-[10%] max-md:my-[25%] px-15 py-25 max-md:px-5 max-md:py-7
+                      relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-15 py-7 md:py-25
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     ">
 
                     {/* Title frame */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] max-md:min-w-[70%] flex items-center justify-center">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-[50%] flex items-center justify-center">
                       <Image
                         src="/images/beranda/frame-title.png"
                         alt="frame title"
@@ -72,8 +72,8 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="grid w-full grid-cols-2 gap-8 max-lg:grid-cols-1">
-                      <div className="order-2 flex w-full h-auto items-center justify-center mt-10 max-md:w-[50%] max-md:mx-auto max-md:order-1">
+                    <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
+                      <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
                         <Image
                           src="/images/beranda/frame-photo.png"
                           alt="photo frame"
@@ -83,8 +83,8 @@ export default function Home() {
                         />
                       </div>
 
-                      <div className="order-1 flex flex-col gap-10  max-lg:order-2">
-                        <p className="text-lg max-md:text-xs text-amber-900">
+                      <div className="order-2 lg:order-1 flex flex-col gap-10">
+                        <p className="text-xs md:text-lg text-amber-900">
                           Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                           mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                           peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -93,8 +93,8 @@ export default function Home() {
                         </p>
                         <button
                           className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 text-1xl max-md:text-xs uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] max-lg:self-center"
+                                     px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
+                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto"
                         >
                           Baca Selengkapnya
                         </button>
@@ -104,15 +104,15 @@ export default function Home() {
                 </div>
 
                 {/* Clouds — absolute relative to section */}
-                <div className="absolute -left-10 max-sm:-left-40 max-lg:-left-30 top-20 animate-cloudLeft transition-opacity duration-500">
+                <div className="absolute -left-40 sm:-left-30 lg:-left-10 top-20 animate-cloudLeft transition-opacity duration-500">
                   <Image src="/images/awan.png" alt="cloud left" width={260} height={95} className="object-fill" />
                 </div>
-                <div className="absolute -right-50 max-sm:-right-90 max-lg:-right-60 top-80 animate-cloudRight transition-opacity duration-500">
+                <div className="absolute -right-90 sm:-right-60 lg:-right-50 top-80 animate-cloudRight transition-opacity duration-500">
                   <Image src="/images/awan.png" alt="cloud right" width={430} height={180} className="object-fill" />
                 </div>
 
                 {/* Mountain at bottom */}
-                <AnimateOnView animation="animate-slideInLeft" className="absolute -bottom-10 -left-10 w-screen max-md:w-[140%]">
+                <AnimateOnView animation="animate-slideInLeft" className="absolute -bottom-10 -left-10 w-[140%] md:w-screen">
                   <Image src="/images/beranda/mountain.png" alt="mountain" width={1920} height={500} className="h-auto object-cover" priority />
                 </AnimateOnView>
               </section>
@@ -200,7 +200,7 @@ export default function Home() {
               <div className="absolute bottom-30 left-1/2 -translate-x-1/2 sm:bottom-40 md:left-[75%] z-5">
                 <button
                   className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                    px-7 py-4 text-1xl max-md:text-xs uppercase tracking-widest
+                                    px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
                 >
                   Baca Selengkapnya
@@ -226,7 +226,7 @@ export default function Home() {
               {/* Pagoda — left */}
               <AnimateOnView
                 animation="animate-fadeInUp"
-                className="absolute left-0 bottom-0 w-[12%] max-md:w-[30%] max-md:-translate-x-[20%] max-md:-left-[10%] z-2"
+                className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
               >
                 <Image
                   src="/images/jelajah/pagoda.png"
@@ -254,7 +254,7 @@ export default function Home() {
               <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
 
                 {/* Title frame — top right (relative flow) */}
-                <div className="relative self-end mx-5 mb-13 max-md:mb-2 z-5 ">
+                <div className="relative self-end mx-5 mb-2 md:mb-13 z-5 ">
                   <Image
                     src="/images/jelajah/title-jelajah.png"
                     alt="title jelajah"
@@ -267,12 +267,12 @@ export default function Home() {
 
 
                 {/* 3 Cards stacked */}
-                <div className="flex flex-col justify-center gap-15 max-md:gap-5 w-[90%] h-full z-4 pb-5 mb-5">
+                <div className="flex flex-col justify-center gap-5 md:gap-15 w-[90%] h-full z-4 pb-5 mb-5">
 
                   {/* Card — Asrama */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-start">
                     <div className="
-            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
+            relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -283,17 +283,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Asrama
                       </h3>
-                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
+                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end max-md:justify-center mt-3">
+                      <div className="flex justify-center md:justify-end mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -308,9 +308,9 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Card — Ormada */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-end">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-end">
                     <div className="
-            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
+            relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -319,17 +319,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Ormada
                       </h3>
-                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
+                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end max-md:justify-center mt-3">
+                      <div className="flex justify-center md:justify-end mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -344,9 +344,9 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Card — Fakultas */}
-                  <AnimateOnView animation="animate-fadeInUp" className="w-[80%] max-md:w-full self-start">
+                  <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-start">
                     <div className="
-            relative w-full rounded-xl px-6 max-md:px-2 py-4 max-md:py-2
+            relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-blue-900/90 border border-blue-700
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
@@ -356,17 +356,17 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-2xl max-md:text-xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Fakultas
                       </h3>
-                      <p className="text-xs max-md:text-[10px] text-blue-100 leading-relaxed">
+                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
                         Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
                         sebagai media untuk mempermudah memahami keragaman ruangnya.
                         Terdapat tiga jenis peta utama, yaitu peta umum.
                       </p>
-                      <div className="flex justify-end max-md:justify-center mt-3">
+                      <div className="flex justify-center md:justify-end mt-3">
                         <button className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -392,14 +392,14 @@ export default function Home() {
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
                 <div className="
-                      relative w-[90%] rounded-2xl mt-20 px-15 max-md:px-3 pt-20 max-md:py-8 pb-70 max-md:pb-40 mb-0
+                      relative w-[90%] rounded-2xl mt-20 px-3 md:px-15 pt-8 md:pt-20 pb-40 md:pb-70 mb-0
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 max-md:min-w-[70%] flex items-center justify-center">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center">
                     <Image
                       src="/images/kompetisi/title-kompetisi.png"
                       alt="frame title"
@@ -409,7 +409,7 @@ export default function Home() {
                     />
                   </div>
 
-                  <p className="text-justify text-amber-900 text-base max-md:text-xs">
+                  <p className="text-justify text-amber-900 text-xs md:text-base">
                     Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                     mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                     peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -418,7 +418,7 @@ export default function Home() {
                   </p>
 
 
-                  <div className="flex flex-row justify-around max-md:justify-center gap-3 max-md:gap-5 w-full">
+                  <div className="flex flex-row justify-center md:justify-around gap-5 md:gap-3 w-full">
                     {[1, 2, 3, 4].map((i) => (
                       <div
                         key={i}
@@ -426,7 +426,7 @@ export default function Home() {
                             w-28 h-40 rounded-xl
                             bg-amber-200/60 border-2 border-amber-700/40
                             flex items-center justify-center
-                            ${i > 2 ? 'max-md:hidden' : ''}
+                            ${i > 2 ? 'hidden md:flex' : ''}
                           `}
                       >
                         <span className="text-amber-700/40 text-xs">Foto {i}</span>
@@ -437,7 +437,7 @@ export default function Home() {
 
                   <button
                     className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 mt-10 max-md:mt-0 text-1xl max-md:text-xs uppercase tracking-widest
+                                     px-7 py-4 mt-0 md:mt-10 text-xs md:text-1xl uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
                   >
                     Baca Selengkapnya
@@ -489,18 +489,18 @@ export default function Home() {
               </div>
 
               {/* Clouds — absolute relative to section */}
-              <div className="absolute -left-10 max-md:-left-45 bottom-50 animate-cloudLeft transition-opacity duration-500 z-3">
+              <div className="absolute -left-45 md:-left-10 bottom-80 animate-cloudLeft transition-opacity duration-500 z-3">
                 <Image src="/images/awan.png" alt="cloud left" width={260} height={95} className="object-fill" />
               </div>
 
-              <div className="absolute -right-50 max-md:-right-90 top-40 animate-cloudRight transition-opacity duration-500 z-3">
+              <div className="absolute -right-90 md:-right-50 top-40 animate-cloudRight transition-opacity duration-500 z-3">
                 <Image src="/images/awan.png" alt="cloud right" width={430} height={180} className="object-fill" />
               </div>
 
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center">
 
                 <div className="
-          w-[90%] rounded-2xl px-10 mt-40 mb-[30%] max-md:px-5 py-20 max-md:py-5
+          w-[90%] rounded-2xl px-5 md:px-10 mt-40 mb-[30%] py-5 md:py-20
           bg-linear-to-r from-[#de8402]/80 from-0% via-[#ffd286]/80 via-80% to-[#de8402]/80 to-100% 
           border-2 border-[#461500]
           shadow-2xl flex flex-col gap-6
@@ -557,7 +557,7 @@ export default function Home() {
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute w-[30%] max-md:w-[70%] top-0 -translate-x-11/12 max-md:-translate-x-1/2 max-md:left-1/2 -translate-y-1/2">
+                  <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
                       src="/images/sponsor/title-sponsor.png"
                       alt="frame title"
@@ -576,7 +576,7 @@ export default function Home() {
                     ">
 
                   {/* Title frame */}
-                  <div className="absolute w-[30%] max-md:w-[70%] top-0 -translate-x-11/12 max-md:-translate-x-1/2 max-md:left-1/2 -translate-y-1/2">
+                  <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
                       src="/images/sponsor/title-media.png"
                       alt="frame title"
@@ -592,7 +592,7 @@ export default function Home() {
           </div>
 
           {/* Scroll bottom rod */}
-          <div className="relative z-10 bottom-20 max-md:bottom-10 w-[95%] drop-shadow-[0_10px_10px_rgba(0,0,0,0.7)] animate-unroll">
+          <div className="relative z-10 bottom-10 md:bottom-20 w-[95%] drop-shadow-[0_10px_10px_rgba(0,0,0,0.7)] animate-unroll">
                 <Image
               src="/images/scroll-top-bottom.png"
               alt="scroll bottom"
@@ -612,7 +612,7 @@ export default function Home() {
         >
 
           {/* Main footer content */}
-          <div className="relative z-2 w-full px-12 max-md:px-6 pt-10 max-md:pt-20 pb-6">
+          <div className="relative z-2 w-full px-6 md:px-12 pt-20 md:pt-10 pb-6">
 
             {/* Top row */}
             <div className="flex justify-between items-start w-full">
@@ -631,7 +631,7 @@ export default function Home() {
                     Cultural Festival 15
                   </span>
                 </div>
-                <p className="text-white/70 text-[11px] max-md:text-xs leading-relaxed">
+                <p className="text-white/70 text-xs md:text-[11px] leading-relaxed">
                   Jl. Bhinneka Tunggal Ika, Bulaksumur, Caturtunggal, Depok,
                   Sleman, Daerah Istimewa Yogyakarta 55281.
                 </p>
@@ -639,7 +639,7 @@ export default function Home() {
 
               
               {/* Right — Links */}
-              <div className="flex gap-16 max-md:gap-5">
+              <div className="flex gap-5 md:gap-16">
                 <div className="flex flex-col gap-1">
                   <span className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Pages</span>
                   <Link href="/" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Culfest</Link>

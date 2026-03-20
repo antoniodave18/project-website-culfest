@@ -43,7 +43,8 @@ export default function Hero({ onRevealScroll }: HeroProps) {
 				}}
 			/>
 
-			<div className="absolute top-0 w-full z-3">
+			<div className="absolute top-0 w-full z-3"
+				style={{ opacity: bgChanged ? 0 : 1 }}>
 				<Image
 					src="/images/beranda/tirai-atas.png"
 					alt="tirai atas"
