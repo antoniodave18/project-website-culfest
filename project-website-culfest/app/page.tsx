@@ -48,7 +48,7 @@ export default function Home() {
               {/* bg — full width, behind paper */}
               <div
                 className="absolute inset-0 z-0"
-                style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+                style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
               />
               <section className="relative z-2 h-fit">
                 <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-15 pb-10">
@@ -94,7 +94,7 @@ export default function Home() {
                         <button
                           className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto"
+                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto cursor-pointer"
                         >
                           Baca Selengkapnya
                         </button>
@@ -120,7 +120,7 @@ export default function Home() {
 
             {/* Row 2 — Linimasa */}
             <div className="relative w-full overflow-visible">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
               <div className="absolute inset-0 hidden xl:block z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
               <div className="absolute inset-0 xl:hidden z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon-small.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
@@ -205,7 +205,7 @@ export default function Home() {
                   <button
                     className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                       px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
-                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
+                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer"
                   >
                     Baca Selengkapnya
                   </button>
@@ -228,7 +228,7 @@ export default function Home() {
 
             {/* Row 3 — Jelajah Bareng */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
               {/* Pagoda — left */}
               <AnimateOnView
@@ -280,9 +280,11 @@ export default function Home() {
                   <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-start">
                     <div className="
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
-            bg-blue-900/90 border border-blue-700
+            bg-[#253378] border-4 border-black/25
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
+
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
                       {/* Leaf right */}
                       <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
@@ -305,7 +307,7 @@ export default function Home() {
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer
+                border border-amber-600 cursor-pointer z-5
                 
               ">
                           Lihat Detail →
@@ -318,9 +320,12 @@ export default function Home() {
                   <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-end">
                     <div className="
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
-            bg-blue-900/90 border border-blue-700
+            bg-[#253378] border-4 border-black/25
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
+
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+
                       <div className="absolute w-[10%] -translate-y-1/2 -translate-x-1/2 top-0 left-0 -z-1">
                         <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
                       </div>
@@ -341,7 +346,7 @@ export default function Home() {
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer
+                border border-amber-600 cursor-pointer z-5
                 
               ">
                           Lihat Detail →
@@ -354,9 +359,11 @@ export default function Home() {
                   <AnimateOnView animation="animate-fadeInUp" className="w-full md:w-[80%] self-start">
                     <div className="
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
-            bg-blue-900/90 border border-blue-700
+            bg-[#253378] border-4 border-black/25 
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
+
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
                       <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
                         <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
@@ -378,7 +385,7 @@ export default function Home() {
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
                 hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer
+                border border-amber-600 cursor-pointer z-5
                 
               ">
                           Lihat Detail →
@@ -394,7 +401,7 @@ export default function Home() {
 
             {/* Row 4 — Kompetisi */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
@@ -445,7 +452,7 @@ export default function Home() {
                   <button
                     className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 mt-0 md:mt-10 text-xs md:text-1xl uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
+                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer z-6"
                   >
                     Baca Selengkapnya
                   </button>
@@ -482,7 +489,7 @@ export default function Home() {
 
             {/* Row 5 — Game */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
               <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
@@ -553,7 +560,7 @@ export default function Home() {
 
             {/* Row 6 — Sponsor & Media Partner */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
               <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center">
 
                 <div className="
