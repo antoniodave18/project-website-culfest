@@ -68,7 +68,7 @@ export default function Hero({ onRevealScroll }: HeroProps) {
 			</div>
 
 			<div
-				className="absolute w-1/3 h-3/5 z-3 animate-sway transition-opacity duration-500 max-sm:hidden"
+				className="hidden absolute w-1/3 h-3/5 z-3 animate-sway transition-opacity duration-500 lg:block"
 				style={{ opacity: bgChanged ? 0 : 1 }}
 			>
 				<Image
@@ -81,7 +81,7 @@ export default function Hero({ onRevealScroll }: HeroProps) {
 			</div>
 
 			<div
-				className="absolute top-0 right-0 w-1/3 h-3/5 z-3 animate-swayReverse transition-opacity duration-500 max-sm:hidden"
+				className="hidden absolute top-0 right-0 w-1/3 h-3/5 z-3 animate-swayReverse transition-opacity duration-500 lg:block"
 				style={{ opacity: bgChanged ? 0 : 1 }}
 			>
 				<Image

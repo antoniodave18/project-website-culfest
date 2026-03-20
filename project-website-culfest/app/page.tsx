@@ -124,7 +124,7 @@ export default function Home() {
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
 
-              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-3 flex items-center justify-center'>
+              <div className='relative top-0 w-full h-28 bg-[#03005e] z-3 flex items-center justify-center'>
                 <Image
                   src="/images/linimasa/title-linimasa.png"
                   alt="title linimasa"
@@ -135,11 +135,9 @@ export default function Home() {
                 />
               </div>
 
-              
-
-              <section className="relative z-2 w-[80%] mx-auto h-dvh overflow-hidden">
+              <section className="relative z-3 w-[80%] mx-auto h-auto overflow-visible pt-20 pb-10 md:pb-12">
                 {/* Ampera */}
-                <AnimateOnView animation="animate-fadeInUp" className="absolute w-[60%]  left-1/2 -translate-x-1/2 top-1/2 -translate-y-3/7 z-3">
+                <AnimateOnView animation="animate-fadeInUp" className="relative w-[80%] mx-auto z-3">
                   <Image
                     src="/images/linimasa/ampera-bridge.png"
                     alt="ampera bridge"
@@ -194,21 +192,20 @@ export default function Home() {
                     </div>
                   </AnimateOnView>
                 </AnimateOnView>
-              </section>
 
-              {/* Lihat Detail button */}
-              <div className="absolute bottom-30 left-1/2 -translate-x-1/2 sm:bottom-40 md:left-[75%] z-5">
-                <button
-                  className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                    px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
-                                    text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
-                >
-                  Baca Selengkapnya
-                </button>
-              </div>
+                {/* Lihat Detail button */}
+                <div className="relative w-fit mx-auto md:mr-15 z-5">
+                  <button
+                    className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
+                                      px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
+                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500]"
+                  >
+                    Baca Selengkapnya
+                  </button>
+                </div>
 
-              {/* Lotus */}
-              <AnimateOnView animation="animate-fadeInUp" className="absolute w-[35%] md:w-auto bottom-0 sm:-bottom-10 left-1/2 -translate-x-1/2 z-4">
+                {/* Lotus */}
+              <AnimateOnView animation="animate-fadeInUp" className="relative w-[25%] mx-auto -mb-10 md:-mb-20 item-center z-5">
                 <Image
                   src="/images/linimasa/lotus.png"
                   alt="lotus"
@@ -217,6 +214,9 @@ export default function Home() {
                   className="object-fill w-full h-auto"
                 />
               </AnimateOnView>
+              </section>
+
+              
             </div>
 
             {/* Row 3 — Jelajah Bareng */}
@@ -478,7 +478,7 @@ export default function Home() {
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
-              <div className='absolute top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
+              <div className='relative top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
                 <Image
                   src="/images/game/title-game.png"
                   alt="title game"
@@ -500,7 +500,7 @@ export default function Home() {
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center">
 
                 <div className="
-          w-[90%] rounded-2xl px-5 md:px-10 mt-40 mb-[30%] py-5 md:py-20
+          w-[90%] rounded-2xl px-5 md:px-10 mt-10 mb-[30%] py-5 md:py-20
           bg-linear-to-r from-[#de8402]/80 from-0% via-[#ffd286]/80 via-80% to-[#de8402]/80 to-100% 
           border-2 border-[#461500]
           shadow-2xl flex flex-col gap-6
