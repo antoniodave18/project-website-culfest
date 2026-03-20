@@ -122,37 +122,44 @@ export default function Home() {
             <div className="relative w-full overflow-visible">
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 hidden xl:block z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 xl:hidden z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon-small.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
 
-              <div className='relative top-0 w-full h-28 bg-[#03005e] z-3 flex items-center justify-center'>
+              <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
                 <Image
                   src="/images/linimasa/title-linimasa.png"
                   alt="title linimasa"
                   width={320}
                   height={65}
-                  className="object-contain"
-                  style={{ width: 'auto', height: 'auto' }}
+                  className="object-contain w-[40vw] lg:w-[25vw]"
                 />
               </div>
 
               <section className="relative z-3 w-[80%] mx-auto h-auto overflow-visible pt-20 pb-10 md:pb-12">
                 {/* Ampera */}
-                <AnimateOnView animation="animate-fadeInUp" className="relative w-[80%] mx-auto z-3">
+                <AnimateOnView animation="animate-fadeInUp" className="relative w-full xl:w-[80%] mx-auto z-3">
+                  <Image
+                    src="/images/linimasa/ampera-small.png"
+                    alt="ampera bridge"
+                    width={955}
+                    height={667}
+                    className="w-full h-auto object-contain xl:hidden"
+                  />
                   <Image
                     src="/images/linimasa/ampera-bridge.png"
                     alt="ampera bridge"
                     width={955}
                     height={667}
-                    className="w-full h-auto object-contain"
+                    className="hidden w-full h-auto object-contain xl:block"
                   />
 
                   {/* Day 1 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] left-[30%] top-[60%] -translate-y-full z-4 flex flex-col gap-2">
-                    <div className="text-right text-white drop-shadow">
-                      <p className="text-xs text-right font-bold tracking-widest">
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] left-[35%] xl:left-[30%] top-[35%] xl:top-[60%] -translate-y-full z-4 flex flex-col gap-2">
+                    <div className="text-right w-max text-white drop-shadow">
+                      <p className="text-xs md:text-lg font-bold">
                         Day 1
                       </p>
-                      <p className="text-[12px] text-white/80 mt-1 leading-relaxed ">
+                      <p className="text-[10px] md:text-base text-white/80 mt-1">
                         Grand Opening<br />
                         Art Exhibition<br />
                         Traditional Dance Battle
@@ -170,12 +177,12 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Day 2 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] top-[85%] -translate-y-full z-4 flex flex-col gap-2">
-                    <div className="text-right text-white drop-shadow">
-                      <p className="text-xs text-right font-bold tracking-widest">
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4 flex flex-col gap-2">
+                    <div className="text-left w-max text-white drop-shadow">
+                      <p className="text-xs md:text-lg font-bold tracking-widest">
                         Day 2
                       </p>
-                      <p className="text-[12px] text-white/80 mt-1 leading-relaxed ">
+                      <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
                         Grand Opening<br />
                         Art Exhibition<br />
                         Traditional Dance Battle
@@ -254,13 +261,13 @@ export default function Home() {
               <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
 
                 {/* Title frame — top right (relative flow) */}
-                <div className="relative self-end mx-5 mb-2 md:mb-13 z-5 ">
+                <div className="relative self-center md:self-end mx-5 mb-2 md:mb-13 z-5 ">
                   <Image
                     src="/images/jelajah/title-jelajah.png"
                     alt="title jelajah"
                     width={560}
                     height={105}
-                    className="object-fill w-full h-auto"
+                    className="object-fill w-[50vw] md:w-[40vw] h-auto"
                   />
                 </div>
 
@@ -392,7 +399,7 @@ export default function Home() {
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
                 <div className="
-                      relative w-[90%] rounded-2xl mt-20 px-3 md:px-15 pt-8 md:pt-20 pb-40 md:pb-70 mb-0
+                      relative w-[90%] rounded-2xl mt-20 px-3 md:px-15 pt-15 md:pt-20 pb-40 md:pb-70 mb-0
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -478,13 +485,13 @@ export default function Home() {
               <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
-              <div className='relative top-0 w-full h-28 bg-[#03005e] z-1 flex items-center justify-center'>
+              <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
                 <Image
                   src="/images/game/title-game.png"
                   alt="title game"
                   width={320}
                   height={65}
-                  className=" object-contain"
+                  className="object-contain w-[40vw] lg:w-[25vw]"
                 />
               </div>
 
