@@ -11,7 +11,7 @@ export default function Header() {
 
       {/* Navigation */}
       <nav style={{ display: 'flex', gap: '24px' }}>
-        <Link href="/">Beranda</Link>
+        <Link href="/home">Beranda</Link>
         <Link href="/about-event">About Event</Link>
         <Link href="/game">Game</Link>
         <Link href="/faq">FAQ</Link>
