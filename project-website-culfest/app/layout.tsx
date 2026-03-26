@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Merriweather, Montserrat } from 'next/font/google';
 import localFont from "next/font/local";
+import LayoutFooter from './components/LayoutFooter';
 import "./globals.css";
 
 const efcoBrookshire = localFont({
@@ -32,10 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body
         className={`${efcoBrookshire.variable} ${merriweather.variable} ${montserrat.variable} antialiased`}
       >
         {children}
+        <LayoutFooter />
       </body>
     </html>
   );

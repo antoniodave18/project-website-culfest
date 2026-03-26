@@ -6,8 +6,6 @@ h1 {
 
 p {
   font-family: var(--font-merriweather), serif;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 @keyframes waveFloat {
