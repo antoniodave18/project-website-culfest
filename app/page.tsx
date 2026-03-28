@@ -27,7 +27,7 @@ export default function LandingPage() {
     <main className="bg-black">
       <section className="relative w-full h-screen overflow-hidden">
         <Image
-          src="/images/beranda/bg.png"
+          src="/images/hero/bg.png"
           alt="background"
           fill
           sizes="100vw"
@@ -48,7 +48,7 @@ export default function LandingPage() {
 
         <div className="absolute top-0 w-full z-3" style={{ opacity: bgChanged ? 0 : 1 }}>
           <Image
-            src="/images/beranda/tirai-atas.png"
+            src="/images/tirai-atas.png"
             alt="tirai atas"
             width={1920}
             height={300}
@@ -61,7 +61,7 @@ export default function LandingPage() {
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
-            src="/images/beranda/wave.png"
+            src="/images/hero/wave.png"
             alt="wave"
             width={1920}
             height={300}
@@ -74,7 +74,7 @@ export default function LandingPage() {
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
-            src="/images/beranda/songket-kiri.png"
+            src="/images/hero/songket-kiri.png"
             alt="songket kiri"
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
@@ -87,7 +87,7 @@ export default function LandingPage() {
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
-            src="/images/beranda/songket-kanan.png"
+            src="/images/hero/songket-kanan.png"
             alt="songket kanan"
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
@@ -100,7 +100,7 @@ export default function LandingPage() {
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
-            src="/images/beranda/awan.png"
+            src="/images/awan.png"
             alt="cloud left"
             width={320}
             height={100}
@@ -113,7 +113,7 @@ export default function LandingPage() {
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
-            src="/images/beranda/awan.png"
+            src="/images/awan.png"
             alt="cloud right"
             width={245}
             height={100}
@@ -138,7 +138,7 @@ export default function LandingPage() {
           `}
         >
           <Image
-            src={chestOpen ? '/images/beranda/chest-open.png' : '/images/beranda/chest-close.png'}
+            src={chestOpen ? '/images/hero/chest-open.png' : '/images/hero/chest-close.png'}
             alt="chest"
             fill
             sizes="(max-width: 768px) 66vw, 320px"
