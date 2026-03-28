@@ -29,9 +29,9 @@ export default function Footer() {
           <div className="flex gap-5 md:gap-16">
             <div className="flex flex-col gap-1">
               <span className="text-white/40 text-[10px] tracking-widest uppercase mb-1">Pages</span>
-              <Link href="/home" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Culfest</Link>
-              <Link href="/about-event" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Asrama</Link>
-              <Link href="/about-event" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Ormada</Link>
+              <Link href="/about-event" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Culfest</Link>
+              <Link href="/jelajah/asrama" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Asrama</Link>
+              <Link href="/jelajah/ormada" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">Ormada</Link>
               <Link href="/game" className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors">FestPlay</Link>
             </div>
             <div className="flex flex-col gap-1">

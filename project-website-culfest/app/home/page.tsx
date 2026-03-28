@@ -8,8 +8,23 @@ export default function Home() {
   return (
     <main className="bg-black">
 
+      <div className='absolute items-center justify-center w-full h-[60vh]'
+        style={{
+          backgroundImage: "url('/images/bg-blue.png')",
+          backgroundSize: 'cover',
+        }}>
+
+        <Image
+          src='/images/hero/chest-open.png'
+          alt="chest"
+          width={800}
+          height={600}
+          className='object-contain w-full h-[30vh] mt-10'
+        />
+      </div>
+      
       {/* PAPER SCROLL SECTION */}
-        <div className="mt-0 -mb-37 relative z-7 flex flex-col items-center animate-fadeIn overflow-x-hidden overflow-y-visible">
+        <div className="pt-[40vh] -mb-37 relative z-1 flex flex-col items-center overflow-x-hidden overflow-y-visible">
 
           {/* Scroll top rod */}
           <div className="relative w-[95%] z-2 drop-shadow-2xl animate-unroll">
@@ -23,9 +38,9 @@ export default function Home() {
           </div>
 
           {/* Paper background */}
-          <div className="relative w-full -top-2 animate-unroll">
+          <div className="relative w-full -top-2">
             <div
-              className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none"
+              className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
               style={{
                 backgroundImage: "url('/images/paper.png')",
                 backgroundSize: '100% 100%',
@@ -41,6 +56,7 @@ export default function Home() {
                 className="absolute inset-0 z-0"
                 style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
               />
+
               <section className="relative z-2 h-fit">
                 <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-15 pb-10">
 
@@ -49,7 +65,7 @@ export default function Home() {
                       relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-15 py-7 md:py-25
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
-                      flex flex-col items-center gap-6
+                      flex flex-col items-center gap-6 animate-unroll
                     ">
 
                     {/* Title frame */}
@@ -146,48 +162,52 @@ export default function Home() {
                   />
 
                   {/* Day 1 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] left-[35%] xl:left-[30%] top-[35%] xl:top-[60%] -translate-y-full z-4 flex flex-col gap-2">
-                    <div className="text-right w-max text-white drop-shadow">
-                      <p className="text-xs md:text-lg font-bold">
-                        Day 1
-                      </p>
-                      <p className="text-[10px] md:text-base text-white/80 mt-1">
-                        Grand Opening<br />
-                        Art Exhibition<br />
-                        Traditional Dance Battle
-                      </p>
-                    </div>
-                    <div className='w-full self-end'>
-                      <Image
-                        src="/images/linimasa/chileko.png"
-                        alt="character day 1"
-                        width={80}
-                        height={100}
-                        className="w-full h-auto object-contain"
-                      />
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] left-[35%] xl:left-[30%] top-[35%] xl:top-[60%] -translate-y-full z-4">
+                    <div className="animate-sway flex flex-col gap-2">
+                      <div className="text-right w-max text-white drop-shadow">
+                        <p className="text-xs md:text-lg font-bold">
+                          Day 1
+                        </p>
+                        <p className="text-[10px] md:text-base text-white/80 mt-1">
+                          Grand Opening<br />
+                          Art Exhibition<br />
+                          Traditional Dance Battle
+                        </p>
+                      </div>
+                      <div className='w-full self-end'>
+                        <Image
+                          src="/images/linimasa/chileko.png"
+                          alt="character day 1"
+                          width={80}
+                          height={100}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
                     </div>
                   </AnimateOnView>
 
                   {/* Day 2 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4 flex flex-col gap-2">
-                    <div className="text-left w-max text-white drop-shadow">
-                      <p className="text-xs md:text-lg font-bold tracking-widest">
-                        Day 2
-                      </p>
-                      <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                        Grand Opening<br />
-                        Art Exhibition<br />
-                        Traditional Dance Battle
-                      </p>
-                    </div>
-                    <div className='w-full self-end'>
-                      <Image
-                        src="/images/linimasa/chitala.png"
-                        alt="character day 1"
-                        width={80}
-                        height={100}
-                        className="w-full h-auto object-contain"
-                      />
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
+                    <div className="animate-sway flex flex-col gap-2">
+                      <div className="text-left w-max text-white drop-shadow">
+                        <p className="text-xs md:text-lg font-bold tracking-widest">
+                          Day 2
+                        </p>
+                        <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
+                          Grand Opening<br />
+                          Art Exhibition<br />
+                          Traditional Dance Battle
+                        </p>
+                      </div>
+                      <div className='w-full self-end'>
+                        <Image
+                          src="/images/linimasa/chitala.png"
+                          alt="character day 2"
+                          width={80}
+                          height={100}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
                     </div>
                   </AnimateOnView>
                 </AnimateOnView>
