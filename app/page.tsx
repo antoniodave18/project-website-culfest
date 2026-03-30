@@ -48,7 +48,7 @@ export default function LandingPage() {
 
         <div className="absolute top-0 w-full z-3" style={{ opacity: bgChanged ? 0 : 1 }}>
           <Image
-            src="/images/tirai-atas.png"
+            src="/images/hero/tirai-atas.png"
             alt="tirai atas"
             width={1920}
             height={300}

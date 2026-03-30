@@ -10,7 +10,7 @@ export default function Home() {
 
       <div className='absolute items-center justify-center w-full h-[60vh]'
         style={{
-          backgroundImage: "url('/images/bg-blue.png')",
+          backgroundImage: "url('/images/home/bg-blue.png')",
           backgroundSize: 'cover',
         }}>
 
@@ -29,7 +29,7 @@ export default function Home() {
           {/* Scroll top rod */}
           <div className="relative w-[95%] z-2 drop-shadow-2xl animate-unroll">
             <Image
-              src="/images/scroll-top-bottom.png"
+              src="/images/home/scroll-top-bottom.png"
               alt="scroll top"
               width={1920}
               height={60}
@@ -42,7 +42,7 @@ export default function Home() {
             <div
               className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
               style={{
-                backgroundImage: "url('/images/paper.png')",
+                backgroundImage: "url('/images/home/paper.png')",
                 backgroundSize: '100% 100%',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center top',
@@ -51,10 +51,9 @@ export default function Home() {
 
             {/* About Culfest */}
             <div className="relative w-full">
-              {/* bg — full width, behind paper */}
               <div
                 className="absolute inset-0 z-0"
-                style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+                style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
               />
 
               <section className="relative z-2 h-fit">
@@ -71,7 +70,7 @@ export default function Home() {
                     {/* Title frame */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-[50%] flex items-center justify-center">
                       <Image
-                        src="/images/beranda/frame-title.png"
+                        src="/images/home/beranda/frame-title.png"
                         alt="frame title"
                         width={320}
                         height={50}
@@ -82,7 +81,7 @@ export default function Home() {
                     <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
                       <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
                         <Image
-                          src="/images/beranda/frame-photo.png"
+                          src="/images/home/beranda/frame-photo.png"
                           alt="photo frame"
                           height={440}
                           width={312}
@@ -121,21 +120,21 @@ export default function Home() {
 
                 {/* Mountain */}
                 <AnimateOnView animation="animate-slideInLeft" className="absolute -bottom-10 -left-10 w-[140%] md:w-screen">
-                  <Image src="/images/beranda/mountain.png" alt="mountain" width={1920} height={500} className="h-auto object-cover" priority />
+                  <Image src="/images/home/beranda/mountain.png" alt="mountain" width={1920} height={500} className="h-auto object-cover" priority />
                 </AnimateOnView>
               </section>
             </div>
 
             {/* Linimasa */}
             <div className="relative w-full overflow-visible">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
-              <div className="absolute inset-0 hidden xl:block z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
-              <div className="absolute inset-0 xl:hidden z-3" style={{ backgroundImage: "url('/images/linimasa/ribbon-small.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/home/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 hidden xl:block z-3" style={{ backgroundImage: "url('/images/home/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 xl:hidden z-3" style={{ backgroundImage: "url('/images/home/linimasa/ribbon-small.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
 
               <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
                 <Image
-                  src="/images/linimasa/title-linimasa.png"
+                  src="/images/home/linimasa/title-linimasa.png"
                   alt="title linimasa"
                   width={320}
                   height={65}
@@ -147,14 +146,14 @@ export default function Home() {
                 {/* Ampera */}
                 <AnimateOnView animation="animate-fadeInUp" className="relative w-full xl:w-[80%] mx-auto z-3">
                   <Image
-                    src="/images/linimasa/ampera-small.png"
+                    src="/images/home/linimasa/ampera-small.png"
                     alt="ampera bridge"
                     width={955}
                     height={667}
                     className="w-full h-auto object-contain xl:hidden"
                   />
                   <Image
-                    src="/images/linimasa/ampera-bridge.png"
+                    src="/images/home/linimasa/ampera-bridge.png"
                     alt="ampera bridge"
                     width={955}
                     height={667}
@@ -176,7 +175,7 @@ export default function Home() {
                       </div>
                       <div className='w-full self-end'>
                         <Image
-                          src="/images/linimasa/chileko.png"
+                          src="/images/home/linimasa/chileko.png"
                           alt="character day 1"
                           width={80}
                           height={100}
@@ -187,7 +186,7 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Day 2 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
+                  <AnimateOnView animation="animate-fadeInUp" className="delay-1000 absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
                     <div className="animate-sway flex flex-col gap-2">
                       <div className="text-left w-max text-white drop-shadow">
                         <p className="text-xs md:text-lg font-bold tracking-widest">
@@ -201,7 +200,7 @@ export default function Home() {
                       </div>
                       <div className='w-full self-end'>
                         <Image
-                          src="/images/linimasa/chitala.png"
+                          src="/images/home/linimasa/chitala.png"
                           alt="character day 2"
                           width={80}
                           height={100}
@@ -227,7 +226,7 @@ export default function Home() {
                 {/* Lotus */}
               <AnimateOnView animation="animate-fadeInUp" className="relative w-[25%] mx-auto -mb-10 md:-mb-20 item-center z-5">
                 <Image
-                  src="/images/linimasa/lotus.png"
+                  src="/images/home/linimasa/lotus.png"
                   alt="lotus"
                   width={200}
                   height={128}
@@ -241,7 +240,7 @@ export default function Home() {
 
             {/* Jelajah Bareng */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
               {/* Pagoda — left */}
               <AnimateOnView
@@ -249,7 +248,7 @@ export default function Home() {
                 className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
               >
                 <Image
-                  src="/images/jelajah/pagoda.png"
+                  src="/images/home/jelajah/pagoda.png"
                   alt="pagoda"
                   width={260}
                   height={580}
@@ -263,7 +262,7 @@ export default function Home() {
                 className="absolute w-[40%] -right-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-2"
               >
                 <Image
-                  src="/images/jelajah/moon.png"
+                  src="/images/home/jelajah/moon.png"
                   alt="moon"
                   width={700}
                   height={813}
@@ -276,7 +275,7 @@ export default function Home() {
                 {/* Title frame */}
                 <div className="relative self-center md:self-end mx-5 mb-2 md:mb-13 z-5 ">
                   <Image
-                    src="/images/jelajah/title-jelajah.png"
+                    src="/images/home/jelajah/title-jelajah.png"
                     alt="title jelajah"
                     width={560}
                     height={105}
@@ -297,10 +296,10 @@ export default function Home() {
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
 
-                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/jelajah/motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
                       <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
-                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                        <Image src="/images/home/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
                       </div>
 
                       <h3
@@ -336,10 +335,10 @@ export default function Home() {
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
 
-                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
                       <div className="absolute w-[10%] -translate-y-1/2 -translate-x-1/2 top-0 left-0 -z-1">
-                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                        <Image src="/images/home/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
                       </div>
 
                       <h3
@@ -375,10 +374,10 @@ export default function Home() {
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
           ">
 
-                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                      <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/jelajah/motif.png')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
                       <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
-                        <Image src="/images/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
+                        <Image src="/images/home/jelajah/leaf.png" alt="leaf" width={125} height={125} className="object-fill w-full h-auto" />
                       </div>
 
                       <h3
@@ -413,7 +412,7 @@ export default function Home() {
 
             {/* Kompetisi */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
 
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
@@ -427,7 +426,7 @@ export default function Home() {
                   {/* Title frame */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center">
                     <Image
-                      src="/images/kompetisi/title-kompetisi.png"
+                      src="/images/home/kompetisi/title-kompetisi.png"
                       alt="frame title"
                       width={320}
                       height={50}
@@ -476,7 +475,7 @@ export default function Home() {
                   className="absolute w-[80%] h-auto left-0 bottom-0 z-5"
                 >
                   <Image
-                    src="/images/kompetisi/wave-left.png"
+                    src="/images/home/kompetisi/wave-left.png"
                     alt="wave-left"
                     width={1920}
                     height={300}
@@ -489,7 +488,7 @@ export default function Home() {
                   className="absolute  w-[80%] h-auto right-0 bottom-0 z-5"
                 >
                   <Image
-                    src="/images/kompetisi/wave-right.png"
+                    src="/images/home/kompetisi/wave-right.png"
                     alt="wave-right"
                     width={1920}
                     height={300}
@@ -502,12 +501,12 @@ export default function Home() {
 
             {/* Game */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
-              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/home/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
               <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
                 <Image
-                  src="/images/game/title-game.png"
+                  src="/images/home/game/title-game.png"
                   alt="title game"
                   width={320}
                   height={65}
@@ -559,7 +558,7 @@ export default function Home() {
 
               <div className="absolute -bottom-5 right-0 w-[110%] z-2 animate-waveFloat">
                 <Image
-                  src="/images/game/gold-wave.png"
+                  src="/images/home/game/gold-wave.png"
                   alt="wave"
                   width={1920}
                   height={300}
@@ -571,7 +570,7 @@ export default function Home() {
 
             {/* Sponsor & Media Partner */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
               <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center">
 
                 <div className="
@@ -584,7 +583,7 @@ export default function Home() {
                   {/* Title frame */}
                   <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
-                      src="/images/sponsor/title-sponsor.png"
+                      src="/images/home/sponsor/title-sponsor.png"
                       alt="frame title"
                       width={320}
                       height={60}
@@ -603,7 +602,7 @@ export default function Home() {
                   {/* Title frame */}
                   <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
-                      src="/images/sponsor/title-media.png"
+                      src="/images/home/sponsor/title-media.png"
                       alt="frame title"
                       width={320}
                       height={60}
@@ -619,7 +618,7 @@ export default function Home() {
           {/* Scroll bottom rod */}
           <div className="relative z-10 bottom-10 md:bottom-20 w-[95%] drop-shadow-[0_10px_10px_rgba(0,0,0,0.7)] animate-unroll">
                 <Image
-              src="/images/scroll-top-bottom.png"
+              src="/images/home/scroll-top-bottom.png"
               alt="scroll bottom"
               width={1920}
               height={60}
