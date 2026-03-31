@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Merriweather } from 'next/font/google';
 import localFont from "next/font/local";
-import LayoutFooter from './components/LayoutFooter';
+import Footer from './components/Footer';
 import "./globals.css";
+import Header from "./components/Header";
 
 const efcoBrookshire = localFont({
   src: '../public/fonts/EFCO-Brookshire-Regular.ttf',
@@ -33,8 +34,9 @@ export default function RootLayout({
       <body
         className={`${efcoBrookshire.variable} ${merriweather.variable} antialiased`}
       >
+        <Header />
         {children}
-        <LayoutFooter />
+        <Footer />
       </body>
     </html>
   );

@@ -1,7 +1,16 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+  
+    if (pathname === '/') {
+      return null;
+    }
+
   return (
     <footer
       className="relative w-full overflow-hidden pt-15"
@@ -12,7 +21,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3 max-w-[320px]">
             <div className="flex items-center gap-3">
               <Image
-                src="/images/footer/logo-culfest.png"
+                src="/images/logo-culfest.png"
                 alt="logo"
                 width={70}
                 height={70}

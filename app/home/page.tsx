@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="bg-black">
 
-      <div className='absolute items-center justify-center w-full h-[60vh]'
+      <div className='absolute items-center justify-center w-full h-screen'
         style={{
           backgroundImage: "url('/images/home/bg-blue.png')",
           backgroundSize: 'cover',
@@ -19,12 +19,12 @@ export default function Home() {
           alt="chest"
           width={800}
           height={600}
-          className='object-contain w-full h-[30vh] mt-10'
+          className='object-contain w-full h-[30vh] mt-30'
         />
       </div>
       
       {/* PAPER SCROLL SECTION */}
-        <div className="pt-[40vh] -mb-37 relative z-1 flex flex-col items-center overflow-x-hidden overflow-y-visible">
+        <div className="pt-[50vh] -mb-37 relative z-1 flex flex-col items-center overflow-x-hidden overflow-y-visible">
 
           {/* Scroll top rod */}
           <div className="relative w-[95%] z-2 drop-shadow-2xl animate-unroll">
@@ -90,7 +90,7 @@ export default function Home() {
                       </div>
 
                       <div className="order-2 lg:order-1 flex flex-col gap-10">
-                        <p className="text-xs md:text-lg text-amber-900">
+                        <p className="text-justify text-xs md:text-lg text-amber-900">
                           Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
                           mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
                           peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
@@ -186,7 +186,7 @@ export default function Home() {
                   </AnimateOnView>
 
                   {/* Day 2 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="delay-1000 absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
+                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
                     <div className="animate-sway flex flex-col gap-2">
                       <div className="text-left w-max text-white drop-shadow">
                         <p className="text-xs md:text-lg font-bold tracking-widest">

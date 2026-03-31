@@ -1,23 +1,99 @@
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+
+const navLinks = [
+    { href: "/about-event", label: "About Event" },
+    { href: "/kompetisi", label: "Kompetisi" },
+    { href: "/linimasa", label: "Linimasa" },
+    { href: "/faq", label: "FAQ" },
+    { href: "/game", label: "Game" },
+];
 
 export default function Header() {
-  return (
-    <header style={{ padding: '16px 32px', background: '#111', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      
-      {/* Logo */}
-      <div style={{ color: 'white', fontWeight: 'bold', fontSize: '20px' }}>
-        CULFEST
-      </div>
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-      {/* Navigation */}
-      <nav style={{ display: 'flex', gap: '24px' }}>
-        <Link href="/home">Beranda</Link>
-        <Link href="/about-event">About Event</Link>
-        <Link href="/game">Game</Link>
-        <Link href="/faq">FAQ</Link>
-        <Link href="/akun">Akun</Link>
-      </nav>
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen((prev) => !prev);
+    };
 
-    </header>
-  );
+    const closeMobileMenu = () => {
+        setIsMobileMenuOpen(false);
+    };
+
+    const pathname = usePathname();
+    
+      if (pathname === '/') {
+        return null;
+      }
+
+    return (
+        <header className="fixed left-1/2 top-5 z-50 w-[90%] rounded-2xl -translate-x-1/2 shadow-sm">
+            <nav className="mx-auto flex max-w-7xl rounded-2xl items-center justify-between px-4 py-3 border-amber-400 border lg:px-6"
+              style={{ backgroundImage: 'url("/images/header/header-bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <Link href="/home" className="flex items-center gap-3">
+                  <Image
+                    src="/images/logo-culfest.png"
+                    alt="logo"
+                    width={70}
+                    height={70}
+                    className="object-cover w-[25%] rounded-full"
+                  />
+                  <span className="text-white text-sm font-semibold">Cultural <br />Festival 15</span>
+                </Link>
+
+                <div className="hidden items-center gap-7 lg:flex">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm font-medium text-white transition hover:text-orange-600"
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                </div>
+
+                <button
+                    type="button"
+                    onClick={toggleMobileMenu}
+                    className="inline-flex items-center rounded-lg p-2 text-white transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 lg:hidden"
+                    aria-controls="mobile-menu"
+                    aria-expanded={isMobileMenuOpen}
+                    aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                >
+                    {isMobileMenuOpen ? (
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    ) : (
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    )}
+                </button>
+            </nav>
+
+            {isMobileMenuOpen && (
+                <div className=" border-slate-200 bg-white mt-1 px-4 py-4 rounded-2xl lg:hidden">
+                    <ul className="flex flex-col gap-1">
+                        {navLinks.map((link) => (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    onClick={closeMobileMenu}
+                                    className="block rounded-md px-3 py-2 text-sm font-medium text-slate-800 transition hover:bg-orange-50 hover:text-orange-700"
+                                >
+                                    {link.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </header>
+    );
 }
