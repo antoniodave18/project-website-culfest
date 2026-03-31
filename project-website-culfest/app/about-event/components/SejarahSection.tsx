@@ -4,7 +4,7 @@ export default function SejarahSection() {
   return (
     <section className="relative w-full px-4 z-10 font-[family-name:var(--font-montserrat)] text-white">
       {/* Background Container - matching wrapper width from top section */}
-      <div className="relative w-full rounded-b-xl pb-8">
+      <div className="relative w-full rounded-b-x">
         {/* Pagoda layer outside clipped container so only this element can overflow */}
         <div className="absolute bottom-28 -left-[3%]  w-[180px] h-[450px] md:w-[400px] md:h-[800px] z-40 pointer-events-none">
           <Image
@@ -182,7 +182,18 @@ export default function SejarahSection() {
             </div>
 
             {/* Divider / Ground Foreground */}
-            <div className="absolute bottom-0 left-10 w-full h-32 md:h-68 z-40 scale-110">
+            <div
+              className="absolute bottom-0 left-10 w-full h-32 md:h-68 z-40 scale-110"
+              style={{
+                animation: "floatHorizontal 10s ease-in-out infinite"
+              }}
+            >
+              <style>{`
+                @keyframes floatHorizontal {
+                  0%, 100% { transform: translateX(0) scale(1.1); }
+                  50% { transform: translateX(30px) translateY(10px) scale(1.1); }
+                }
+              `}</style>
               <Image
                 src="/images/tentang/devider.png"
                 alt="Divider Tanah"
