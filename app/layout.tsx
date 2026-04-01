@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Merriweather } from 'next/font/google';
+import { Merriweather } from "next/font/google";
 import localFont from "next/font/local";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 import "./globals.css";
 import Header from "./components/Header";
 
 const efcoBrookshire = localFont({
-  src: '../public/fonts/EFCO-Brookshire-Regular.ttf',
-  variable: '--font-efco-brookshire',
+  src: "../public/fonts/EFCO-Brookshire-Regular.ttf",
+  variable: "--font-efco-brookshire",
 });
 
 const merriweather = Merriweather({
-  subsets: ['latin'],
-  variable: '--font-merriweather',
+  subsets: ["latin"],
+  variable: "--font-merriweather",
 });
-
 
 export const metadata: Metadata = {
   title: "Culfest Web 2025",
