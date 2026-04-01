@@ -32,16 +32,7 @@ export default function HeroAsrama() {
                 verticalAlign: "middle",
               }}
             >
-              Gelanggang Expo atau GELEX 2025 akan diselenggarakan pada 21–23
-              Agustus di Lapangan Pancasila UGM dengan mengusung tema “Resonansi
-              Harmoni Gelanggang” dan konsep nostalgic universe. Memperingati 50
-              tahun Gelanggang Mahasiswa, GELEX tahun ini menghadirkan Remon,
-              maskot penjelajah waktu yang akan menemanimu menjelajahi dunia
-              Gelanggang yang penuh semangat kebersamaan. Selain pameran dan
-              penampilan dari berbagai UKM serta komunitas, GELEX 2025 juga
-              menyuguhkan web series empat episode yang mengangkat kisah seru
-              dari masing-masing sekber, kolaborasi antar penghuni Gelanggang,
-              zona interaktif, serta visual yang membangkitkan nostalgia!
+              Asrama Mahasiswa Universitas Gadjah Mada (UGM Residence) merupakan fasilitas hunian strategis yang dirancang untuk mendukung iklim akademik kondusif bagi mahasiswa tahun pertama maupun jenjang sarjana dan diploma. Terbagi menjadi dua kategori utama, yakni Ratnaningsih untuk asrama putri dan Darmaputera untuk asrama putra, kompleks hunian ini tersebar di beberapa lokasi baik di dalam maupun di sekitar lingkungan kampus dengan aksesibilitas yang baik.
             </p>
           </div>
           <Image

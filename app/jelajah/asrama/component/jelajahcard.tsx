@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export interface JelajahCardProps {
   title: string;
+  slug: string;
 }
 
-export default function JelajahCard({ title }: JelajahCardProps) {
+export default function JelajahCard({ title, slug }: JelajahCardProps) {
   return (
     <div className="relative flex items-center justify-center w-full max-w-[900px] mx-auto  mt-15 font-serif px-2">
       <div
@@ -54,6 +56,17 @@ export default function JelajahCard({ title }: JelajahCardProps) {
             </div>
           </div>
         </div>
+
+        <Link
+          href={`/jelajah/asrama/${slug}`}
+          className="absolute right-4 bottom-4 md:right-6 md:bottom-6 z-40 px-4 py-2 rounded-lg text-sm md:text-base font-semibold text-white shadow-md hover:brightness-105 transition"
+          style={{
+            background:
+              "linear-gradient(274.43deg, #451500 8.16%, #AB3400 97.24%)",
+          }}
+        >
+          lihat detail -&gt;
+        </Link>
       </div>
     </div>
   );

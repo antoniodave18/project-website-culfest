@@ -1,6 +1,7 @@
 import HeroAsrama from "./component/hero-asrama";
 import JelajahTitle from "./component/jelajah-tittle";
 import JelajahCard from "./component/jelajahcard";
+import { ASRAMA_DETAILS } from "@/app/jelajah/asrama/data";
 
 const Page = () => {
   return (
@@ -43,10 +44,9 @@ const Page = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <JelajahCard title="ASRAMA" />
-          <JelajahCard title="ASRAMA" />
-          <JelajahCard title="ASRAMA" />
-          <JelajahCard title="ASRAMA" />
+          {ASRAMA_DETAILS.map((item) => (
+            <JelajahCard key={item.slug} title={item.title} slug={item.slug} />
+          ))}
         </div>
         <div className="w-full relative z-20">
           <div className="bg-[#03005E] min-h-30 w-full flex items-center justify-center px-4 py-4"></div>
