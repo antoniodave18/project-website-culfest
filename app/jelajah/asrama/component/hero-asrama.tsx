@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function HeroAsrama() {
   return (
     <div
-      className="w-full h-screen flex items-center justify-center py-16"
+      className="relative w-full h-screen flex items-center justify-center py-30 "
       style={{
         background:
           "linear-gradient(90deg, rgba(222, 132, 2, 0.9) -4.43%, rgba(255, 210, 134, 0.9) 17.65%, rgba(255, 210, 134, 0.9) 81.76%, rgba(222, 132, 2, 0.9) 104.89%)",
       }}
     >
-      <div className="w-full h-screen">
+      <div className="relative w-full h-screen">
         <div className="relative flex justify-between items-center pt-43 ">
           <Image
             src="/images/jelajah/asrama/window-pillar.svg"
@@ -25,7 +25,7 @@ export default function HeroAsrama() {
                 fontFamily: "Merriweather, serif",
                 fontWeight: 400,
                 fontStyle: "normal",
-                fontSize: "24px",
+                fontSize: "21px",
                 lineHeight: "30.12px",
                 letterSpacing: "0.04em",
                 textAlign: "center",
@@ -60,7 +60,7 @@ export default function HeroAsrama() {
           sizes="100vw"
           quality={100}
           priority
-          className="absolute bottom-30 w-full h-auto object-contain mb-10"
+          className="absolute -bottom-40 w-full h-auto object-contain "
         />
       </div>
       <Image
@@ -71,7 +71,7 @@ export default function HeroAsrama() {
         sizes="100vw"
         quality={100}
         priority
-        className="absolute w-screen top-0 h-auto object-contain"
+        className="absolute left-0 top-0 w-screen h-auto object-contain pointer-events-none"
       />
       <Image
         src="/images/jelajah/asrama/outer-ombak.png"
@@ -81,7 +81,7 @@ export default function HeroAsrama() {
         sizes="100vw"
         quality={100}
         priority
-        className="absolute left-0 bottom-35 z-0 w-full h-auto object-contain pointer-events-none"
+        className="absolute left-0 -bottom-40 z-0 w-full h-auto object-contain pointer-events-none"
       />
     </div>
   );
