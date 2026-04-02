@@ -18,6 +18,9 @@ const merriweather = Merriweather({
 export const metadata: Metadata = {
   title: "Culfest Web 2025",
   description: "Culfest Web 2025",
+  icons: {
+    icon: "/images/logo-culfest.png",
+  },
 };
 
 export default function RootLayout({
