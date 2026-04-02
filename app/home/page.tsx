@@ -117,7 +117,7 @@ export default function Home() {
                   <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
                     <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
                       <Image
-                        src="/images/home/beranda/frame-photo.png"
+                        src="/images/home/beranda/framerbaru.png"
                         alt="photo frame"
                         height={440}
                         width={312}
@@ -126,8 +126,16 @@ export default function Home() {
                     </div>
 
                     <div className="order-2 lg:order-1 flex flex-col gap-10">
-                      <p className="text-justify text-xs md:text-lg text-amber-900">                          Cultural Festival yang dikenal sebagai Culfest merupakan sebuah kegiatan yang diselenggarakan setiap tahunnya oleh UGM Residence sejak tahun 2013 dengan mengangkat tema "Unity in Diversity" yang bernuansa Nusantara. Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang dipilih selalu mengusung kebudayaan daerah tertentu yang berbeda setiap tahunnya.
-</p>
+                      <p className="text-justify text-xs md:text-lg text-amber-900">
+                        {" "}
+                        Cultural Festival yang dikenal sebagai Culfest merupakan
+                        sebuah kegiatan yang diselenggarakan setiap tahunnya
+                        oleh UGM Residence sejak tahun 2013 dengan mengangkat
+                        tema "Unity in Diversity" yang bernuansa Nusantara.
+                        Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang
+                        dipilih selalu mengusung kebudayaan daerah tertentu yang
+                        berbeda setiap tahunnya.
+                      </p>
                       <Link
                         href="/about-event"
                         className="w-fit rounded-lg bg-linear-to-r fr om-[#ab3400] to-[#451500]
