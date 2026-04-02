@@ -45,6 +45,35 @@ export default function MaskotSection() {
     });
   };
 
+  const introMaskotContent = (
+    <>
+      <div className="w-full max-w-[340px] sm:max-w-[460px] md:max-w-[580px] lg:max-w-[660px] xl:max-w-[730px] mx-auto mt-10 sm:mt-28 md:mt-40 lg:mt-52 xl:mt-60">
+        <MaskotCard
+          title="CHILEKO dan CHITALA"
+          desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida. Ikan ini ditetapkan sebagai maskot fauna Sumatera Selatan. Ikan belida dijadikan sebagai bahan baku makanan khas di wilayah Sumatera Selatan yang juga digemari oleh masyarakat luas, yaitu pempek dan kerupuk Palembang."
+        />
+      </div>
+      <div className="flex items-end justify-center w-full max-w-[120px] sm:max-w-[140px] md:max-w-[280px] lg:max-w-[750px] mx-auto gap-0 sm:gap-1 md:gap-2">
+        <div className="relative w-1/2 aspect-[0.62] sm:aspect-[0.66] md:aspect-[0.7] max-w-[110px] sm:max-w-[90px] md:max-w-[130px] lg:max-w-[400px]">
+          <Image
+            src="/images/tentang/chileko.png"
+            alt="Chileko"
+            fill
+            className="object-contain object-bottom"
+          />
+        </div>
+        <div className="relative w-1/2 aspect-[0.66] sm:aspect-[0.7] md:aspect-[0.75] max-w-[110px] sm:max-w-[90px] md:max-w-[130px] lg:max-w-[400px]">
+          <Image
+            src="/images/tentang/chitala.png"
+            alt="Chitala"
+            fill
+            className="object-contain object-bottom"
+          />
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <section className="relative w-full z-10 flex flex-col items-center">
       <div className="relative w-full px-4 -mt-1">
@@ -73,33 +102,6 @@ export default function MaskotSection() {
         <div className="absolute inset-0 flex flex-col  pb-0">
           <MaskotTitle />
 
-          {/* Card di tengah atas */}
-          <div className="w-full max-w-[340px] sm:max-w-[460px] md:max-w-[580px] lg:max-w-[660px] xl:max-w-[730px] mx-auto mt-10 sm:mt-28 md:mt-40 lg:mt-52 xl:mt-60">
-            <MaskotCard
-              title="CHILEKO dan CHITALA"
-              desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida. Ikan ini ditetapkan sebagai maskot fauna Sumatera Selatan. Ikan belida dijadikan sebagai bahan baku makanan khas di wilayah Sumatera Selatan yang juga digemari oleh masyarakat luas, yaitu pempek dan kerupuk Palembang."
-            />
-          </div>
-          {/* Mascot images berdampingan di bagian bawah */}
-          <div className="flex items-end justify-center w-full max-w-[56px] sm:max-w-[140px] md:max-w-[280px] lg:max-w-[750px] mx-auto gap-0 sm:gap-1 md:gap-2">
-            <div className="relative w-1/2 aspect-[0.62] sm:aspect-[0.66] md:aspect-[0.7] max-w-[30px] sm:max-w-[60px] md:max-w-[130px] lg:max-w-[400px]">
-              <Image
-                src="/images/tentang/chileko.png"
-                alt="Chileko"
-                fill
-                className="object-contain object-bottom"
-              />
-            </div>
-            <div className="relative w-1/2 aspect-[0.66] sm:aspect-[0.7] md:aspect-[0.75] max-w-[30px] sm:max-w-[60px] md:max-w-[130px] lg:max-w-[400px]">
-              <Image
-                src="/images/tentang/chitala.png"
-                alt="Chitala"
-                fill
-                className="object-contain object-bottom"
-              />
-            </div>
-          </div>
-
           {isBelowOrEqual2xl ? (
             <div className="w-full max-w-[1600px] mx-auto mt-5 sm:mt-20 md:mt-30 lg:mt-40 xl:mt-121 2xl:mt-100">
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4 px-2 sm:px-4 md:px-8 lg:px-12">
@@ -116,6 +118,9 @@ export default function MaskotSection() {
                   ref={carouselRef}
                   className="flex-1 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible py-1"
                 >
+                  <div className="min-w-[calc(100%-0.25rem)] sm:min-w-[calc(100%-0.5rem)] md:min-w-[calc(100%-0.75rem)] snap-center pt-8 sm:pt-10">
+                    {introMaskotContent}
+                  </div>
                   {cardItems.map((item) => (
                     <div
                       key={item.title}
@@ -137,15 +142,18 @@ export default function MaskotSection() {
               </div>
             </div>
           ) : (
-            <div className="w-full max-w-[1600px] mx-auto grid grid-cols-2 items-start gap-y-8 md:gap-y-10 px-4 sm:px-8 md:px-16 lg:px-40 mt-5 sm:mt-20 md:mt-30 lg:mt-40 xl:mt-61 2xl:mt-100">
-              {cardItems.map((item) => (
-                <MaskotCard
-                  key={item.title}
-                  title={item.title}
-                  desc={item.desc}
-                />
-              ))}
-            </div>
+            <>
+              {introMaskotContent}
+              <div className="w-full max-w-[1600px] mx-auto grid grid-cols-2 items-start gap-y-8 md:gap-y-10 px-4 sm:px-8 md:px-16 lg:px-40 mt-5 sm:mt-20 md:mt-30 lg:mt-40 xl:mt-61 2xl:mt-100">
+                {cardItems.map((item) => (
+                  <MaskotCard
+                    key={item.title}
+                    title={item.title}
+                    desc={item.desc}
+                  />
+                ))}
+              </div>
+            </>
           )}
         </div>
       </div>

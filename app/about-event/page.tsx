@@ -2,7 +2,6 @@ import TentangSection from "./components/TentangSection";
 import TransisiAwan from "./components/TransisiAwan";
 import SejarahSection from "./components/SejarahSection";
 import MaskotSection from "./components/MaskotSection";
-import Image from "next/image";
 
 export default function AboutEventPage() {
   return (
@@ -16,24 +15,9 @@ export default function AboutEventPage() {
         <TransisiAwan />
         <SejarahSection />
         <MaskotSection />
-        <div className="w-full px-2 sm:px-4 relative z-20 -mt-12 sm:-mt-16 md:-mt-20">
-          <div className="bg-[#03005E] h-28 sm:h-36 md:h-44 lg:h-52 w-full flex items-center justify-center px-2">
-            <h2 className="text-center text-[24px] sm:text-[36px] md:text-[52px] lg:text-[68px] xl:text-[80px] text-[#F5A623] tracking-[0.05em] [text-shadow:0_2px_8px_rgba(0,0,0,0.5)] [font-family:var(--font-efco-brookshire),serif]">
-              Pesona Culfest
-            </h2>
-          </div>
-        </div>
-        <div className="relative z-20 -mt-2 w-full px-2 sm:px-4">
-          <div className="relative flex w-full min-h-[300px] items-center justify-center overflow-hidden sm:min-h-[400px] md:min-h-[500px]">
-            {/* Background image (tidak terdistorsi) */}
-            <Image
-              src="/images/tentang/Background-desc.png"
-              alt="background"
-              fill
-              className="object-contain -z-10"
-              priority
-            />
 
+        <div className="relative z-20 -mt-2 mt-20 w-full px-2 py-12 sm:px-4 sm:py-20 md:py-28 lg:py-36">
+          <div className="relative flex w-full min-h-[300px] items-center justify-center rounded-2xl overflow-hidden border-4 border-[#D4AF37] bg-[url('/images/tentang/bg.png')] bg-cover bg-center bg-no-repeat sm:min-h-[400px] md:min-h-[500px]">
             {/* Content */}
             <div className="relative z-10 h-full w-full max-w-[1100px] max-h-full px-2 sm:px-4 md:px-8">
               <div className="grid h-full w-full grid-cols-2 items-start gap-4 overflow-hidden sm:gap-6 md:gap-8 lg:gap-12">
@@ -43,10 +27,7 @@ export default function AboutEventPage() {
                   toleransi. Menyoroti rakyat Indonesia memiliki dengan satu
                   raga dan satu jiwa, serta mengajak setiap orang untuk
                   merealisasikan kebersamaan, termasuk dalam semangat UGM
-                  Residence yang bersatu di festival budaya. Anthem CULFEST
-                  mengajak semua untuk hidup harmonis dalam Bhinneka, saling
-                  melindungi tanpa saling mencaci, memperkuat rasa dengan
-                  sesama, dan tetap teguh dalam kesatuan
+                  Residence yang bersatu di festival budaya.
                 </p>
                 <div className="flex h-full w-full items-center justify-center overflow-hidden">
                   <div className="w-full max-w-[360px] rounded-lg bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] p-[3px] shadow-[0_10px_24px_rgba(0,0,0,0.25)] sm:max-w-[520px] sm:rounded-xl sm:p-[5px] md:max-w-[640px]">
