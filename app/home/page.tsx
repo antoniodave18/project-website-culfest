@@ -284,11 +284,11 @@ export default function Home() {
                         Day 2
                       </p>
                       <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                        Grand Opening
+                        Pagelaran Seni
                         <br />
-                        Art Exhibition
+                        Duta Budaya
                         <br />
-                        Traditional Dance Battle
+                        Penghargaan
                       </p>
                     </div>
                     <div className="w-full self-end">
@@ -758,7 +758,7 @@ export default function Home() {
                         alt={`Game activity ${i + 1}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 18vw"
+                        sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 42vw"
                       />
                     </div>
                   ))}

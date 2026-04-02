@@ -87,18 +87,18 @@ export default function FAQ() {
           {/* 💡 INI DIA TULISAN FAQ-NYA */}
           {/* absolute membuat teks ini menumpuk di atas gambar pita */}
           {/* pb-2 atau pb-4 untuk menggeser teks sedikit ke atas agar pas di tengah pita */}
-          <h1 className="absolute text-3xl md:text-5xl font-efco-brookshire text-[#ffeb3b] tracking-widest drop-shadow-md pb-2 md:pb-4">
+          <h1 className="absolute text-3xl md:text-5xl text-[#ffeb3b] tracking-widest drop-shadow-md pb-2 md:pb-4">
             FAQ
           </h1>
         </div>
 
         {/* 💡 LAYER 1: Background Pola Batik Emas (Alas Tengah) */}
         {/* Menggunakan -inset untuk meregangkan gambar ke luar batas, misalnya -inset-4 atau -inset-[2%] */}
-        <div className="absolute -inset-10 md:-inset-9 bg-[url('/images/faq/alastengah.png')] bg-cover bg-center z-10 shadow-2xl"></div>
+        <div className="absolute -inset-10 md:-inset-20 bg-[url('/images/faq/alastengah.png')] bg-cover bg-center z-10 shadow-2xl"></div>
         
         {/* 💡 LAYER 2: Bingkai Ornamen (Union.png) */}
         {/* PERBAIKAN 2: z-40 diubah menjadi z-20 agar bingkai tidak menutupi tulisan FAQ (yang z-30) */}
-        <div className="absolute -inset-10 md:-inset-20 bg-[url('/images/faq/Union.png')] bg-[length:100%_100%] bg-no-repeat z-20 pointer-events-none"></div>
+        <div className="absolute -inset-10 md:-inset-60 bg-[url('/images/faq/Union.png')] bg-[length:100%_100%] bg-no-repeat z-20 pointer-events-none"></div>
         
         {/* 💡 LAYER 2.5: Gulungan Kiri-Kanan (Dekorasi Samping) */}
         {/* Gulungan Kiri */}
