@@ -126,8 +126,8 @@ export default function Home() {
                     </div>
 
                     <div className="order-2 lg:order-1 flex flex-col gap-10">
-                      <p className="text-justify text-xs md:text-lg text-amber-900">                          Cultural Festival yang dikenal sebagai Culfest merupakan sebuah kegiatan yang diselenggarakan setiap tahunnya oleh UGM Residence sejak tahun 2013 dengan mengangkat tema "Unity in Diversity" yang bernuansa Nusantara. Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang dipilih selalu mengusung kebudayaan daerah tertentu yang berbeda setiap tahunnya.
-</p>
+                      <p className="text-justify text-xs md:text-lg text-amber-900">Culfest adalah acara tahunan UGM Residence bertema "Unity in Diversity" sebagai puncak apresiasi budaya dan pengembangan lifeskills mahasiswa. Penyelenggaraan ke-15 ini mengangkat budaya Sumatera Selatan dengan tema "Kulukilir Berbudayo: Eksplorasi Cindonyo Nusantara", menyajikan pameran, seni, dan kompetisi melalui pengalaman petualangan yang interaktif.
+                      </p>
                       <Link
                         href="/about-event"
                         className="w-fit rounded-lg bg-linear-to-r fr om-[#ab3400] to-[#451500]
@@ -253,13 +253,13 @@ export default function Home() {
                 >
                   <div className="animate-sway flex flex-col gap-2">
                     <div className="text-right w-max text-white drop-shadow">
-                      <p className="text-xs md:text-lg font-bold">Day 1</p>
+                      <p className="text-xs md:text-lg font-bold uppercase">Day 1</p>
                       <p className="text-[10px] md:text-base text-white/80 mt-1">
-                        Grand Opening
+                        EKSPO CULFEST
                         <br />
-                        Art Exhibition
+                        PARADE KEBUDAYAAN
                         <br />
-                        Traditional Dance Battle
+                        PAGELARANG APRESIASI BUDAYA
                       </p>
                     </div>
                     <div className="w-full self-end">
@@ -281,15 +281,15 @@ export default function Home() {
                 >
                   <div className="animate-sway flex flex-col gap-2">
                     <div className="text-left w-max text-white drop-shadow">
-                      <p className="text-xs md:text-lg font-bold tracking-widest">
+                      <p className="text-xs md:text-lg font-bold tracking-widest uppercase">
                         Day 2
                       </p>
                       <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                        Pagelaran Seni
+                        PAGELARAN SENI
                         <br />
-                        Duta Budaya
+                        DAUTA BUDAYA
                         <br />
-                        Penghargaan
+                        PENGHARGAAN
                       </p>
                     </div>
                     <div className="w-full self-end">
