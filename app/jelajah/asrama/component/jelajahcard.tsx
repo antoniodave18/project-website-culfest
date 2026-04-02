@@ -28,7 +28,7 @@ export default function JelajahCard({ title, slug }: JelajahCardProps) {
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(12px, 3.5vw, 24.85px)",
+              fontSize: "clamp(12px, 3.5vw, 22.85px)",
               lineHeight: "100%",
               letterSpacing: "0%",
               background: "linear-gradient(180deg, #E3AD6C 0%, #C5781D 100%)",

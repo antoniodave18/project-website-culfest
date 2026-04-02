@@ -38,7 +38,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="bg-black">
+    <main className="relative bg-black">
       <div
         className="absolute items-center justify-center w-full h-screen"
         style={{
@@ -83,10 +83,10 @@ export default function Home() {
           {/* About Culfest */}
           <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
                 backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "cover",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
@@ -117,7 +117,7 @@ export default function Home() {
                   <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
                     <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
                       <Image
-                        src="/images/home/beranda/frame-photo.png"
+                        src="/images/home/beranda/framerbaru.png"
                         alt="photo frame"
                         height={440}
                         width={312}
@@ -126,11 +126,19 @@ export default function Home() {
                     </div>
 
                     <div className="order-2 lg:order-1 flex flex-col gap-10">
-                      <p className="text-justify text-xs md:text-lg text-amber-900">Culfest adalah acara tahunan UGM Residence bertema "Unity in Diversity" sebagai puncak apresiasi budaya dan pengembangan lifeskills mahasiswa. Penyelenggaraan ke-15 ini mengangkat budaya Sumatera Selatan dengan tema "Kulukilir Berbudayo: Eksplorasi Cindonyo Nusantara", menyajikan pameran, seni, dan kompetisi melalui pengalaman petualangan yang interaktif.
+                      <p className="text-justify text-xs md:text-lg text-amber-900">
+                        Cultural Festival adalah acara tahunan UGM Residence
+                        bertema &quot;Unity in Diversity&quot; sebagai puncak
+                        apresiasi budaya dan pengembangan lifeskills mahasiswa.
+                        Penyelenggaraan ke-15 ini mengangkat budaya Sumatera
+                        Selatan dengan tema &quot;Kulukilir Berbudayo:
+                        Eksplorasi Cindonyo Nusantara&quot; menyajikan pameran,
+                        seni, dan kompetisi melalui pengalaman petualangan yang
+                        interaktif.
                       </p>
                       <Link
                         href="/about-event"
-                        className="w-fit rounded-lg bg-linear-to-r fr om-[#ab3400] to-[#451500]
+                        className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto cursor-pointer"
                       >
@@ -179,12 +187,12 @@ export default function Home() {
           </div>
 
           {/* Linimasa */}
-          <div className="relative w-full overflow-visible">
+          <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
-                backgroundImage: "url('/images/home/bg-section-2.png')",
-                backgroundSize: "cover",
+                backgroundImage: "url('/images/home/bg-section-1.png')",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
@@ -253,13 +261,15 @@ export default function Home() {
                 >
                   <div className="animate-sway flex flex-col gap-2">
                     <div className="text-right w-max text-white drop-shadow">
-                      <p className="text-xs md:text-lg font-bold uppercase">Day 1</p>
-                      <p className="text-[10px] md:text-base text-white/80 mt-1">
+                      <p className="text-xs md:text-lg font-bold uppercase">
+                        Day 1
+                      </p>
+                      <p className="text-[10px] md:text-base text-white/80 mt-1 uppercase">
                         EKSPO CULFEST
                         <br />
                         PARADE KEBUDAYAAN
                         <br />
-                        PAGELARANG APRESIASI BUDAYA
+                        PAGELARAN APRESIASIASI BUDAYA
                       </p>
                     </div>
                     <div className="w-full self-end">
@@ -284,8 +294,8 @@ export default function Home() {
                       <p className="text-xs md:text-lg font-bold tracking-widest uppercase">
                         Day 2
                       </p>
-                      <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                        PAGELARAN SENI
+                      <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed uppercase">
+                        Pagelaran Seni
                         <br />
                         DAUTA BUDAYA
                         <br />
@@ -304,18 +314,6 @@ export default function Home() {
                   </div>
                 </AnimateOnView>
               </AnimateOnView>
-
-              {/* button */}
-              <div className="relative w-fit mx-auto md:mr-15 z-5">
-                <Link
-                  href="/linimasa"
-                  className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                      px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
-                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer"
-                >
-                  Baca Selengkapnya
-                </Link>
-              </div>
 
               {/* Lotus */}
               <AnimateOnView
@@ -336,42 +334,14 @@ export default function Home() {
           {/* Jelajah Bareng */}
           <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
                 backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "cover",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
             />
-
-            {/* Pagoda — left */}
-            <AnimateOnView
-              animation="animate-fadeInUp"
-              className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
-            >
-              <Image
-                src="/images/home/jelajah/pagoda.png"
-                alt="pagoda"
-                width={260}
-                height={580}
-                className="object-fill w-full h-auto"
-              />
-            </AnimateOnView>
-
-            {/* Moon — right */}
-            <AnimateOnView
-              animation="animate-slideInRight"
-              className="absolute w-[40%] -right-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-2"
-            >
-              <Image
-                src="/images/home/jelajah/moon.png"
-                alt="moon"
-                width={700}
-                height={813}
-                className="object-fill w-full h-auto"
-              />
-            </AnimateOnView>
 
             <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
               {/* Title frame */}
@@ -421,19 +391,13 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Asrama
                     </h3>
-                    <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                      Indonesia memiliki wilayah yang sangat luas sehingga
-                      diperlukan peta sebagai media untuk mempermudah memahami
-                      keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu
-                      peta umum.
-                    </p>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
                         href="/jelajah/asrama"
@@ -484,19 +448,13 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Ormada
                     </h3>
-                    <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                      Indonesia memiliki wilayah yang sangat luas sehingga
-                      diperlukan peta sebagai media untuk mempermudah memahami
-                      keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu
-                      peta umum.
-                    </p>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
                         href="/jelajah/ormada"
@@ -547,19 +505,13 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Fakultas
                     </h3>
-                    <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                      Indonesia memiliki wilayah yang sangat luas sehingga
-                      diperlukan peta sebagai media untuk mempermudah memahami
-                      keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu
-                      peta umum.
-                    </p>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
                         href="/jelajah/fakultas"
@@ -583,10 +535,10 @@ export default function Home() {
           {/* Kompetisi */}
           <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
-                backgroundImage: "url('/images/home/bg-section-2.png')",
-                backgroundSize: "cover",
+                backgroundImage: "url('/images/home/bg-section-1.png')",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
@@ -657,20 +609,20 @@ export default function Home() {
 
               <AnimateOnView
                 animation="animate-slideInLeft"
-                className="absolute w-[80%] h-auto left-0 bottom-0 z-5"
+                className="absolute w-[90%] h-auto left-0 bottom-0 z-5"
               >
                 <Image
                   src="/images/home/kompetisi/wave-left.png"
                   alt="wave-left"
                   width={1920}
                   height={300}
-                  className="object-cover "
+                  className="object-fill"
                 />
               </AnimateOnView>
 
               <AnimateOnView
                 animation="animate-slideInRight"
-                className="absolute  w-[80%] h-auto right-0 bottom-0 z-5"
+                className="absolute w-[80%] h-auto right-0 bottom-0 z-5"
               >
                 <Image
                   src="/images/home/kompetisi/wave-right.png"
@@ -681,15 +633,29 @@ export default function Home() {
                 />
               </AnimateOnView>
             </section>
+
+            {/* Pagoda — left */}
+            <AnimateOnView
+              animation="animate-fadeInUp"
+              className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
+            >
+              <Image
+                src="/images/home/jelajah/pagoda.png"
+                alt="pagoda"
+                width={260}
+                height={580}
+                className="object-fill w-full h-auto"
+              />
+            </AnimateOnView>
           </div>
 
           {/* Game */}
           <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
                 backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "cover",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
@@ -781,15 +747,15 @@ export default function Home() {
           {/* Sponsor & Media Partner */}
           <div className="relative w-full">
             <div
-              className="absolute inset-0 z-0"
+              className="absolute w-screen inset-0 z-0"
               style={{
-                backgroundImage: "url('/images/home/bg-section-2.png')",
-                backgroundSize: "cover",
+                backgroundImage: "url('/images/home/bg-section-1.png')",
+                backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
               }}
             />
-            <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center  mt-[10%]">
+            <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center pt-10">
               <div
                 className="
                       relative w-[92%] md:w-[90%] rounded-2xl px-4 sm:px-8 md:px-15 pt-16 md:pt-20  mb-[20%]
@@ -798,7 +764,6 @@ export default function Home() {
                       grid grid-cols-2 items-end justify-items-center gap-3 sm:gap-4 md:gap-6
                     "
               >
-                {/* Title frame */}
                 <div className="relative w-full max-w-30 sm:max-w-37.5 md:max-w-none aspect-[0.7]">
                   <Image
                     src="/images/tentang/chileko.png"
@@ -816,6 +781,51 @@ export default function Home() {
                   />
                 </div>
               </div>
+
+              {/*
+                <div className="
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mt-[10%] mb-10
+                      border-4 border-[#4d1101]
+                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+                      flex flex-col items-center gap-6
+                    ">*/}
+
+              {/* Title frame */}
+              {/*
+                  <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
+                    <Image
+                      src="/images/home/sponsor/title-sponsor.png"
+                      alt="frame title"
+                      width={320}
+                      height={60}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>  
+                */}
+
+              {/*
+                <div className="
+                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-[20%]
+                      border-4 border-[#4d1101]
+                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+                      flex flex-col items-center gap-6
+                    ">
+
+                  */}
+              {/* Title frame */}
+              {/*
+                  <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
+                    <Image
+                      src="/images/home/sponsor/title-media.png"
+                      alt="frame title"
+                      width={320}
+                      height={60}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                */}
             </section>
           </div>
         </div>

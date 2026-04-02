@@ -6,11 +6,11 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-    { href: "/about-event", label: "About Event" },
-    { href: "/kompetisi", label: "Kompetisi" },
-    { href: "/linimasa", label: "Linimasa" },
+    { href: "/about-event", label: "Tentang Culfest" },
+    { href: "/jelajah/ormada", label: "ORMADA" },
+    { href: "/jelajah/asrama", label: "ASRAMA" },
+    { href: "/voting", label: "VOTING" },
     { href: "/faq", label: "FAQ" },
-    { href: "/game", label: "Game" },
 ];
 
 export default function Header() {
@@ -25,24 +25,24 @@ export default function Header() {
     };
 
     const pathname = usePathname();
-    
-      if (pathname === '/') {
+
+    if (pathname === '/') {
         return null;
-      }
+    }
 
     return (
-        <header className="fixed left-1/2 top-5 z-50 w-[90%] rounded-2xl -translate-x-1/2 shadow-sm">
-            <nav className="mx-auto flex max-w-7xl rounded-2xl items-center justify-between px-4 py-3 border-amber-400 border lg:px-6"
-              style={{ backgroundImage: 'url("/images/header/header-bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <header className="fixed left-1/2 top-5 z-50 w-[90%] md:w-[98%] rounded-2xl -translate-x-1/2 shadow-sm">
+            <nav className="mx-auto flex rounded-2xl items-center justify-between px-4 py-3 border-amber-400 border lg:px-6"
+                style={{ backgroundImage: 'url("/images/header/header-bg.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <Link href="/home" className="flex items-center gap-3">
-                  <Image
-                    src="/images/logo-culfest.png"
-                    alt="logo"
-                    width={70}
-                    height={70}
-                    className="object-cover w-[25%] rounded-full"
-                  />
-                  <span className="text-white text-sm font-semibold">Cultural <br />Festival 15</span>
+                    <Image
+                        src="/images/logo-culfest.png"
+                        alt="logo"
+                        width={70}
+                        height={70}
+                        className="object-cover w-[25%] rounded-full"
+                    />
+                    <span className="text-white text-sm font-semibold">Cultural <br />Festival 15</span>
                 </Link>
 
                 <div className="hidden items-center gap-7 lg:flex">
