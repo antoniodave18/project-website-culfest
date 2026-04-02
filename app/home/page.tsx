@@ -6,7 +6,7 @@ import AnimateOnView from '../components/AnimateOnView';
 
 export default function Home() {
   return (
-    <main className="bg-black">
+    <main className="relative bg-black">
 
       <div className='absolute items-center justify-center w-full h-screen'
         style={{
@@ -52,7 +52,7 @@ export default function Home() {
             {/* About Culfest */}
             <div className="relative w-full">
               <div
-                className="absolute inset-0 z-0"
+                className="absolute w-screen inset-0 z-0"
                 style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
               />
 
@@ -126,8 +126,11 @@ export default function Home() {
             </div>
 
             {/* Linimasa */}
-            <div className="relative w-full overflow-visible">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+            <div className="relative w-full">
+              <div
+                  className="absolute w-screen inset-0 z-0"
+                  style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+                />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2" style={{ backgroundImage: "url('/images/home/linimasa/bg-linimasa.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
               <div className="absolute inset-0 hidden xl:block z-3" style={{ backgroundImage: "url('/images/home/linimasa/ribbon.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
               <div className="absolute inset-0 xl:hidden z-3" style={{ backgroundImage: "url('/images/home/linimasa/ribbon-small.png')", backgroundSize: '100% 100%', backgroundPosition: 'center' }} />
@@ -211,18 +214,6 @@ export default function Home() {
                   </AnimateOnView>
                 </AnimateOnView>
 
-                {/* button */}
-                <div className="relative w-fit mx-auto md:mr-15 z-5">
-                  <Link
-                    href="/linimasa"
-                    className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                      px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
-                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer"
-                  >
-                    Baca Selengkapnya
-                  </Link>
-                </div>
-
                 {/* Lotus */}
               <AnimateOnView animation="animate-fadeInUp" className="relative w-[25%] mx-auto -mb-10 md:-mb-20 item-center z-5">
                 <Image
@@ -240,35 +231,10 @@ export default function Home() {
 
             {/* Jelajah Bareng */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
-
-              {/* Pagoda — left */}
-              <AnimateOnView
-                animation="animate-fadeInUp"
-                className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
-              >
-                <Image
-                  src="/images/home/jelajah/pagoda.png"
-                  alt="pagoda"
-                  width={260}
-                  height={580}
-                  className="object-fill w-full h-auto"
-                />
-              </AnimateOnView>
-
-              {/* Moon — right */}
-              <AnimateOnView
-                animation="animate-slideInRight"
-                className="absolute w-[40%] -right-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 z-2"
-              >
-                <Image
-                  src="/images/home/jelajah/moon.png"
-                  alt="moon"
-                  width={700}
-                  height={813}
-                  className="object-fill w-full h-auto"
-                />
-              </AnimateOnView>
+              <div
+                className="absolute w-screen inset-0 z-0"
+                style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+              />
 
               <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
 
@@ -303,16 +269,11 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Asrama
                       </h3>
-                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                        sebagai media untuk mempermudah memahami keragaman ruangnya.
-                        Terdapat tiga jenis peta utama, yaitu peta umum.
-                      </p>
                       <div className="flex justify-center md:justify-end mt-3">
                         <Link href="/jelajah/asrama" className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
@@ -342,16 +303,11 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Ormada
                       </h3>
-                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                        sebagai media untuk mempermudah memahami keragaman ruangnya.
-                        Terdapat tiga jenis peta utama, yaitu peta umum.
-                      </p>
                       <div className="flex justify-center md:justify-end mt-3">
                         <Link href="/jelajah/ormada" className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
@@ -381,16 +337,11 @@ export default function Home() {
                       </div>
 
                       <h3
-                        className="text-center text-xl md:text-2xl text-yellow-300 font-bold tracking-widest mb-2"
+                        className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                         style={{ fontFamily: "var(--font-efco-brookshire), serif" }}
                       >
                         Fakultas
                       </h3>
-                      <p className="text-[10px] md:text-xs text-blue-100 leading-relaxed">
-                        Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta
-                        sebagai media untuk mempermudah memahami keragaman ruangnya.
-                        Terdapat tiga jenis peta utama, yaitu peta umum.
-                      </p>
                       <div className="flex justify-center md:justify-end mt-3">
                         <Link href="/jelajah/fakultas" className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
@@ -412,7 +363,10 @@ export default function Home() {
 
             {/* Kompetisi */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div
+                className="absolute w-screen inset-0 z-0"
+                style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+              />
 
               <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
                 {/* Card */}
@@ -434,29 +388,32 @@ export default function Home() {
                     />
                   </div>
 
-                  <p className="text-justify text-amber-900 text-xs md:text-base">
-                    Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
-                    mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
-                    peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
-                    karakteristik berbeda. Peta umum menggambarkan permukaan bumi secara menyeluruh dan berfungsi
-                    memberikan informasi dasar tentang kenampakan alam maupun buatan.
-                  </p>
-
-
-                  <div className="flex flex-row justify-center md:justify-around gap-5 md:gap-3 w-full">
-                    {[1, 2, 3, 4].map((i) => (
+                  <div className="grid grid-cols-2 place-items-center gap-4 mt-10 w-full">
+                    
                       <div
-                        key={i}
-                        className={`
-                            w-28 h-40 rounded-xl
-                            bg-amber-200/60 border-2 border-amber-700/40
-                            flex items-center justify-center
-                            ${i > 2 ? 'hidden md:flex' : ''}
-                          `}
+                        className="
+                          relative -left-15 w-[290px] h-[190px] rounded-xl -rotate-5
+                          bg-amber-200/60 border-2 border-amber-700/40"
                       >
-                        <span className="text-amber-700/40 text-xs">Foto {i}</span>
                       </div>
-                    ))}
+                      <div
+                        className="
+                          relative -right-20 w-[290px] h-[190px] rounded-xl rotate-5
+                          bg-amber-200/60 border-2 border-amber-700/40"
+                      >
+                      </div>
+                      <div
+                        className="
+                          relative left-10 w-[290px] h-[190px] rounded-xl -rotate-8
+                          bg-amber-200/60 border-2 border-amber-700/40"
+                      >
+                      </div>
+                      <div
+                        className="
+                          relative right-10 w-[290px] h-[190px] rounded-xl rotate-7
+                          bg-amber-200/60 border-2 border-amber-700/40"
+                      >
+                      </div>
                   </div>
 
 
@@ -472,20 +429,20 @@ export default function Home() {
 
                 <AnimateOnView
                   animation="animate-slideInLeft"
-                  className="absolute w-[80%] h-auto left-0 bottom-0 z-5"
+                  className="absolute w-[90%] h-auto left-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/home/kompetisi/wave-left.png"
                     alt="wave-left"
                     width={1920}
                     height={300}
-                    className="object-cover "
+                    className="object-fill"
                   />
                 </AnimateOnView>
 
                 <AnimateOnView
                   animation="animate-slideInRight"
-                  className="absolute  w-[80%] h-auto right-0 bottom-0 z-5"
+                  className="absolute w-[80%] h-auto right-0 bottom-0 z-5"
                 >
                   <Image
                     src="/images/home/kompetisi/wave-right.png"
@@ -497,11 +454,28 @@ export default function Home() {
                 </AnimateOnView>
 
               </section>
+
+              {/* Pagoda — left */}
+                <AnimateOnView
+                  animation="animate-fadeInUp"
+                  className="absolute left-[-10%] md:left-0 bottom-0 w-[30%] md:w-[12%] -translate-x-[20%] md:translate-x-0 z-2"
+                >
+                  <Image
+                    src="/images/home/jelajah/pagoda.png"
+                    alt="pagoda"
+                    width={260}
+                    height={580}
+                    className="object-fill w-full h-auto"
+                  />
+                </AnimateOnView>
             </div>
 
             {/* Game */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div
+                className="absolute w-screen inset-0 z-0"
+                style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+              />
               <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1" style={{ backgroundImage: "url('/images/home/game/bg-motif.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center' }} />
 
               <div className='relative top-0 w-full h-auto py-3 lg:py-5 bg-[#03005e] z-3 flex items-center justify-center'>
@@ -531,15 +505,49 @@ export default function Home() {
           border-2 border-[#461500]
           shadow-2xl flex flex-col gap-6
         ">
-                  {/* Description */}
-                  <p className="text-xs text-amber-900 leading-relaxed text-justify">
-                    Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai
-                    media untuk mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta
-                    utama, yaitu peta umum, peta khusus (tematik), dan peta kartometrik, yang
-                    masing-masing memiliki fungsi dan karakteristik berbeda. Peta umum
-                    menggambarkan permukaan bumi secara menyeluruh dan berfungsi memberikan
-                    informasi dasar tentang kenampakan alam maupun buatan.
-                  </p>
+                  <div className="grid grid-cols-3 place-items-center gap-4 mt-10 w-full">
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40"
+                      >
+                      </div>
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40
+                          flex items-center justify-center"
+                      >
+                      </div>
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40
+                          flex items-center justify-center"
+                      >
+                      </div>
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40
+                          flex items-center justify-center"
+                      >
+                      </div>
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40
+                          flex items-center justify-center"
+                      >
+                      </div>
+                      <div
+                        className="
+                          w-[290px] h-[190px] rounded-xl
+                          bg-amber-200/60 border-2 border-amber-700/40
+                          flex items-center justify-center"
+                      >
+                      </div>
+                  </div>
 
                   {/* Button */}
                   <div className="flex justify-center">
@@ -570,17 +578,22 @@ export default function Home() {
 
             {/* Sponsor & Media Partner */}
             <div className="relative w-full">
-              <div className="absolute inset-0 z-0" style={{ backgroundImage: "url('/images/home/bg-section-2.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+              <div
+                className="absolute w-screen inset-0 z-0"
+                style={{ backgroundImage: "url('/images/home/bg-section-1.png')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+              />
+              
               <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center">
-
+                
+                {/*
                 <div className="
                       relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mt-[10%] mb-10
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
-                    ">
+                    ">*/}
 
-                  {/* Title frame */}
+                  {/* Title frame */}{/*
                   <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
                       src="/images/home/sponsor/title-sponsor.png"
@@ -590,8 +603,10 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                </div>
+                </div>  
+                */}
 
+                {/*
                 <div className="
                       relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-[20%]
                       border-4 border-[#4d1101]
@@ -599,7 +614,7 @@ export default function Home() {
                       flex flex-col items-center gap-6
                     ">
 
-                  {/* Title frame */}
+                  */}{/* Title frame */}{/*
                   <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
                     <Image
                       src="/images/home/sponsor/title-media.png"
@@ -610,6 +625,8 @@ export default function Home() {
                     />
                   </div>
                 </div>
+                */}
+
 
               </section>
             </div>
