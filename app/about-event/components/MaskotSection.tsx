@@ -47,30 +47,32 @@ export default function MaskotSection() {
 
   const introMaskotContent = (
     <>
-      <div className="w-full max-w-[340px] sm:max-w-[460px] md:max-w-[580px] lg:max-w-[660px] xl:max-w-[730px] mx-auto mt-10 sm:mt-28 md:mt-40 lg:mt-52 xl:mt-60">
-        <MaskotCard
-          title="CHILEKO dan CHITALA"
-          desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida. Ikan ini ditetapkan sebagai maskot fauna Sumatera Selatan. Ikan belida dijadikan sebagai bahan baku makanan khas di wilayah Sumatera Selatan yang juga digemari oleh masyarakat luas, yaitu pempek dan kerupuk Palembang."
-        />
-      </div>
-      <div className="flex items-end justify-center w-full max-w-[120px] sm:max-w-[140px] md:max-w-[280px] lg:max-w-[750px] mx-auto gap-0 sm:gap-1 md:gap-2">
-        <div className="relative w-1/2 aspect-[0.62] sm:aspect-[0.66] md:aspect-[0.7] max-w-[110px] sm:max-w-[90px] md:max-w-[130px] lg:max-w-[400px]">
-          <Image
-            src="/images/tentang/chileko.png"
-            alt="Chileko"
-            fill
-            className="object-contain object-bottom"
+      <>
+        <div className="w-full max-w-[340px] sm:max-w-[460px] md:max-w-[580px] lg:max-w-[660px] xl:max-w-[730px] mx-auto mt-10 sm:mt-28 md:mt-40 lg:mt-52 xl:mt-60">
+          <MaskotCard
+            title="CHILEKO dan CHITALA"
+            desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida. Ikan ini ditetapkan sebagai maskot fauna Sumatera Selatan. Ikan belida dijadikan sebagai bahan baku makanan khas di wilayah Sumatera Selatan yang juga digemari oleh masyarakat luas, yaitu pempek dan kerupuk Palembang."
           />
         </div>
-        <div className="relative w-1/2 aspect-[0.66] sm:aspect-[0.7] md:aspect-[0.75] max-w-[110px] sm:max-w-[90px] md:max-w-[130px] lg:max-w-[400px]">
-          <Image
-            src="/images/tentang/chitala.png"
-            alt="Chitala"
-            fill
-            className="object-contain object-bottom"
-          />
+        <div className="flex items-end justify-center w-full max-w-[280px] sm:max-w-[320px] md:max-w-[420px] lg:max-w-[900px] mx-auto gap-1 sm:gap-2 md:gap-3">
+          <div className="relative w-1/2 aspect-[0.62] sm:aspect-[0.66] md:aspect-[0.7] max-w-[230px] sm:max-w-[340px] md:max-w-[200px] lg:max-w-[460px]">
+            <Image
+              src="/images/tentang/chileko.png"
+              alt="Chileko"
+              fill
+              className="object-contain object-bottom"
+            />
+          </div>
+          <div className="relative w-1/2 aspect-[0.66] sm:aspect-[0.7] md:aspect-[0.75] max-w-[230px] sm:max-w-[240px] md:max-w-[200px] lg:max-w-[460px]">
+            <Image
+              src="/images/tentang/chitala.png"
+              alt="Chitala"
+              fill
+              className="object-contain object-bottom"
+            />
+          </div>
         </div>
-      </div>
+      </>
     </>
   );
 

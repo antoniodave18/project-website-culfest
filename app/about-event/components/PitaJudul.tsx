@@ -27,12 +27,7 @@ export default function PitaJudul({ judul }: PitaJudulProps) {
 
           <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-2 md:px-4">
             <h1
-              className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl text-[#ffd700] leading-none tracking-widest text-center font-bold"
-              style={{
-                fontFamily: "arial",
-                letterSpacing: "0.05em",
-                textShadow: "2px 2px 5px rgba(0,0,0,0.8)",
-              }}
+              className="text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl text-[#ffd700] leading-none tracking-[0.05em] text-center font-bold [font-family:var(--font-efco-brookshire),serif] [text-shadow:2px_2px_5px_rgba(0,0,0,0.8)]"
             >
               {judul}
             </h1>
