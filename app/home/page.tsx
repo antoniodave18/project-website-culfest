@@ -128,13 +128,14 @@ export default function Home() {
                     <div className="order-2 lg:order-1 flex flex-col gap-10">
                       <p className="text-justify text-xs md:text-lg text-amber-900">
                         {" "}
-                        Cultural Festival yang dikenal sebagai Culfest merupakan
-                        sebuah kegiatan yang diselenggarakan setiap tahunnya
-                        oleh UGM Residence sejak tahun 2013 dengan mengangkat
-                        tema "Unity in Diversity" yang bernuansa Nusantara.
-                        Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang
-                        dipilih selalu mengusung kebudayaan daerah tertentu yang
-                        berbeda setiap tahunnya.
+                        Cultural Festival adalah acara tahunan UGM Residence
+                        bertema "Unity in Diversity" sebagai puncak apresiasi
+                        budaya dan pengembangan lifeskills mahasiswa.
+                        Penyelenggaraan ke-15 ini mengangkat budaya Sumatera
+                        Selatan dengan tema "Kulukilir Berbudayo: Eksplorasi
+                        Cindonyo Nusantara" menyajikan pameran, seni, dan
+                        kompetisi melalui pengalaman petualangan yang
+                        interaktif.
                       </p>
                       <Link
                         href="/about-event"
