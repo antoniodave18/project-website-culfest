@@ -26,7 +26,7 @@ export default function TransisiAwan() {
       </div>
 
       {/* Cloud 2 (Left, below sun) */}
-      <div className="absolute left-[10%] md:left-[13%] -top-10 w-40 h-24 md:w-80 md:h-60 z-20 transition-transform hover:scale-105 duration-500 animate-cloudRight">
+      <div className="absolute left-[10%] md:left-[-10%] -top-10 w-40 h-24 md:w-80 md:h-60 z-20 transition-transform hover:scale-105 duration-500 animate-cloudRight">
         <Image
           src="/images/tentang/awan.png"
           alt="Awan Bawah"
