@@ -113,24 +113,13 @@ export default function SejarahSection() {
                     fontSize: "clamp(14px, 1.5vw, 20px)",
                     lineHeight: "1.8",
                     textAlign: "center",
-                    textTransform: "lowercase",
+                    // textTransform: "lowercase",
                   }}
                 >
-                  gelanggang mahasiswa telah menjadi bagian penting dari
-                  perjalanan sejarah kehidupan kampus di ugm. berdiri sejak
-                  1975, gelanggang pada masa itu dikenal sebagai pusat aktivitas
-                  mahasiswa, terutama dalam gerakan sosial, budaya, dan politik.
-                  seiring berjalannya waktu, gelanggang bertransformasi menjadi
-                  ruang tumbuh dan berkreasi bagi ukm dan komunitas, menjadi
-                  rumah kedua bagi mahasiswa yang ingin mengembangkan diri di
-                  luar kegiatan akademik. meskipun saat ini bangunan fisik
-                  gelanggang telah tiada dan akan digantikan oleh gelanggang
-                  inovasi dan kreativitas (gik), nilai-nilai dan semangatnya
-                  tetap hidup. gelanggang bukan sekadar ruang, tetapi simbol
-                  dari kebersamaan, keberagaman, dan semangat kolektif
-                  mahasiswa. ia menjadi tempat belajar, berkarya, dan berbagi
-                  pengalaman tempat di mana mahasiswa ugm menempa diri dalam
-                  suasana inklusif dan penuh inspirasi.
+                  Cultural Festival yang dikenal sebagai Culfest merupakan sebuah kegiatan yang diselenggarakan setiap tahunnya oleh UGM Residence dengan nuansa Nusantara. Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang dipilih selalu mengusung kebudayaan daerah tertentu yang berbeda setiap tahunnya.
+Culfest diselenggarakan dalam bentuk kegiatan kebudayaan yang meliputi pameran, penampilan putra-putri, pagelaran seni, dan esai budaya yang kemudian dikemas dalam bentuk kompetisi. Selama beberapa tahun terakhir, Culfest telah berkolaborasi dengan berbagai tokoh, seperti akademisi, budayawan, penggiat seni, duta budaya, dan lain sebagainya dalam rangkaian acara ini sebagai pembicara, juri, dan pemateri.
+Pada tahun ini, Cultural Festival dalam penyelenggaraannya yang ke-15 kembali mengajak setiap pihak di antaranya civitas akademika UGM, masyarakat umum, penggiat budaya, dan lain sebagainya untuk kembali turut serta mengapresiasi kekayaan budaya Nusantara yang akan tertuang dalam satu rangkaian penuh Cultural Festival 15.
+
                 </p>
               </div>
             </div>

@@ -91,11 +91,7 @@ export default function Home() {
 
                       <div className="order-2 lg:order-1 flex flex-col gap-10">
                         <p className="text-justify text-xs md:text-lg text-amber-900">
-                          Indonesia memiliki wilayah yang sangat luas sehingga diperlukan peta sebagai media untuk
-                          mempermudah memahami keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta umum,
-                          peta khusus (tematik), dan peta kartometrik, yang masing-masing memiliki fungsi dan
-                          karakteristik berbeda. Peta umum menggambarkan permukaan bumi secara menyeluruh dan berfungsi
-                          memberikan informasi dasar tentang kenampakan alam maupun buatan.
+                          Cultural Festival yang dikenal sebagai Culfest merupakan sebuah kegiatan yang diselenggarakan setiap tahunnya oleh UGM Residence sejak tahun 2013 dengan mengangkat tema "Unity in Diversity" yang bernuansa Nusantara. Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang dipilih selalu mengusung kebudayaan daerah tertentu yang berbeda setiap tahunnya.
                         </p>
                         <Link
                           href="/about-event"

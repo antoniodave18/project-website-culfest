@@ -27,19 +27,9 @@ export default function TentangSection() {
                 letterSpacing: "-0.01em",
                 textAlign: "center",
                 verticalAlign: "middle",
-                textTransform: "lowercase",
               }}
             >
-              gelanggang expo atau gelex 2025 akan diselenggarakan pada 21-23
-              agustus di lapangan pancasila ugm dengan mengusung tema "resonansi
-              harmoni gelanggang" dan konsep nostalgic universe. memperingati 50
-              tahun gelanggang mahasiswa, gelex tahun ini menghadirkan remon,
-              maskot penjelajah waktu yang akan menemanimu menjelajahi dunia
-              gelanggang yang penuh semangat kebersamaan. selain pameran dan
-              penampilan dari berbagai ukm serta komunitas, gelex 2025 juga
-              menyuguhkan web series empat episode yang mengangkat kisah seru
-              dari masing-masing sekber, kolaborasi antar penghuni gelanggang,
-              zona interaktif, serta visual yang membangkitkan nostalgia!
+              Cultural Festival (Culfest) merupakan acara tahunan yang diselenggarakan oleh UGM Residence  dengan mengusung semangat “Unity in Diversity” sebagai bentuk apresiasi terhadap keberagaman budaya Nusantara juga merupakan puncak lifeskills untuk penghuni UGM Residence. Kegiatan ini menghadirkan berbagai rangkaian seperti pameran budaya, pagelaran seni, hingga berbagai kompetisi yang melibatkan mahasiswa dan masyarakat umum. Pada penyelenggaraan ke-15, Culfest mengangkat budaya Sumatera Selatan dengan konsep petualangan yang mengajak pengunjung mengeksplorasi kekayaan tradisi secara lebih dekat dan interaktif. Tema “Kulukilir Berbudayo: Eksplorasi Cindonyo Nusantara” menjadi representasi ajakan untuk merasakan keindahan budaya melalui pengalaman yang menyeluruh. Dengan kolaborasi berbagai tokoh budaya dan akademisi, Culfest 15 diharapkan menjadi ruang eksplorasi sekaligus pelestarian budaya Indonesia.
             </p>
           </div>
 

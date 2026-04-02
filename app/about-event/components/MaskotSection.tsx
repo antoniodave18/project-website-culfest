@@ -60,20 +60,20 @@ export default function MaskotSection() {
 
           <div className="w-full grid grid-cols-2 px-40 mt-41">
             <MaskotCard
-              title="CHILEKO"
-              desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida."
+              title="SONGKET"
+              desc="CHILEKO dan CHITALA mengenakan kain motif songket sebagai kain kebanggaan Sumatera Selatan. Songket merupakan warisan kebudayaan yang melambangkan kemewahan, kemakmuran, dan kejayaan Sriwijaya. Kain songket digunakan dalam acara adat, pernikahan, dan tarian tradisional sebagai suatu simbol kemuliaan. Songket yang digunakan berwarna biru tua, menyimbolkan ketenangan dan kewibawaan serta kehormatan. Motif berwarna emas dikombinasikan dan menyimbolkan kemakmuran dan kejayaan."
             />
             <MaskotCard
-              title="CHITALA"
-              desc="Ikan belida ditetapkan sebagai maskot fauna Sumatera Selatan dan dijadikan bahan baku makanan khas seperti pempek dan kerupuk Palembang."
+              title="AESAN GEDE"
+              desc="CHILEKO dan CHITALA menggunakan pakaian adat khas Sumatera Selatan, yaitu Aesan Gede. Pakaian adat ini merupakan pakaian kebesaran yang menyimbolkan keagungan, kemewahan, dan kesabaran. Seperti pada pakaian Chitala, Aesan Gede identik dengan warna keemasan yang dikombinasikan dengan merah muda."
             />
             <MaskotCard
-              title="CHILEKO"
-              desc="Desain maskot diambil dari wujud ikan belida. Nama ikan ini diambil dari nama salah satu sungai di Sumatera Selatan yang menjadi habitatnya, yakni Sungai Belida."
+              title="TANJAK"
+              desc="Ikat kepala pria Sumatera Selatan berbentuk runcing yang diikat dari kain songket. Chileko menggunakan tanjak sebagai lambang kehormatan, wibawa, dan jati diri masyarakat Sumatera Selatan sejak zaman Sriwijaya."
             />
             <MaskotCard
-              title="CHITALA"
-              desc="Ikan belida ditetapkan sebagai maskot fauna Sumatera Selatan dan dijadikan bahan baku makanan khas seperti pempek dan kerupuk Palembang."
+              title="MAHKOTA KARSUHUN"
+              desc="Hiasan kepala tradisional yang dikenakan Chitala adalah mahkota khas pengantin wanita Palembang, Sumatera Selatan, yang merupakan bagian dari busana adat Aesan Gede. Didominasi oleh warna emas, melambangkan kejayaan Kerajaan Sriwijaya, keanggunan, dan kelembutan perempuan Palembang."
             />
           </div>
         </div>
