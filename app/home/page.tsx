@@ -189,9 +189,9 @@ export default function Home() {
                           Day 2
                         </p>
                         <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                          Grand Opening<br />
-                          Art Exhibition<br />
-                          Traditional Dance Battle
+                          Pagelaran Seni<br />
+                          Duta Budaya<br />
+                          Penghargaan
                         </p>
                       </div>
                       <div className='w-full self-end'>
