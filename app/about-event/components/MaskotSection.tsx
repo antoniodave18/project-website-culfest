@@ -58,7 +58,7 @@ export default function MaskotSection() {
             </div>
           </div>
 
-          <div className="w-full grid grid-cols-2 px-40 mt-41">
+          <div className="w-full max-w-[1600px] mx-auto grid grid-cols-2 items-start gap-x-8 gap-y-10 px-40 mt-81">
             <MaskotCard
               title="SONGKET"
               desc="CHILEKO dan CHITALA mengenakan kain motif songket sebagai kain kebanggaan Sumatera Selatan. Songket merupakan warisan kebudayaan yang melambangkan kemewahan, kemakmuran, dan kejayaan Sriwijaya. Kain songket digunakan dalam acara adat, pernikahan, dan tarian tradisional sebagai suatu simbol kemuliaan. Songket yang digunakan berwarna biru tua, menyimbolkan ketenangan dan kewibawaan serta kehormatan. Motif berwarna emas dikombinasikan dan menyimbolkan kemakmuran dan kejayaan."
