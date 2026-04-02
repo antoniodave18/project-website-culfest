@@ -5,6 +5,38 @@ import Link from "next/link";
 import AnimateOnView from "../components/AnimateOnView";
 
 export default function Home() {
+  const kompetisiPhotos = [
+    {
+      src: "/images/home/beranda/kompe1.png",
+      alt: "Penampilan kompetisi panggung",
+      rotate: "-rotate-6",
+    },
+    {
+      src: "/images/home/beranda/kompe2.png",
+      alt: "Kompetisi tari tradisional",
+      rotate: "rotate-6",
+    },
+    {
+      src: "/images/home/beranda/kompe3.png",
+      alt: "Kompetisi musik tradisional",
+      rotate: "-rotate-5",
+    },
+    {
+      src: "/images/home/beranda/kompe4.png",
+      alt: "Peserta kompetisi budaya",
+      rotate: "rotate-5",
+    },
+  ];
+
+  const gamePhotos = [
+    "/images/home/beranda/game1.png",
+    "/images/home/beranda/game2.png",
+    "/images/home/beranda/game3.png",
+    "/images/home/beranda/game4.png",
+    "/images/home/beranda/game5.png",
+    "/images/home/beranda/game6.png",
+  ];
+
   return (
     <main className="bg-black">
       <div
@@ -242,31 +274,36 @@ export default function Home() {
                   </div>
                 </AnimateOnView>
 
-                  {/* Day 2 */}
-                  <AnimateOnView animation="animate-fadeInUp" className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4">
-                    <div className="animate-sway flex flex-col gap-2">
-                      <div className="text-left w-max text-white drop-shadow">
-                        <p className="text-xs md:text-lg font-bold tracking-widest">
-                          Day 2
-                        </p>
-                        <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
-                          Pagelaran Seni<br />
-                          Duta Budaya<br />
-                          Penghargaan
-                        </p>
-                      </div>
-                      <div className='w-full self-end'>
-                        <Image
-                          src="/images/home/linimasa/chitala.png"
-                          alt="character day 2"
-                          width={80}
-                          height={100}
-                          className="w-full h-auto object-contain"
-                        />
-                      </div>
+                {/* Day 2 */}
+                <AnimateOnView
+                  animation="animate-fadeInUp"
+                  className="absolute w-[10%] right-[35%] xl:right-[35%] top-[70%] xl:top-[85%] -translate-y-full z-4"
+                >
+                  <div className="animate-sway flex flex-col gap-2">
+                    <div className="text-left w-max text-white drop-shadow">
+                      <p className="text-xs md:text-lg font-bold tracking-widest">
+                        Day 2
+                      </p>
+                      <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed ">
+                        Pagelaran Seni
+                        <br />
+                        Duta Budaya
+                        <br />
+                        Penghargaan
+                      </p>
                     </div>
-                  </AnimateOnView>
+                    <div className="w-full self-end">
+                      <Image
+                        src="/images/home/linimasa/chitala.png"
+                        alt="character day 2"
+                        width={80}
+                        height={100}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
                 </AnimateOnView>
+              </AnimateOnView>
 
               {/* button */}
               <div className="relative w-fit mx-auto md:mr-15 z-5">
@@ -559,14 +596,23 @@ export default function Home() {
               {/* Card */}
               <div
                 className="
-                      relative w-[90%] rounded-2xl mt-20 px-3 md:px-15 pt-15 md:pt-20 pb-40 md:pb-70 mb-0
-                      border-4 border-[#4d1101]
+                      relative w-[90%] rounded-[2.2rem] mt-20 px-4 md:px-10 pt-15 md:pt-20 pb-36 md:pb-52 mb-0
+                      bg-[#f2bd5b] border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
                     "
+                style={{
+                  backgroundImage:
+                    "radial-gradient(rgba(255,236,179,0.5)_2px,transparent_2px)",
+                  backgroundSize: "48px 48px",
+                }}
               >
+                <div className="pointer-events-none absolute inset-0 rounded-[2rem] border-2 border-[#7a2b00]/45" />
+
+                <div className="absolute top-0 left-8 right-8 -translate-y-1/2 h-3 md:h-4 rounded-full border-4 border-[#4d1101] bg-[#f2bd5b] z-0" />
+
                 {/* Title frame */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center z-10">
                   <Image
                     src="/images/home/kompetisi/title-kompetisi.png"
                     alt="frame title"
@@ -576,31 +622,25 @@ export default function Home() {
                   />
                 </div>
 
-                <p className="text-justify text-amber-900 text-xs md:text-base">
-                  Indonesia memiliki wilayah yang sangat luas sehingga
-                  diperlukan peta sebagai media untuk mempermudah memahami
-                  keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta
-                  umum, peta khusus (tematik), dan peta kartometrik, yang
-                  masing-masing memiliki fungsi dan karakteristik berbeda. Peta
-                  umum menggambarkan permukaan bumi secara menyeluruh dan
-                  berfungsi memberikan informasi dasar tentang kenampakan alam
-                  maupun buatan.
-                </p>
-
-                <div className="flex flex-row justify-center md:justify-around gap-5 md:gap-3 w-full">
-                  {[1, 2, 3, 4].map((i) => (
+                <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:gap-x-14 md:gap-y-10 w-full max-w-[880px] px-2 md:px-6 pt-4 md:pt-6">
+                  {kompetisiPhotos.map((photo, i) => (
                     <div
-                      key={i}
+                      key={photo.src}
                       className={`
-                            w-28 h-40 rounded-xl
-                            bg-amber-200/60 border-2 border-amber-700/40
-                            flex items-center justify-center
-                            ${i > 2 ? "hidden md:flex" : ""}
+                            relative w-6/7 aspect-[5/3] overflow-hidden rounded-2xl
+                            border-2 border-[#201100] bg-black
+                            shadow-[0_8px_18px_rgba(0,0,0,0.4)]
+                            ${photo.rotate}
+                            ${i % 2 === 0 ? "justify-self-start" : "justify-self-end"}
                           `}
                     >
-                      <span className="text-amber-700/40 text-xs">
-                        Foto {i}
-                      </span>
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 668px) 46vw, 280px px-280px"
+                      />
                     </div>
                   ))}
                 </div>
@@ -705,30 +745,24 @@ export default function Home() {
         "
               >
                 {/* Description */}
-                <p className="text-xs text-amber-900 leading-relaxed text-justify">
-                  Indonesia memiliki wilayah yang sangat luas sehingga
-                  diperlukan peta sebagai media untuk mempermudah memahami
-                  keragaman ruangnya. Terdapat tiga jenis peta utama, yaitu peta
-                  umum, peta khusus (tematik), dan peta kartometrik, yang
-                  masing-masing memiliki fungsi dan karakteristik berbeda. Peta
-                  umum menggambarkan permukaan bumi secara menyeluruh dan
-                  berfungsi memberikan informasi dasar tentang kenampakan alam
-                  maupun buatan.
-                </p>
-
-                {/* Button */}
-                <div className="flex justify-center">
-                  <Link
-                    href="/game"
-                    className="
-              px-6 py-2 text-[11px] tracking-widest uppercase
-              bg-amber-800 text-yellow-100 rounded
-              hover:bg-amber-700 transition-colors duration-200
-              border border-amber-600 cursor-pointer
-            "
-                  >
-                    Lihat Detail →
-                  </Link>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 w-full mx-auto">
+                  {gamePhotos.map((src, i) => (
+                    <div
+                      key={src}
+                      className="
+                            relative w-[80%] mx-auto aspect-[4/5] rounded-xl overflow-hidden
+                            border-2 border-amber-700/40 shadow-md
+                          "
+                    >
+                      <Image
+                        src={src}
+                        alt={`Game activity ${i + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 42vw"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
@@ -755,43 +789,30 @@ export default function Home() {
                 backgroundPosition: "center",
               }}
             />
-            <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center">
+            <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center  mt-[10%]">
               <div
                 className="
-                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mt-[10%] mb-10
+                      relative w-[92%] md:w-[90%] rounded-2xl px-4 sm:px-8 md:px-15 pt-16 md:pt-20  mb-[20%]
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
-                      flex flex-col items-center gap-6
+                      grid grid-cols-2 items-end justify-items-center gap-3 sm:gap-4 md:gap-6
                     "
               >
                 {/* Title frame */}
-                <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
+                <div className="relative w-full max-w-30 sm:max-w-37.5 md:max-w-none aspect-[0.7]">
                   <Image
-                    src="/images/home/sponsor/title-sponsor.png"
-                    alt="frame title"
-                    width={320}
-                    height={60}
-                    className="object-contain"
+                    src="/images/tentang/chileko.png"
+                    alt="Chileko"
+                    fill
+                    className="object-contain object-bottom"
                   />
                 </div>
-              </div>
-
-              <div
-                className="
-                      relative w-[90%] rounded-2xl px-15 pt-20 pb-10 mb-[20%]
-                      border-4 border-[#4d1101]
-                      shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
-                      flex flex-col items-center gap-6
-                    "
-              >
-                {/* Title frame */}
-                <div className="absolute w-[70%] md:w-[30%] top-0 left-1/2 md:left-auto -translate-x-1/2 md:-translate-x-11/12 -translate-y-1/2">
+                <div className="relative w-full max-w-30 sm:max-w-37.5 md:max-w-none aspect-[0.75]">
                   <Image
-                    src="/images/home/sponsor/title-media.png"
-                    alt="frame title"
-                    width={320}
-                    height={60}
-                    className="object-contain"
+                    src="/images/tentang/chitala.png"
+                    alt="Chitala"
+                    fill
+                    className="object-contain object-bottom"
                   />
                 </div>
               </div>
