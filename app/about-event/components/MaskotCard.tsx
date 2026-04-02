@@ -29,7 +29,7 @@ export default function MaskotCard({
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(12px, 3.5vw, 24.85px)",
+              fontSize: "clamp(12px, 3.5vw, 22.85px)",
               lineHeight: "100%",
               letterSpacing: "0%"
             }}

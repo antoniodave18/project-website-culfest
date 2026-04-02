@@ -76,16 +76,15 @@ export default function AboutEventPage() {
                   sesama, dan tetap teguh dalam kesatuan
                 </p>
                 <div className="w-full md:w-1/2 flex justify-center">
-                  <div className="bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] h-50 w-120 flex items-center justify-center rounded-xl">
-                    <div className="p-[5px] rounded-xl bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61]">
-                      <div className="relative h-60 w-100 rounded-xl overflow-hidden">
-                        <Image
-                          src="/images/tentang/penari.png"
-                          alt="Penari Culfest"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+                  <div className="w-full max-w-[640px] rounded-xl bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] p-[5px] shadow-[0_10px_24px_rgba(0,0,0,0.25)]">
+                    <div className="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
+                      <iframe
+                        src="https://www.youtube.com/embed/7EIszoNZLe4?list=RD7EIszoNZLe4&start_radio=1&pp=ygUJY3VsZmVzdDE1oAcB"
+                        title="Culfest YouTube Panel"
+                        className="absolute inset-0 h-full w-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
                     </div>
                   </div>
                 </div>
