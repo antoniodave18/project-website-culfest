@@ -83,15 +83,19 @@ export default function Home() {
             backgroundSize: "100%",
             backgroundRepeat: "repeat",
           }}>
-          <div
-            className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
-            style={{
-              backgroundImage: "url('/images/home/paper.png')",
-              backgroundSize: "100% 100%",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center top",
-            }}
-          />
+          <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll">
+            <div className="relative h-full w-full">
+              <Image
+                src="/images/home/paper.png"
+                alt=""
+                fill
+                sizes="80vw"
+                aria-hidden
+                preload
+                className="object-fill object-top"
+              />
+            </div>
+          </div>
 
           {/* About Culfest */}
           <div className="relative w-full">
@@ -100,11 +104,11 @@ export default function Home() {
             />
 
             <section className="relative z-2 h-fit">
-              <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-15 pb-10">
+              <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-10 lg:px-15 pb-10">
                 {/* Card */}
                 <div
                   className="
-                      relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-15 py-7 md:py-25
+                      relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-8 lg:px-15 py-7 md:py-25
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6 animate-unroll
@@ -121,19 +125,20 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
-                    <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
+                  <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+                    <div className="order-1 md:order-2 flex  items-center justify-center mt-10 mx-auto md:mx-0">
                       <Image
                         src="/images/home/beranda/framerbaru.png"
                         alt="photo frame"
                         height={440}
                         width={312}
-                        className="object-cover"
+                        preload
+                        className="object-cover w-full md:w-[90%] lg:w-[70%] h-auto"
                       />
                     </div>
 
-                    <div className="order-2 lg:order-1 flex flex-col gap-10">
-                      <p className="text-justify text-xs md:text-lg text-amber-900">
+                    <div className="order-2 md:order-1 flex flex-col gap-10">
+                      <p className="text-justify text-xs lg:text-lg text-amber-900">
                         Cultural Festival adalah acara tahunan UGM Residence
                         bertema &quot;Unity in Diversity&quot; sebagai puncak
                         apresiasi budaya dan pengembangan lifeskills mahasiswa.
@@ -146,7 +151,7 @@ export default function Home() {
                       <Link
                         href="/about-event"
                         className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
+                                     px-7 py-4 text-xs md:text-xs uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto cursor-pointer"
                       >
                         Baca Selengkapnya
@@ -163,16 +168,16 @@ export default function Home() {
                   alt="cloud left"
                   width={260}
                   height={95}
-                  className="object-fill"
+                  className="object-fill w-auto h-auto"
                 />
               </div>
-              <div className="absolute -right-90 sm:-right-60 lg:-right-50 top-80 animate-cloudRight transition-opacity duration-500">
+              <div className="absolute -right-40 sm:-right-30 lg:-right-10 top-80 animate-cloudRight transition-opacity duration-500">
                 <Image
                   src="/images/awan.png"
                   alt="cloud right"
                   width={430}
                   height={180}
-                  className="object-fill"
+                  className="object-fill w-auto h-auto"
                 />
               </div>
 
@@ -664,23 +669,23 @@ export default function Home() {
             </div>
 
             {/* Clouds */}
-            <div className="absolute -left-45 md:-left-10 bottom-80 animate-cloudLeft transition-opacity duration-500 z-3">
+            <div className="absolute -left-43 md:-left-15 bottom-80 animate-cloudLeft transition-opacity duration-500 z-3">
               <Image
                 src="/images/awan.png"
                 alt="cloud left"
                 width={260}
                 height={95}
-                className="object-fill"
+                className="object-fill w-auto h-auto"
               />
             </div>
 
-            <div className="absolute -right-90 md:-right-50 top-40 animate-cloudRight transition-opacity duration-500 z-3">
+            <div className="absolute -right-45 md:-right-20 top-40 animate-cloudRight transition-opacity duration-500 z-3">
               <Image
                 src="/images/awan.png"
                 alt="cloud right"
                 width={430}
                 height={180}
-                className="object-fill"
+                className="object-fill w-auto h-auto"
               />
             </div>
 

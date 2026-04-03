@@ -34,7 +34,7 @@ export default function TentangSection() {
     : fullText;
 
   return (
-    <section className="relative w-full px-2 sm:px-3 md:px-4 pt-6 sm:pt-8 md:pt-10 pb-0 z-10 font-[family-name:var(--font-montserrat)]">
+    <section className="relative w-full px-2 sm:px-3 md:px-4 pt-20 pb-0 z-10 font-[family-name:var(--font-montserrat)]">
       <div className="relative w-full rounded-t-xl overflow-hidden">
         <div
           className="absolute inset-0 z-0"

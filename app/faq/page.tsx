@@ -74,7 +74,7 @@ export default function FAQ() {
         {/* 💡 HEADER PITA "FAQ" (SUDAH DIGANTI MENJADI GAMBAR PNG) */}
         {/* Posisi left-1/2 dan -translate-x-1/2 memastikan pitanya selalu di tengah persis */}
         {/* PERBAIKAN 1: Typo "<div div" sudah dihapus menjadi "<div" saja */}
-        <div className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 z-50 w-[200px] md:w-[350px] flex items-center justify-center">          
+        <div className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 z-10 w-[200px] md:w-[350px] flex items-center justify-center">          
           {/* PENTING: Ganti '/images/faq/pita-faq.png' dengan nama file PNG kamu yang sebenarnya! 
              Pastikan file gambarnya sudah ditaruh di dalam folder public/images/faq/
           */}

@@ -29,7 +29,7 @@ export default function Footer() {
                 alt="logo"
                 width={70}
                 height={70}
-                className="object-cover rounded-full"
+                className="object-cover rounded-full w-auto h-auto"
               />
               <span className="text-white text-sm font-semibold">
                 Cultural Festival 15
@@ -169,7 +169,7 @@ export default function Footer() {
           alt="boat"
           width={500}
           height={185}
-          className="object-contain"
+          className="object-contain w-auto h-auto"
         />
       </div>
     </footer>

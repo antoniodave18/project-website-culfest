@@ -7,7 +7,7 @@ export default function AboutEventPage() {
   return (
     <main className="bg-[#5c0a00] min-h-screen relative overflow-hidden flex flex-col items-center">
       {/* Background motif pattern */}
-      <div className="absolute inset-0 z-0 top-0 left-0 w-full h-full bg-[url('/images/bg-section-1.png')] bg-repeat-y bg-auto bg-top" />
+      <div className="absolute inset-0 z-0 top-0 left-0 w-full h-full bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-top" />
 
       {/* 1356px / 1566.1px = 86.58% */}
       <div className="w-full sm:w-[95%] md:w-[90%] lg:w-[86.58%] max-w-[1356px] relative z-10 pb-10 sm:pb-16 md:pb-20 pt-6 sm:pt-8 md:pt-10">
@@ -30,7 +30,7 @@ export default function AboutEventPage() {
                   Residence yang bersatu di festival budaya.
                 </p>
                 <div className="flex h-full w-full items-center justify-center overflow-hidden">
-                  <div className="w-full max-w-[360px] rounded-lg bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] p-[3px] shadow-[0_10px_24px_rgba(0,0,0,0.25)] sm:max-w-[520px] sm:rounded-xl sm:p-[5px] md:max-w-[640px]">
+                  <div className="w-full max-w-[360px] rounded-lg bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] p-[3px]  shadow-[0_10px_24px_rgba(0,0,0,0.25)] sm:max-w-[520px] sm:rounded-xl sm:p-[5px] md:max-w-[640px]">
                     <div className="relative w-full aspect-video overflow-hidden rounded-lg sm:rounded-xl bg-black">
                       <iframe
                         src="https://www.youtube.com/embed/7EIszoNZLe4?list=RD7EIszoNZLe4&start_radio=1&pp=ygUJY3VsZmVzdDE1oAcB"
