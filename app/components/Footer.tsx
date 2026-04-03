@@ -41,7 +41,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-5 md:gap-16">
+          <div className="hidden md:flex gap-5 md:gap-16">
             <div className="flex flex-col gap-1">
               <span className="text-white/40 text-[10px] tracking-widest uppercase mb-1">
                 Pages

@@ -40,6 +40,7 @@ export default function Header() {
                         alt="logo"
                         width={70}
                         height={70}
+                        preload
                         className="object-cover w-[25%] rounded-full"
                     />
                     <span className="text-white text-sm font-semibold">Cultural <br />Festival 15</span>
