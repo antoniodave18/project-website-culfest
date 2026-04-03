@@ -47,6 +47,7 @@ export default function Home() {
           alt="background"
           fill
           sizes="100vw"
+          preload
           className="object-cover z-0 transition-opacity duration-700"
         />
 
@@ -391,7 +392,7 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
@@ -448,7 +449,7 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
@@ -505,7 +506,7 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
@@ -542,7 +543,7 @@ export default function Home() {
               {/* Card */}
               <div
                 className="
-                      relative w-[90%] rounded-[2.2rem] mt-20 px-4 md:px-10 pt-15 md:pt-20 pb-36 md:pb-52 mb-0
+                      relative w-[90%] rounded-[2.2rem] mt-20 px-4 md:px-10 pt-15 md:pt-20 pb-36 md:pb-50 lg:pb-65 mb-0
                       bg-[#f2bd5b] border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -568,7 +569,7 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:gap-x-14 md:gap-y-10 w-full max-w-[880px] px-2 md:px-6 pt-4 md:pt-6">
+                <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:gap-x-14 md:gap-y-10 w-full max-w-220 px-2 md:px-6 pt-4 md:pt-6">
                   {kompetisiPhotos.map((photo, i) => (
                     <div
                       key={photo.src}
