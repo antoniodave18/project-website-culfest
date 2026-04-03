@@ -24,10 +24,10 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="bg-black">
+    <main className='bg-[#9f0505]'>
       <section className="relative w-full h-screen overflow-hidden">
         <Image
-          src="/images/hero/bg.png"
+          src="/images/bg-motif.png"
           alt="background"
           fill
           sizes="100vw"
@@ -52,6 +52,7 @@ export default function LandingPage() {
             alt="tirai atas"
             width={1920}
             height={300}
+            preload
             className="w-full object-cover"
           />
         </div>
@@ -65,6 +66,7 @@ export default function LandingPage() {
             alt="wave"
             width={1920}
             height={300}
+            preload
             className="object-cover"
           />
         </div>
@@ -142,6 +144,7 @@ export default function LandingPage() {
             alt="chest"
             fill
             sizes="(max-width: 768px) 66vw, 320px"
+            preload
             className="object-contain"
           />
         </div>

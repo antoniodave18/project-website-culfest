@@ -38,25 +38,33 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative bg-black">
+    <main className="relative">
       <div
-        className="absolute items-center justify-center w-full h-screen"
-        style={{
-          backgroundImage: "url('/images/home/bg-blue.png')",
-          backgroundSize: "cover",
-        }}
+        className="absolute items-center justify-center w-full h-screen bg-[#091255]"
       >
         <Image
-          src="/images/hero/chest-open.png"
-          alt="chest"
-          width={800}
-          height={600}
-          className="object-contain w-full h-[30vh] mt-30"
+          src="/images/bg-motif.png"
+          alt="background"
+          fill
+          sizes="100vw"
+          className="object-cover z-0 transition-opacity duration-700"
         />
+
+        <div className="absolute inset-0 z-1">
+          <Image
+            src="/images/hero/chest-open.png"
+            alt="chest"
+            width={800}
+            height={600}
+            preload
+            className="object-contain z-10 w-full h-[30vh] mt-30"
+          />
+        </div>
+        
       </div>
 
       {/* PAPER SCROLL SECTION */}
-      <div className="pt-[50vh] -mb-37 relative z-1 flex flex-col items-center overflow-x-hidden overflow-y-visible">
+      <div className="pt-[50vh] -mb-37 relative z-1 flex flex-col items-center overflow-hidden">
         {/* Scroll top rod */}
         <div className="relative w-[95%] z-2 drop-shadow-2xl animate-unroll">
           <Image
@@ -69,7 +77,12 @@ export default function Home() {
         </div>
 
         {/* Paper background */}
-        <div className="relative w-full -top-2">
+        <div className="relative w-full -top-2 bg-[#6e0f04]"
+          style={{
+            backgroundImage: "url('/images/home/bg-motif.png')",
+            backgroundSize: "100%",
+            backgroundRepeat: "repeat",
+          }}>
           <div
             className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
             style={{
@@ -84,12 +97,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
 
             <section className="relative z-2 h-fit">
@@ -190,12 +197,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
             <div
               className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[80%] z-2"
@@ -335,12 +336,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
 
             <section className="relative z-2 h-fit w-[80%] mx-auto flex flex-col items-center justify-start overflow-hidden pt-5">
@@ -536,12 +531,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
 
             <section className="relative z-2 w-[80%] mx-auto h-fit flex items-center justify-center overflow-hidden">
@@ -653,12 +642,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
             <div
               className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[77%] z-1"
@@ -748,12 +731,6 @@ export default function Home() {
           <div className="relative w-full">
             <div
               className="absolute w-screen inset-0 z-0"
-              style={{
-                backgroundImage: "url('/images/home/bg-section-1.png')",
-                backgroundSize: "100% 100%",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center",
-              }}
             />
             <section className="relative z-2 w-[80%] mx-auto h-fit flex flex-col items-center justify-center pt-10">
               <div
