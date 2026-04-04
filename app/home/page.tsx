@@ -48,6 +48,7 @@ export default function Home() {
           fill
           sizes="100vw"
           preload
+          quality={75}
           className="object-cover z-0 transition-opacity duration-700"
         />
 
@@ -85,19 +86,14 @@ export default function Home() {
             backgroundSize: "100%",
             backgroundRepeat: "repeat",
           }}>
-          <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll">
-            <div className="relative h-full w-full">
-              <Image
-                src="/images/home/paper.png"
-                alt=""
-                fill
-                sizes="80vw"
-                aria-hidden
-                preload
-                quality={75}
-                className="object-fill object-top"
-              />
-            </div>
+          <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
+            style={{
+              backgroundImage: "url('/images/home/paper.png')",
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center top",
+            }}>
+           
           </div>
 
           {/* About Culfest */}
