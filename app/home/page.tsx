@@ -94,6 +94,7 @@ export default function Home() {
                 sizes="80vw"
                 aria-hidden
                 preload
+                quality={75}
                 className="object-fill object-top"
               />
             </div>
