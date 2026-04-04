@@ -73,6 +73,7 @@ export default function Home() {
             alt="scroll top"
             width={1920}
             height={60}
+            preload
             className="w-full object-contain"
           />
         </div>
