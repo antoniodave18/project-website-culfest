@@ -58,7 +58,7 @@ export default function JelajahCard({ title, slug }: JelajahCardProps) {
         </div>
 
         <Link
-          href={`/jelajah/asrama/${slug}`}
+          href={`/home/jelajah/asrama/${slug}`}
           className="absolute right-4 bottom-4 md:right-6 md:bottom-6 z-40 px-4 py-2 rounded-lg text-sm md:text-base font-semibold text-white shadow-md hover:brightness-105 transition"
           style={{
             background:

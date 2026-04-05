@@ -1,18 +1,12 @@
 import HeroAsrama from "./component/hero-asrama";
 import JelajahTitle from "./component/jelajah-tittle";
-import JelajahCard from "./component/jelajahcard";
-import { ASRAMA_DETAILS } from "@/app/jelajah/asrama/data";
+import JelajahCard from "./component/jelajahcard"
+import { ASRAMA_DETAILS, type AsramaDetail } from "./data";
 
 const Page = () => {
   return (
     <main
-      className="min-h-screen relative overflow-hidden flex flex-col items-center"
-      style={{
-        backgroundImage: "url('/images/jelajah/asrama/background.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="min-h-screen relative overflow-hidden flex flex-col items-center bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-[#6e0f04]"
     >
       <JelajahTitle title="ASRAMA" />
 
@@ -44,7 +38,7 @@ const Page = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          {ASRAMA_DETAILS.map((item) => (
+          {ASRAMA_DETAILS.map((item: AsramaDetail) => (
             <JelajahCard key={item.slug} title={item.title} slug={item.slug} />
           ))}
         </div>

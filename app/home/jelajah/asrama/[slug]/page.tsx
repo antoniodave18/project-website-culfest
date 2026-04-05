@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ASRAMA_DETAILS } from "@/app/jelajah/asrama/data";
+import { ASRAMA_DETAILS } from "../data";
 import ComingSoon from "@/app/components/ComingSoon";
 
 type DetailPageProps = {
