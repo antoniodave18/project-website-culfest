@@ -137,4 +137,13 @@ p {
   animation: fadeInUp 1400ms ease-out forwards;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 

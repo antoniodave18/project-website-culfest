@@ -38,7 +38,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative">
+    <main className="relative mb-20 md:mb-10 lg:mb-0">
       <div
         className="absolute items-center justify-center w-full h-screen bg-[#091255]"
       >
@@ -148,7 +148,7 @@ export default function Home() {
                         interaktif.
                       </p>
                       <Link
-                        href="/about-event"
+                        href="/home/about-event"
                         className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 text-xs md:text-xs uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto cursor-pointer"
@@ -399,7 +399,7 @@ export default function Home() {
                     </h3>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
-                        href="/jelajah/asrama"
+                        href="/home/jelajah/asrama"
                         className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -456,7 +456,7 @@ export default function Home() {
                     </h3>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
-                        href="/jelajah/ormada"
+                        href="/home/jelajah/ormada"
                         className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -513,7 +513,7 @@ export default function Home() {
                     </h3>
                     <div className="flex justify-center md:justify-end mt-3">
                       <Link
-                        href="/jelajah/fakultas"
+                        href="/home/jelajah/fakultas"
                         className="
                 px-4 py-1.5 text-[10px] tracking-widest uppercase
                 bg-amber-800 text-yellow-100 rounded
@@ -552,7 +552,7 @@ export default function Home() {
                   backgroundSize: "48px 48px",
                 }}
               >
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] border-2 border-[#7a2b00]/45" />
+                <div className="pointer-events-none absolute inset-0 rounded-4xl border-2 border-[#7a2b00]/45" />
 
                 <div className="absolute top-0 left-8 right-8 -translate-y-1/2 h-3 md:h-4 rounded-full border-4 border-[#4d1101] bg-[#f2bd5b] z-0" />
 
@@ -572,7 +572,7 @@ export default function Home() {
                     <div
                       key={photo.src}
                       className={`
-                            relative w-6/7 aspect-[5/3] overflow-hidden rounded-2xl
+                            relative w-6/7 aspect-5/3 overflow-hidden rounded-2xl
                             border-2 border-[#201100] bg-black
                             shadow-[0_8px_18px_rgba(0,0,0,0.4)]
                             ${photo.rotate}
@@ -591,7 +591,7 @@ export default function Home() {
                 </div>
 
                 <Link
-                  href="/kompetisi"
+                  href="/home/kompetisi"
                   className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 mt-0 md:mt-10 text-xs md:text-1xl uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer z-6"
@@ -703,7 +703,7 @@ export default function Home() {
                     <div
                       key={src}
                       className="
-                            relative w-[80%] mx-auto aspect-[4/5] rounded-xl overflow-hidden
+                            relative w-[80%] mx-auto aspect-4/5 rounded-xl overflow-hidden
                             border-2 border-amber-700/40 shadow-md
                           "
                     >
