@@ -68,7 +68,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 // 3. Komponen Utama Halaman
 export default function FAQ() {
   return (
-    <main className="relative isolate overflow-hidden bg-[#860505] pt-20 lg:pt-30 pb-10">
+    <main className="relative isolate overflow-hidden pt-20 lg:pt-30 pb-10 bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-[#6e0f04]">
       <div className="pointer-events-none absolute inset-0 z-1">
         <Image
           src="/images/faq/frame-faq.png"
