@@ -552,9 +552,6 @@ export default function Home() {
                   backgroundSize: "48px 48px",
                 }}
               >
-                <div className="pointer-events-none absolute inset-0 rounded-4xl border-2 border-[#7a2b00]/45" />
-
-                <div className="absolute top-0 left-8 right-8 -translate-y-1/2 h-3 md:h-4 rounded-full border-4 border-[#4d1101] bg-[#f2bd5b] z-0" />
 
                 {/* Title frame */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center z-10">
@@ -567,7 +564,7 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-8 lg:gap-x-14 md:gap-y-15 lg:gap-y-10 w-full max-w-220 px-2 lg:px-6 py-5 lg:pt-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-8 lg:gap-x-14 md:gap-y-15 lg:gap-y-10 w-full max-w-220 px-2 lg:px-6 py-5 pb-10 md:pb-5 lg:pt-6">
                   {kompetisiPhotos.map((photo, i) => (
                     <div
                       key={photo.src}

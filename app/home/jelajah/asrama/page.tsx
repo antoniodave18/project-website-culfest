@@ -1,45 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
 import BackToHomeButton from "../../components/BackToHomeButton";
 import HeroAsrama from "./component/hero-asrama";
 import JelajahCard from "./component/jelajahcard";
 import { ASRAMA_DETAILS, type AsramaDetail } from "./data";
 
 const Page = () => {
-  const mobileSliderRef = useRef<HTMLDivElement>(null);
-  const mobileLoopData = useMemo(
-    () => [...ASRAMA_DETAILS, ...ASRAMA_DETAILS, ...ASRAMA_DETAILS],
-    []
-  );
-
-  useEffect(() => {
-    const slider = mobileSliderRef.current;
-    if (!slider) {
-      return;
-    }
-
-    // Start at the middle copy so users can scroll both directions infinitely
-    requestAnimationFrame(() => {
-      slider.scrollLeft = slider.scrollWidth / 3;
-    });
-  }, []);
-
-  const handleInfiniteMobileScroll = () => {
-    const slider = mobileSliderRef.current;
-    if (!slider) {
-      return;
-    }
-
-    const oneSetWidth = slider.scrollWidth / 3;
-
-    if (slider.scrollLeft <= oneSetWidth * 0.5) {
-      slider.scrollLeft += oneSetWidth;
-    } else if (slider.scrollLeft >= oneSetWidth * 1.5) {
-      slider.scrollLeft -= oneSetWidth;
-    }
-  };
-
   return (
     <main
       className="relative overflow-hidden flex flex-col items-center bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-[#6e0f04]"
@@ -86,9 +52,7 @@ const Page = () => {
 
         <div className="relative w-full lg:hidden">
           <div
-            ref={mobileSliderRef}
-            onScroll={handleInfiniteMobileScroll}
-            className="hide-scrollbar flex snap-x snap-mandatory gap-6 md:gap-30 overflow-x-auto overscroll-x-contain px-3 py-10"
+            className="hide-scrollbar flex snap-x snap-mandatory gap-6 md:gap-30 overflow-x-auto overscroll-x-contain px-[7vw] md:px-[17vw] py-10"
             style={{
               backgroundImage: "url('/images/jelajah/asrama/Bg.png')",
               backgroundSize: "cover",
@@ -96,10 +60,10 @@ const Page = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            {mobileLoopData.map((item: AsramaDetail, index) => (
+            {ASRAMA_DETAILS.map((item: AsramaDetail) => (
               <div
-                key={`${item.slug}-${index}`}
-                className="w-[86vw] shrink-0 snap-center first:ml-1 last:mr-1 md:w-[66vw]"
+                key={item.slug}
+                className="w-[86vw] shrink-0 snap-center md:w-[66vw]"
               >
                 <JelajahCard
                   title={item.title}

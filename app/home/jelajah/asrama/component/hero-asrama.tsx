@@ -16,7 +16,7 @@ export default function HeroAsrama() {
       />
       </div>
 
-      <div className="relative z-20 top-20 mb-30 md:mb-50 md:top-30 xl:top-0 w-full max-w-4xl h-20 md:h-40 lg:h-65">
+      <div className="relative z-20 top-20 mb-30 md:mb-50 md:top-30 xl:top-0 w-full max-w-4xl h-25 md:h-40 lg:h-65">
         <Image
           src="/images/jelajah/asrama/title-asrama.png"
           alt="Asrama title banner"
