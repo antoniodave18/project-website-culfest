@@ -64,22 +64,22 @@ export default function HeroAsrama() {
           </p>
         </div>
         
-        <div className="pointer-events-none absolute inset-x-0 -bottom-px z-0 w-full h-28 sm:h-32 md:h-50 lg:h-90 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 w-full h-28 sm:h-32 md:h-50 lg:h-90">
           <Image
             src="/images/jelajah/asrama/inner-ombak.png"
             fill
             alt="ombak"
             sizes="100vw"
-            className="object-cover scale-[1.01] origin-bottom"
+            className="object-cover"
           />
         </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-2 w-full h-32 sm:h-36 md:h-44 lg:h-52 overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-2 w-full h-20 md:h-37 lg:h-46">
           <Image
             src="/images/jelajah/asrama/outer-ombak.png"
             fill
             alt="ombak"
             sizes="100vw"
-            className="object-cover scale-[1.01] origin-bottom"
+            className="object-cover"
           />
         </div>
     </div>

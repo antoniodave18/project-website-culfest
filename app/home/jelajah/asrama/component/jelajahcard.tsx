@@ -1,5 +1,5 @@
+import NavActionButton from "@/app/home/components/NavActionButton";
 import Image from "next/image";
-import Link from "next/link";
 
 export interface JelajahCardProps {
   title: string;
@@ -63,16 +63,12 @@ export default function JelajahCard({
           ) : null}
 
           <div className="flex justify-center sm:justify-end">
-            <Link
+            <NavActionButton
               href={`/home/jelajah/asrama/${slug}`}
-              className="z-40 rounded-lg px-3 py-1.5 text-xs font-semibold text-white shadow-md transition hover:brightness-105 sm:px-4 sm:py-2 sm:text-sm md:text-base"
-              style={{
-                background:
-                  "linear-gradient(274.43deg, #451500 8.16%, #AB3400 97.24%)",
-              }}
-            >
-              lihat detail -&gt;
-            </Link>
+              label="Lihat Detail"
+              icon="→"
+              iconPosition="right"
+            />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnimateOnView from "../components/AnimateOnView";
+import NavActionButton from "./components/NavActionButton";
 
 export default function Home() {
   const kompetisiPhotos = [
@@ -369,7 +370,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -390,26 +391,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Asrama
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/home/jelajah/asrama"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/asrama" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>
@@ -427,7 +417,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -447,26 +437,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Ormada
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/home/jelajah/ormada"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/ormada" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>
@@ -484,7 +463,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -504,26 +483,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Fakultas
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/home/jelajah/fakultas"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/fakultas" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>

@@ -1,6 +1,6 @@
 "use client";
 
-import BackToHomeButton from "../../components/BackToHomeButton";
+import NavActionButton from "../../components/NavActionButton";
 import HeroAsrama from "./component/hero-asrama";
 import JelajahCard from "./component/jelajahcard";
 import { ASRAMA_DETAILS, type AsramaDetail } from "./data";
@@ -11,7 +11,13 @@ const Page = () => {
       className="relative overflow-hidden flex flex-col items-center bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-[#6e0f04]"
     >
 
-      <BackToHomeButton className="absolute left-4 top-4 z-10 md:left-8 md:top-8" />
+      <NavActionButton
+        href="/home"
+        label="Kembali"
+        icon="←"
+        iconPosition="left"
+        className="absolute left-4 top-4 z-10 md:left-8 md:top-8"
+      />
       <HeroAsrama />
 
       <div className="relative z-10 w-full">

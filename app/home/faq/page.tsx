@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import BackToHomeButton from "../components/BackToHomeButton";
+import NavActionButton from "../components/NavActionButton";
 
 // 1. Data FAQ (Tetap)
 const faqData = [
@@ -81,7 +81,7 @@ export default function FAQ() {
       </div>
 
       <div className="absolute left-4 top-4 z-2 md:left-8 md:top-8">
-        <BackToHomeButton />
+        <NavActionButton href="/home" label="Kembali" icon="←" iconPosition="left" />
       </div>
 
       <div className="relative w-full h-20 md:h-35 mb-10 lg:mb-0 mx-auto">
