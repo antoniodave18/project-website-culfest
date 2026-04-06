@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import BackToHomeButton from "../components/BackToHomeButton";
 
 // 1. Data FAQ (Tetap)
 const faqData = [
@@ -81,13 +81,7 @@ export default function FAQ() {
       </div>
 
       <div className="absolute left-4 top-4 z-2 md:left-8 md:top-8">
-        <Link
-          href="/home"
-          className="inline-flex items-center gap-2 rounded-full bg-[#f3d088] px-4 py-2 text-sm font-semibold text-[#4a3219] shadow-md transition-transform hover:-translate-y-0.5 hover:brightness-105"
-        >
-          <span aria-hidden="true">←</span>
-          Back to Home
-        </Link>
+        <BackToHomeButton />
       </div>
 
       <div className="relative w-full h-20 md:h-35 mb-10 lg:mb-0 mx-auto">

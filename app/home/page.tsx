@@ -7,34 +7,34 @@ import AnimateOnView from "../components/AnimateOnView";
 export default function Home() {
   const kompetisiPhotos = [
     {
-      src: "/images/home/beranda/kompe1.png",
+      src: "/images/home/kompetisi/kompe1.png",
       alt: "Penampilan kompetisi panggung",
       rotate: "-rotate-6",
     },
     {
-      src: "/images/home/beranda/kompe2.png",
+      src: "/images/home/kompetisi/kompe2.png",
       alt: "Kompetisi tari tradisional",
       rotate: "rotate-6",
     },
     {
-      src: "/images/home/beranda/kompe3.png",
+      src: "/images/home/kompetisi/kompe3.png",
       alt: "Kompetisi musik tradisional",
       rotate: "-rotate-5",
     },
     {
-      src: "/images/home/beranda/kompe4.png",
+      src: "/images/home/kompetisi/kompe4.png",
       alt: "Peserta kompetisi budaya",
       rotate: "rotate-5",
     },
   ];
 
   const gamePhotos = [
-    "/images/home/beranda/game1.png",
-    "/images/home/beranda/game2.png",
-    "/images/home/beranda/game3.png",
-    "/images/home/beranda/game4.png",
-    "/images/home/beranda/game5.png",
-    "/images/home/beranda/game6.png",
+    "/images/home/game/game1.png",
+    "/images/home/game/game2.png",
+    "/images/home/game/game3.png",
+    "/images/home/game/game4.png",
+    "/images/home/game/game5.png",
+    "/images/home/game/game6.png",
   ];
 
   return (
@@ -567,16 +567,17 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:gap-x-14 md:gap-y-10 w-full max-w-220 px-2 md:px-6 pt-4 md:pt-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-8 lg:gap-x-14 md:gap-y-15 lg:gap-y-10 w-full max-w-220 px-2 lg:px-6 py-5 lg:pt-6">
                   {kompetisiPhotos.map((photo, i) => (
                     <div
                       key={photo.src}
                       className={`
-                            relative w-6/7 aspect-5/3 overflow-hidden rounded-2xl
+                            relative w-full lg:w-6/7 aspect-5/3 overflow-hidden rounded-2xl
                             border-2 border-[#201100] bg-black
                             shadow-[0_8px_18px_rgba(0,0,0,0.4)]
                             ${photo.rotate}
-                            ${i % 2 === 0 ? "justify-self-start" : "justify-self-end"}
+                            ${i % 2 === 0 ? "lg:justify-self-start" : "lg:justify-self-end"}
+                            ${i >= 2 ? "hidden lg:block" : ""}
                           `}
                     >
                       <Image
@@ -584,7 +585,7 @@ export default function Home() {
                         alt={photo.alt}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 668px) 46vw, 280px px-280px"
+                        sizes="(max-width: 768px) 90vw, (max-width: 1023px) 100vw, 280px"
                       />
                     </div>
                   ))}

@@ -26,7 +26,7 @@ export default function Header() {
 
     const pathname = usePathname();
 
-    if (pathname === '/' || pathname === '/home/faq') {
+    if (pathname === '/' || pathname === '/home/faq' || pathname === '/home/jelajah/asrama') {
         return null;
     }
 

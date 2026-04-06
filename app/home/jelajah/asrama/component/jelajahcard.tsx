@@ -4,70 +4,78 @@ import Link from "next/link";
 export interface JelajahCardProps {
   title: string;
   slug: string;
+  imageSrc?: string;
+  summary?: string;
 }
 
-export default function JelajahCard({ title, slug }: JelajahCardProps) {
+export default function JelajahCard({
+  title,
+  slug,
+  imageSrc = "/images/tentang/penari.png",
+  summary,
+}: JelajahCardProps) {
   return (
-    <div className="relative flex items-center justify-center w-full max-w-[900px] mx-auto  mt-15 font-serif px-2">
+    <article className="relative mx-auto flex w-full max-w-225 items-center justify-center px-2 font-serif sm:px-4">
       <div
-        className="relative w-full rounded-[1.5rem] md:rounded-[2rem] pt-10 pb-10 px-8 sm:px-12 md:pt-10 md:pb-10 z-10 border border-white/20"
-        style={{
-          background:
-            "linear-gradient(89.97deg, rgba(94, 94, 94, 0.6) 0.03%, rgba(255, 255, 255, 0.4) 20.58%, rgba(255, 255, 255, 0.4) 80.71%, rgba(94, 94, 94, 0.6) 99.97%)",
-        }}
+        className="relative z-10 w-full rounded-3xl backdrop-blur-xs px-4 pt-10 pb-10 sm:px-8 md:rounded-4xl md:px-12
+          bg-linear-to-r from-[#461500]/20 from-10% via-white/10 via-50% to-[#461500]/20 to-90%"
       >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[85%] sm:w-[75%] max-w-[500px] aspect-[486/72] z-30 flex items-center justify-center drop-shadow-xl pointer-events-none ">
+        <div className="pointer-events-none absolute top-0 left-1/2 z-30 flex aspect-486/72 w-[92%] max-w-125 -translate-x-1/2 -translate-y-1/2 items-center justify-center drop-shadow-xl overflow-hidden sm:w-[78%]">
           <Image
-            src="/images/jelajah/asrama/pita.svg"
+            src="/images/jelajah/asrama/pita.png"
             alt="Pita"
             fill
+            sizes="(max-width: 640px) 92vw, (max-width: 768px) 78vw, 500px"
             className="object-contain"
           />
           <h2
-            className="relative z-40 text-[#4a1602] uppercase text-center -mt-4"
+            className="relative z-40 flex items-center justify-center px-4 text-center text-amber-300 uppercase line-clamp-2"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 800,
-              fontSize: "clamp(12px, 3.5vw, 22.85px)",
-              lineHeight: "100%",
-              letterSpacing: "0%",
-              background: "linear-gradient(180deg, #E3AD6C 0%, #C5781D 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "#C5781D",
+              fontSize: "clamp(12px, 2.5vw, 18px)",
+              lineHeight: "1.2",
             }}
           >
             {title}
           </h2>
         </div>
 
-        {/* Deskripsi Teks */}
-        <div className="w-full py-10 flex justify-center">
-          <div className="bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] h-50 w-120 flex items-center justify-center rounded-xl">
-            <div className="p-[5px] rounded-xl bg-gradient-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61]">
-              <div className="relative h-60 w-100 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/tentang/penari.png"
-                  alt="Penari Culfest"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+        <div className="flex w-full justify-center py-8 md:py-10">
+          <div className="w-full max-w-120 rounded-xl bg-linear-to-b from-[#e1bf61] via-[#fcf9c4] to-[#e1bf61] p-1.25">
+            <div className="relative aspect-5/3 w-full overflow-hidden rounded-xl">
+              <Image
+                src={imageSrc}
+                alt={`Foto ${title}`}
+                fill
+                sizes="(max-width: 768px) 92vw, 480px"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
 
-        <Link
-          href={`/home/jelajah/asrama/${slug}`}
-          className="absolute right-4 bottom-4 md:right-6 md:bottom-6 z-40 px-4 py-2 rounded-lg text-sm md:text-base font-semibold text-white shadow-md hover:brightness-105 transition"
-          style={{
-            background:
-              "linear-gradient(274.43deg, #451500 8.16%, #AB3400 97.24%)",
-          }}
-        >
-          lihat detail -&gt;
-        </Link>
+        <div className="mx-auto mt-2 flex w-full max-w-120 flex-col gap-4">
+          {summary ? (
+            <p className="text-center text-xs leading-5 text-[#2f1a07] md:text-sm">
+              {summary}
+            </p>
+          ) : null}
+
+          <div className="flex justify-center sm:justify-end">
+            <Link
+              href={`/home/jelajah/asrama/${slug}`}
+              className="z-40 rounded-lg px-3 py-1.5 text-xs font-semibold text-white shadow-md transition hover:brightness-105 sm:px-4 sm:py-2 sm:text-sm md:text-base"
+              style={{
+                background:
+                  "linear-gradient(274.43deg, #451500 8.16%, #AB3400 97.24%)",
+              }}
+            >
+              lihat detail -&gt;
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   );
 }
