@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export default function MaskotTitle() {
   return (
-    <div className="relative w-[92%] sm:w-[88%] md:w-[84%] lg:w-[80%] max-w-2xl mx-auto flex flex-col items-center justify-center z-20">
+    <div className="relative w-[92%] sm:w-[88%] md:w-[84%] lg:w-[80%] max-w-2xl mx-auto lg:translate-y-10 flex flex-col items-center justify-center z-20">
       {/* The Scroll Container (Yellow/Gold) */}
-      <div className="relative w-full aspect-[4.5/1] drop-shadow-xl sm:drop-shadow-2xl flex items-center justify-center z-20">
+      <div className="relative w-full aspect-4.5/1 drop-shadow-xl sm:drop-shadow-2xl flex items-center justify-center z-20">
         <Image
           src="/images/tentang/PETA.png"
           alt="Ribbon Background"
-          fill
+          fill sizes="100vw"
           className="object-contain"
           priority
         />

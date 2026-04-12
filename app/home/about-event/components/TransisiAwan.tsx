@@ -10,7 +10,7 @@ export default function TransisiAwan() {
         <Image
           src="/images/tentang/matahari.png"
           alt="Matahari"
-          fill
+          fill sizes="100vw"
           className="object-contain"
         />
       </div>
@@ -20,7 +20,7 @@ export default function TransisiAwan() {
         <Image
           src="/images/tentang/awan.png"
           alt="Awan Atas"
-          fill
+          fill sizes="100vw"
           className="object-contain"
         />
       </div>
@@ -30,7 +30,7 @@ export default function TransisiAwan() {
         <Image
           src="/images/tentang/awan.png"
           alt="Awan Bawah"
-          fill
+          fill sizes="100vw"
           className="object-contain"
         />
       </div>
@@ -40,7 +40,7 @@ export default function TransisiAwan() {
         <Image
           src="/images/tentang/awan.png"
           alt="Awan Kanan"
-          fill
+          fill sizes="100vw"
           className="object-contain"
         />
       </div>

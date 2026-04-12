@@ -6,12 +6,12 @@ type PitaJudulProps = {
 
 export default function PitaJudul({ judul }: PitaJudulProps) {
   return (
-    <div className="absolute left-1/2 -translate-x-1/2 w-[90%] sm:w-[85%] md:w-[80%] lg:w-[75%] flex justify-center items-center z-20 mt-16 sm:mt-16 md:mt-10 lg:mt-14">
-      <div className="relative w-full aspect-[4.5/1] drop-shadow-lg sm:drop-shadow-xl md:drop-shadow-2xl flex items-center justify-center">
+    <div className="w-[90%] sm:w-[85%] md:w-[80%] lg:w-[75%] flex justify-center items-center z-20">
+      <div className="relative w-full aspect-4.5/1 drop-shadow-lg sm:drop-shadow-xl md:drop-shadow-2xl flex items-center justify-center">
         <Image
           src="/images/tentang/pita.png"
           alt="Ribbon Background"
-          fill
+          fill sizes="100vw"
           className="object-contain"
           priority
         />
@@ -20,7 +20,7 @@ export default function PitaJudul({ judul }: PitaJudulProps) {
           <Image
             src="/images/tentang/inner-pita.png"
             alt="Inner Ribbon Background"
-            fill
+            fill sizes="100vw"
             className="object-contain"
             priority
           />

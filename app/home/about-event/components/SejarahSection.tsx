@@ -32,15 +32,15 @@ export default function SejarahSection() {
       : truncatedText
     : fullText;
   return (
-    <section className="relative w-full px-2 sm:px-2 md:px-3 lg:px-4 z-10 font-(family-name:--font-montserrat) text-white">
+    <section className="relative w-full z-10 font-(family-name:--font-montserrat) text-white">
       {/* Background Container - matching wrapper width from top section */}
-      <div className="relative w-full rounded-b-x">
+      <div className="relative w-full">
         {/* Pagoda layer outside clipped container so only this element can overflow */}
-        <div className="absolute bottom-0 sm:bottom-10 md:bottom-20 lg:bottom-28 -left-[8%] sm:-left-[6%] md:-left-[4%] lg:-left-[3%] w-[150px] h-[320px] sm:w-[220px] sm:h-[460px] md:w-[300px] md:h-[600px] lg:w-[350px] lg:h-[700px] z-40 pointer-events-none">
+        <div className="absolute bottom-0 sm:bottom-10 md:bottom-20 lg:bottom-28 -left-[8%] sm:-left-[6%] md:-left-[4%] lg:-left-[3%] w-37.5 h-80 sm:w-55 sm:h-115 md:w-75 md:h-150 lg:w-87.5 lg:h-175 z-40 pointer-events-none">
           <Image
             src="/images/tentang/pulau karo.png"
             alt="Pulau Karo Pagoda"
-            fill
+            fill sizes="100vw"
             className="object-contain object-bottom"
             priority
           />
@@ -48,7 +48,7 @@ export default function SejarahSection() {
 
         {/* Inner Content Border Container - Dark Blue with stars */}
         <div
-          className="relative z-10 rounded-b-xl min-h-[720px] sm:min-h-[850px] md:min-h-[940px] lg:min-h-[1020px] overflow-hidden"
+          className="relative z-10 min-h-180 sm:min-h-212.5 md:min-h-235 lg:min-h-255 overflow-hidden"
           style={{
             background:
               "radial-gradient(50.05% 50.05% at 49.95% 34.21%, rgba(71, 108, 233, 0.95) 36.05%, rgba(26, 45, 124, 0.95) 100%)",
@@ -59,23 +59,23 @@ export default function SejarahSection() {
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
-          <div className="absolute top-20 sm:top-28 md:top-[136px] lg:top-40 left-[5%] w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 animate-pulse delay-75">
+          <div className="absolute top-20 sm:top-28 md:top-34 lg:top-40 left-[5%] w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 animate-pulse delay-75">
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
-          <div className="absolute top-16 sm:top-[88px] md:top-[104px] lg:top-28 left-[35%] w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 animate-pulse delay-150">
+          <div className="absolute top-16 sm:top-22 md:top-26 lg:top-28 left-[35%] w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 animate-pulse delay-150">
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
@@ -83,7 +83,7 @@ export default function SejarahSection() {
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
@@ -91,7 +91,7 @@ export default function SejarahSection() {
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
@@ -99,7 +99,7 @@ export default function SejarahSection() {
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
@@ -107,7 +107,7 @@ export default function SejarahSection() {
             <Image
               src="/images/tentang/Star.png"
               alt="Star"
-              fill
+              fill sizes="100vw"
               className="object-contain"
             />
           </div>
@@ -129,7 +129,7 @@ export default function SejarahSection() {
 
               {/* Text Box */}
               <div
-                className="relative z-20 w-full max-w-[830px] rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl border border-[#b8860b]/40 sm:border-2 sm:border-[#b8860b]/50 p-4 sm:p-6 md:p-8 lg:p-10 mb-24 sm:mb-40 md:mb-72 lg:mb-102 md:mr-10 lg:mr-25"
+                className="relative z-20 w-full max-w-207.5 rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl border border-[#b8860b]/40 sm:border-2 sm:border-[#b8860b]/50 p-4 sm:p-6 md:p-8 lg:p-10 mb-45 md:mb-72 lg:mb-102 md:mr-10 lg:mr-25"
                 style={{
                   background:
                     "linear-gradient(90deg, rgba(222, 132, 2, 0.8) -4.43%, rgba(255, 210, 134, 0.8) 17.65%, rgba(255, 210, 134, 0.8) 81.76%, rgba(222, 132, 2, 0.8) 104.89%)",
@@ -167,45 +167,45 @@ export default function SejarahSection() {
 
           {/* Bottom Illustration Layer */}
           <div className="absolute inset-x-0 bottom-0 h-full z-10 pointer-events-none ">
-            <div className="absolute -right-[28%] sm:-right-[25%] md:-right-[22%] lg:-right-[18%] bottom-2 sm:bottom-4 md:bottom-5 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-[130px] sm:h-[180px] md:h-[260px] lg:h-[320px] z-0">
+            <div className="absolute -right-[28%] sm:-right-[25%] md:-right-[22%] lg:-right-[18%] bottom-2 sm:bottom-4 md:bottom-5 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-32.5 sm:h-45 md:h-65 lg:h-80 z-0">
               <Image
                 src="/images/tentang/gunung.png"
                 alt="Gunung"
-                fill
+                fill sizes="100vw"
                 className="object-contain object-bottom"
               />
             </div>
             {/* Mountains Background */}
-            <div className="absolute -right-[38%] sm:-right-[35%] md:-right-[32%] lg:-right-[28%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-[130px] sm:h-[180px] md:h-[260px] lg:h-[320px] z-0">
+            <div className="absolute -right-[38%] sm:-right-[35%] md:-right-[32%] lg:-right-[28%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-32.5 sm:h-45 md:h-65 lg:h-80 z-0">
               <Image
                 src="/images/tentang/gunung.png"
                 alt="Gunung"
-                fill
+                fill sizes="100vw"
                 className="object-contain object-bottom"
               />
             </div>
-            <div className="absolute left-[-16%] sm:left-[-14%] md:left-[-12%] lg:left-[-10%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-[130px] sm:h-[180px] md:h-[260px] lg:h-[320px] z-0">
+            <div className="absolute left-[-16%] sm:left-[-14%] md:left-[-12%] lg:left-[-10%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-32.5 sm:h-45 md:h-65 lg:h-80 z-0">
               <Image
                 src="/images/tentang/gunung.png"
                 alt="Gunung"
-                fill
+                fill sizes="100vw"
                 className="object-contain object-bottom"
               />
             </div>
 
-            <div className="absolute left-[-48%] sm:left-[-45%] md:left-[-42%] lg:left-[-38%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-[130px] sm:h-[180px] md:h-[260px] lg:h-[320px] z-0">
+            <div className="absolute left-[-48%] sm:left-[-45%] md:left-[-42%] lg:left-[-38%] -bottom-4 sm:-bottom-6 md:-bottom-7 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-32.5 sm:h-45 md:h-65 lg:h-80 z-0">
               <Image
                 src="/images/tentang/gunung.png"
                 alt="Gunung"
-                fill
+                fill sizes="100vw"
                 className="object-contain object-bottom"
               />
             </div>
-            <div className="absolute left-[-6%] sm:left-[-4%] md:left-[-2%] lg:left-0 -bottom-[72px] sm:-bottom-24 md:-bottom-30 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-[130px] sm:h-[180px] md:h-[260px] lg:h-[320px] z-0">
+            <div className="absolute left-[-6%] sm:left-[-4%] md:left-[-2%] lg:left-0 -bottom-18 sm:-bottom-24 md:-bottom-30 w-[135%] sm:w-[128%] md:w-[120%] lg:w-[112%] h-32.5 sm:h-45 md:h-65 lg:h-80 z-0">
               <Image
                 src="/images/tentang/gunung.png"
                 alt="Gunung"
-                fill
+                fill sizes="100vw"
                 className="object-contain object-bottom"
               />
             </div>
@@ -226,7 +226,7 @@ export default function SejarahSection() {
               <Image
                 src="/images/tentang/devider.png"
                 alt="Divider Tanah"
-                fill
+                fill sizes="100vw"
                 priority
               />
             </div>
