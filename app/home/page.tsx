@@ -298,7 +298,7 @@ export default function Home() {
                       <p className="text-[10px] md:text-base text-white/80 mt-1 leading-relaxed uppercase">
                         Pagelaran Seni
                         <br />
-                        DAUTA BUDAYA
+                        DUTA BUDAYA
                         <br />
                         PENGHARGAAN
                       </p>
