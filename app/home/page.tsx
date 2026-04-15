@@ -3,42 +3,43 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnimateOnView from "../components/AnimateOnView";
+import NavActionButton from "./components/NavActionButton";
 
 export default function Home() {
   const kompetisiPhotos = [
     {
-      src: "/images/home/beranda/kompe1.png",
+      src: "/images/home/kompetisi/kompe1.png",
       alt: "Penampilan kompetisi panggung",
       rotate: "-rotate-6",
     },
     {
-      src: "/images/home/beranda/kompe2.png",
+      src: "/images/home/kompetisi/kompe2.png",
       alt: "Kompetisi tari tradisional",
       rotate: "rotate-6",
     },
     {
-      src: "/images/home/beranda/kompe3.png",
+      src: "/images/home/kompetisi/kompe3.png",
       alt: "Kompetisi musik tradisional",
       rotate: "-rotate-5",
     },
     {
-      src: "/images/home/beranda/kompe4.png",
+      src: "/images/home/kompetisi/kompe4.png",
       alt: "Peserta kompetisi budaya",
       rotate: "rotate-5",
     },
   ];
 
   const gamePhotos = [
-    "/images/home/beranda/game1.png",
-    "/images/home/beranda/game2.png",
-    "/images/home/beranda/game3.png",
-    "/images/home/beranda/game4.png",
-    "/images/home/beranda/game5.png",
-    "/images/home/beranda/game6.png",
+    "/images/home/game/game1.png",
+    "/images/home/game/game2.png",
+    "/images/home/game/game3.png",
+    "/images/home/game/game4.png",
+    "/images/home/game/game5.png",
+    "/images/home/game/game6.png",
   ];
 
   return (
-    <main className="relative">
+    <main className="relative mb-20 md:mb-10 lg:mb-0">
       <div
         className="absolute items-center justify-center w-full h-screen bg-[#091255]"
       >
@@ -47,6 +48,8 @@ export default function Home() {
           alt="background"
           fill
           sizes="100vw"
+          preload
+          quality={75}
           className="object-cover z-0 transition-opacity duration-700"
         />
 
@@ -72,6 +75,7 @@ export default function Home() {
             alt="scroll top"
             width={1920}
             height={60}
+            preload
             className="w-full object-contain"
           />
         </div>
@@ -83,15 +87,15 @@ export default function Home() {
             backgroundSize: "100%",
             backgroundRepeat: "repeat",
           }}>
-          <div
-            className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
+          <div className="absolute inset-0 left-1/2 -translate-x-1/2 w-[80%] z-1 pointer-events-none animate-unroll"
             style={{
               backgroundImage: "url('/images/home/paper.png')",
               backgroundSize: "100% 100%",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center top",
-            }}
-          />
+            }}>
+           
+          </div>
 
           {/* About Culfest */}
           <div className="relative w-full">
@@ -100,11 +104,11 @@ export default function Home() {
             />
 
             <section className="relative z-2 h-fit">
-              <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-15 pb-10">
+              <div className="mx-auto w-[80%] h-full flex items-center justify-center px-5 md:px-10 lg:px-15 pb-10">
                 {/* Card */}
                 <div
                   className="
-                      relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-15 py-7 md:py-25
+                      relative w-full rounded-2xl my-[25%] md:my-[10%] px-5 md:px-8 lg:px-15 py-7 md:py-25
                       border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6 animate-unroll
@@ -121,19 +125,20 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
-                    <div className="order-1 md:order-2 flex w-[50%] md:w-full h-auto items-center justify-center mt-10 mx-auto md:mx-0">
+                  <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+                    <div className="order-1 md:order-2 flex  items-center justify-center mt-10 mx-auto md:mx-0">
                       <Image
                         src="/images/home/beranda/framerbaru.png"
                         alt="photo frame"
                         height={440}
                         width={312}
-                        className="object-cover"
+                        preload
+                        className="object-cover w-full md:w-[90%] lg:w-[70%] h-auto"
                       />
                     </div>
 
-                    <div className="order-2 lg:order-1 flex flex-col gap-10">
-                      <p className="text-justify text-xs md:text-lg text-amber-900">
+                    <div className="order-2 md:order-1 flex flex-col gap-10">
+                      <p className="text-justify text-xs lg:text-lg text-amber-900">
                         Cultural Festival adalah acara tahunan UGM Residence
                         bertema &quot;Unity in Diversity&quot; sebagai puncak
                         apresiasi budaya dan pengembangan lifeskills mahasiswa.
@@ -144,9 +149,9 @@ export default function Home() {
                         interaktif.
                       </p>
                       <Link
-                        href="/about-event"
+                        href="/home/about-event"
                         className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 text-xs md:text-1xl uppercase tracking-widest
+                                     px-7 py-4 text-xs md:text-xs uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] self-center lg:self-auto cursor-pointer"
                       >
                         Baca Selengkapnya
@@ -163,16 +168,16 @@ export default function Home() {
                   alt="cloud left"
                   width={260}
                   height={95}
-                  className="object-fill"
+                  className="object-fill w-auto h-auto"
                 />
               </div>
-              <div className="absolute -right-90 sm:-right-60 lg:-right-50 top-80 animate-cloudRight transition-opacity duration-500">
+              <div className="absolute -right-40 sm:-right-30 lg:-right-10 top-80 animate-cloudRight transition-opacity duration-500">
                 <Image
                   src="/images/awan.png"
                   alt="cloud right"
                   width={430}
                   height={180}
-                  className="object-fill"
+                  className="object-fill w-auto h-auto"
                 />
               </div>
 
@@ -365,7 +370,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -386,26 +391,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Asrama
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/jelajah/asrama"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/asrama" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>
@@ -423,7 +417,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -443,26 +437,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Ormada
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/jelajah/ormada"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/ormada" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>
@@ -480,7 +463,7 @@ export default function Home() {
           "
                   >
                     <div
-                      className="absolute inset-0 z-0"
+                      className="absolute inset-0 z-0 pointer-events-none"
                       style={{
                         backgroundImage:
                           "url('/images/home/jelajah/motif.png')",
@@ -500,26 +483,15 @@ export default function Home() {
                     </div>
 
                     <h3
-                      className="text-center text-5xl md:text-9xl text-yellow-300 font-bold tracking-widest mb-2"
+                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
                       style={{
                         fontFamily: "var(--font-efco-brookshire), serif",
                       }}
                     >
                       Fakultas
                     </h3>
-                    <div className="flex justify-center md:justify-end mt-3">
-                      <Link
-                        href="/jelajah/fakultas"
-                        className="
-                px-4 py-1.5 text-[10px] tracking-widest uppercase
-                bg-amber-800 text-yellow-100 rounded
-                hover:bg-amber-700 transition-colors duration-200
-                border border-amber-600 cursor-pointer z-5
-                
-              "
-                      >
-                        Lihat Detail →
-                      </Link>
+                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
+                      <NavActionButton href="/home/jelajah/fakultas" label="Lihat Detail →" />
                     </div>
                   </div>
                 </AnimateOnView>
@@ -537,7 +509,7 @@ export default function Home() {
               {/* Card */}
               <div
                 className="
-                      relative w-[90%] rounded-[2.2rem] mt-20 px-4 md:px-10 pt-15 md:pt-20 pb-36 md:pb-52 mb-0
+                      relative w-[90%] rounded-[2.2rem] mt-20 px-4 md:px-10 pt-15 md:pt-20 pb-36 md:pb-50 lg:pb-65 mb-0
                       bg-[#f2bd5b] border-4 border-[#4d1101]
                       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
                       flex flex-col items-center gap-6
@@ -548,9 +520,6 @@ export default function Home() {
                   backgroundSize: "48px 48px",
                 }}
               >
-                <div className="pointer-events-none absolute inset-0 rounded-[2rem] border-2 border-[#7a2b00]/45" />
-
-                <div className="absolute top-0 left-8 right-8 -translate-y-1/2 h-3 md:h-4 rounded-full border-4 border-[#4d1101] bg-[#f2bd5b] z-0" />
 
                 {/* Title frame */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] md:w-1/2 flex items-center justify-center z-10">
@@ -563,16 +532,17 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-x-5 gap-y-8 md:gap-x-14 md:gap-y-10 w-full max-w-[880px] px-2 md:px-6 pt-4 md:pt-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-8 lg:gap-x-14 md:gap-y-15 lg:gap-y-10 w-full max-w-220 px-2 lg:px-6 py-5 pb-10 md:pb-5 lg:pt-6">
                   {kompetisiPhotos.map((photo, i) => (
                     <div
                       key={photo.src}
                       className={`
-                            relative w-6/7 aspect-[5/3] overflow-hidden rounded-2xl
+                            relative w-full lg:w-6/7 aspect-5/3 overflow-hidden rounded-2xl
                             border-2 border-[#201100] bg-black
                             shadow-[0_8px_18px_rgba(0,0,0,0.4)]
                             ${photo.rotate}
-                            ${i % 2 === 0 ? "justify-self-start" : "justify-self-end"}
+                            ${i % 2 === 0 ? "lg:justify-self-start" : "lg:justify-self-end"}
+                            ${i >= 2 ? "hidden lg:block" : ""}
                           `}
                     >
                       <Image
@@ -580,14 +550,14 @@ export default function Home() {
                         alt={photo.alt}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 668px) 46vw, 280px px-280px"
+                        sizes="(max-width: 768px) 90vw, (max-width: 1023px) 100vw, 280px"
                       />
                     </div>
                   ))}
                 </div>
 
                 <Link
-                  href="/kompetisi"
+                  href="/home/kompetisi"
                   className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
                                      px-7 py-4 mt-0 md:mt-10 text-xs md:text-1xl uppercase tracking-widest
                                      text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer z-6"
@@ -664,23 +634,23 @@ export default function Home() {
             </div>
 
             {/* Clouds */}
-            <div className="absolute -left-45 md:-left-10 bottom-80 animate-cloudLeft transition-opacity duration-500 z-3">
+            <div className="absolute -left-43 md:-left-15 bottom-80 animate-cloudLeft transition-opacity duration-500 z-3">
               <Image
                 src="/images/awan.png"
                 alt="cloud left"
                 width={260}
                 height={95}
-                className="object-fill"
+                className="object-fill w-auto h-auto"
               />
             </div>
 
-            <div className="absolute -right-90 md:-right-50 top-40 animate-cloudRight transition-opacity duration-500 z-3">
+            <div className="absolute -right-45 md:-right-20 top-40 animate-cloudRight transition-opacity duration-500 z-3">
               <Image
                 src="/images/awan.png"
                 alt="cloud right"
                 width={430}
                 height={180}
-                className="object-fill"
+                className="object-fill w-auto h-auto"
               />
             </div>
 
@@ -699,7 +669,7 @@ export default function Home() {
                     <div
                       key={src}
                       className="
-                            relative w-[80%] mx-auto aspect-[4/5] rounded-xl overflow-hidden
+                            relative w-[80%] mx-auto aspect-4/5 rounded-xl overflow-hidden
                             border-2 border-amber-700/40 shadow-md
                           "
                     >

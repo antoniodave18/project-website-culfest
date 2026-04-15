@@ -13,14 +13,9 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative w-full overflow-hidden pt-15"
-      style={{
-        backgroundColor: "#8e1305",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      className="relative w-full overflow-hidden pt-15 bg-[#8e1305]"
     >
-      <div className="relative z-2 w-full px-6 md:px-12 pt-20 md:pt-10 pb-6">
+      <div className="relative z-2 w-full px-6 md:px-12 md:pt-10 pb-6">
         <div className="flex justify-between items-start w-full">
           <div className="flex flex-col gap-3 max-w-[320px]">
             <div className="flex items-center gap-3">
@@ -29,7 +24,7 @@ export default function Footer() {
                 alt="logo"
                 width={70}
                 height={70}
-                className="object-cover rounded-full"
+                className="object-cover rounded-full w-auto h-auto"
               />
               <span className="text-white text-sm font-semibold">
                 Cultural Festival 15
@@ -47,25 +42,25 @@ export default function Footer() {
                 Pages
               </span>
               <Link
-                href="/about-event"
+                href="/home/about-event"
                 className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors"
               >
                 Culfest
               </Link>
               <Link
-                href="/jelajah/asrama"
+                href="/home/jelajah/asrama"
                 className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors"
               >
                 Asrama
               </Link>
               <Link
-                href="/jelajah/ormada"
+                href="/home/jelajah/ormada"
                 className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors"
               >
                 Ormada
               </Link>
               <Link
-                href="/game"
+                href="/home/game"
                 className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors"
               >
                 FestPlay
@@ -82,7 +77,7 @@ export default function Footer() {
                 Contact Us
               </Link>
               <Link
-                href="/faq"
+                href="/home/faq"
                 className="text-white/80 text-[11px] hover:text-yellow-400 transition-colors"
               >
                 FAQ
@@ -169,7 +164,7 @@ export default function Footer() {
           alt="boat"
           width={500}
           height={185}
-          className="object-contain"
+          className="object-contain w-auto h-auto"
         />
       </div>
     </footer>

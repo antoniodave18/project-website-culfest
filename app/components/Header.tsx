@@ -6,11 +6,11 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-    { href: "/about-event", label: "Tentang Culfest" },
-    { href: "/jelajah/ormada", label: "ORMADA" },
-    { href: "/jelajah/asrama", label: "ASRAMA" },
-    { href: "/voting", label: "VOTING" },
-    { href: "/faq", label: "FAQ" },
+    { href: "/home/about-event", label: "Tentang Culfest" },
+    { href: "/home/jelajah/ormada", label: "ORMADA" },
+    { href: "/home/jelajah/asrama", label: "ASRAMA" },
+    { href: "/home/voting", label: "VOTING" },
+    { href: "/home/faq", label: "FAQ" },
 ];
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
 
     const pathname = usePathname();
 
-    if (pathname === '/') {
+    if (pathname === '/' || pathname === '/home/faq' || pathname === '/home/jelajah/asrama') {
         return null;
     }
 

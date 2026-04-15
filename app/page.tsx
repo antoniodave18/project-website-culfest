@@ -80,6 +80,7 @@ export default function LandingPage() {
             alt="songket kiri"
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
+            preload
             className="object-fill"
           />
         </div>
@@ -93,6 +94,7 @@ export default function LandingPage() {
             alt="songket kanan"
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
+            preload
             className="object-fill"
           />
         </div>
@@ -106,12 +108,12 @@ export default function LandingPage() {
             alt="cloud left"
             width={320}
             height={100}
-            className="object-fill"
+            className="object-fill w-auto h-auto"
           />
         </div>
 
         <div
-          className="absolute top-30 -right-15 h-30 w-50 z-4 animate-cloudRight transition-opacity duration-500"
+          className="absolute top-30 -right-15 z-4 animate-cloudRight transition-opacity duration-500"
           style={{ opacity: bgChanged ? 0 : 1 }}
         >
           <Image
@@ -119,7 +121,7 @@ export default function LandingPage() {
             alt="cloud right"
             width={245}
             height={100}
-            className="object-fill"
+            className="object-fill w-auto h-auto"
           />
         </div>
 

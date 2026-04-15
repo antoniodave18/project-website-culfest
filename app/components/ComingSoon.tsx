@@ -9,7 +9,7 @@ const ComingSoon = () => {
       {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-20 flex flex-col items-center">
         {/* Red Background Card */}
-        <div className="relative w-full aspect-[4/3] max-h-[80vh] flex items-center justify-center animate-fadeInUp">
+        <div className="relative w-full aspect-4/3 max-h-[80vh] flex items-center justify-center animate-fadeInUp">
           {/* Golden Scroll */}
           <div className="relative z-20 w-[80%] md:w-[60%] flex flex-col items-center scale-90 md:scale-110 animate-sway">
             {/* Scroll Top */}
