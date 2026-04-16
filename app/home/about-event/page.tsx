@@ -9,18 +9,12 @@ export default function AboutEventPage() {
       {/* Background motif pattern */}
       <div className="absolute inset-0 z-0 top-0 left-0 w-full h-full bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-top" />
 
-      
-
       {/* 1356px / 1566.1px = 86.58% */}
       <div className="w-[95%] max-w-339 relative z-10 pb-10 sm:pb-16 md:pb-20 pt-6 sm:pt-8 md:pt-10">
-        
-
-        <TentangSection />
+        <TentangSecJJtion />
         <TransisiAwan />
         <SejarahSection />
         <MaskotSection />
-
-        
 
         <div className="relative z-20 w-full">
           <div className="flex h-auto w-full items-center justify-center bg-[#03005E] px-4 py-4">
