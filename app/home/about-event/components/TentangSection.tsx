@@ -66,8 +66,8 @@ export default function TentangSection() {
             <p
               className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-snug md:leading-normal text-[#3a1d04] w-full sm:w-[95%] md:w-[90%] lg:w-[85%] mx-auto"
               style={{
-                fontFamily: "Merriweather, serif",
-                fontWeight: 400,
+                fontFamily: "var(--font-montserrat)",
+                fontWeight: 500,
                 fontStyle: "normal",
                 letterSpacing: "-0.01em",
                 textAlign: "center",
