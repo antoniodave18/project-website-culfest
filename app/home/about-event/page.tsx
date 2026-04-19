@@ -11,7 +11,7 @@ export default function AboutEventPage() {
 
       {/* 1356px / 1566.1px = 86.58% */}
       <div className="w-[95%] max-w-339 relative z-10 pb-10 sm:pb-16 md:pb-20 pt-6 sm:pt-8 md:pt-10">
-        <TentangSecJJtion />
+        <TentangSection />
         <TransisiAwan />
         <SejarahSection />
         <MaskotSection />
