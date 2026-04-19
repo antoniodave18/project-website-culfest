@@ -107,6 +107,8 @@ export default function Game() {
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
+      // Simpan jawaban dominan ke local storage
+      localStorage.setItem('culfest_quiz_answers', JSON.stringify(answers));
       // Pindah ke halaman hasil ketika pertanyaan terakhir disubmit
       router.push('/home/game/result');
     }

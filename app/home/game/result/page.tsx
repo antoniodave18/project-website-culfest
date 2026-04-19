@@ -4,17 +4,75 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const RESULT_MAPPING: Record<string, { title: string; desc: string; image?: string }> = {
+  A: {
+    title: "Ikan Belida",
+    desc: "Resilien, Gelisat, Cerdik, Pembudaya",
+    image: "/images/tentang/chileko.png"
+  },
+  B: {
+    title: "Sungai Musi",
+    desc: "Pemberdaya, Tenang, Berpengaruh, Adaptif",
+    image: "/images/game/sungai.png"
+  },
+  C: {
+    title: "Pempek",
+    desc: "Konstan, Andal, Kenyamanan, Keamanan"
+  }
+};
+
 export default function GameResult() {
-  const [resultType, setResultType] = useState<string>("Pemikir Strategis");
-  const [description, setDescription] = useState<string>("");
+  const [resultType, setResultType] = useState<string>("Menghitung...");
+  const [description, setDescription] = useState<string>("Mohon tunggu sebentar...");
+  const [resultImage, setResultImage] = useState<string | undefined>(undefined);
+  const [percentages, setPercentages] = useState<{ A: number, B: number, C: number } | null>(null);
 
   useEffect(() => {
-    // Di sini nantinya bisa digabungkan dengan local storage atau API 
-    // untuk mengkalkulasi jawaban dari sebelumnya. 
-    // Sementara kita gunakan dummy teks hasil.
-    setDescription(
-      "Kamu adalah tipe orang yang terorganisir dan suka melihat gambaran besar. Dalam kepanitiaan atau acara, kamu sosok yang memastikan semua rencana berjalan sesuai jalur!"
-    );
+    const saved = localStorage.getItem('culfest_quiz_answers');
+    if (saved) {
+      try {
+        const answers: Record<number, string> = JSON.parse(saved);
+        let scores = { A: 0, B: 0, C: 0 };
+
+        // Hitung total nilai skor untuk 10 pertanyaan (indeks 0 - 9)
+        for (let i = 0; i < 10; i++) {
+          const ans = answers[i];
+          if (ans === "A" || ans === "B" || ans === "C") {
+            // Soal 3 (indeks 2) dan Soal 7 (indeks 6) bernilai 2 poin (+1 base +1 tambahan)
+            const weight = (i === 2 || i === 6) ? 2 : 1;
+            scores[ans] += weight;
+          }
+        }
+
+        const totalPoints = 12; // Total keseluruhan poin berdasarkan perhitungan
+
+        setPercentages({
+          A: Math.round((scores.A / totalPoints) * 100),
+          B: Math.round((scores.B / totalPoints) * 100),
+          C: Math.round((scores.C / totalPoints) * 100)
+        });
+
+        // Tentukan jawaban dominan 
+        let dominant: "A" | "B" | "C" = "A";
+        let max = -1;
+        for (const [key, val] of Object.entries(scores)) {
+          if (val > max) {
+            max = val;
+            dominant = key as "A" | "B" | "C";
+          }
+        }
+
+        setResultType(RESULT_MAPPING[dominant].title);
+        setDescription(RESULT_MAPPING[dominant].desc);
+        setResultImage(RESULT_MAPPING[dominant].image);
+
+      } catch (e) {
+        console.error("Error parsing answers", e);
+      }
+    } else {
+      setResultType("Data Tidak Ditemukan");
+      setDescription("Silakan selesaikan kuis terlebih dahulu.");
+    }
   }, []);
 
   return (
@@ -64,7 +122,7 @@ export default function GameResult() {
       </div>
 
       {/* Peta / Map Background */}
-      <div 
+      <div
         className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-unroll
                    w-[160vw] h-[75vh] min-h-[550px]
                    md:w-[90vw] md:h-[75vh] 
@@ -87,7 +145,7 @@ export default function GameResult() {
           </div>
         </div>
 
-        <div 
+        <div
           className="relative w-full h-full flex flex-col items-center justify-center mt-0 drop-shadow-2xl"
           style={{
             backgroundImage: "url('/images/game/peta.png')",
@@ -98,9 +156,9 @@ export default function GameResult() {
         >
           {/* Result Content Container */}
           <div className="absolute top-[16%] bottom-[18%] left-0 right-0 flex flex-col items-center justify-center z-30">
-            
-            <div className="w-[85vw] sm:w-[75vw] md:w-[80%] lg:w-[75%] h-auto flex flex-col items-center justify-center gap-4 md:gap-6 pt-10 pb-4 px-4 md:pt-14 md:pb-6 md:px-10 border-[3px] md:border-[4px] border-[#5e300b] rounded-lg md:rounded-xl relative">
-              
+
+            <div className="w-[85vw] sm:w-[75vw] md:w-[80%] lg:w-[75%] h-auto flex flex-col items-center justify-center gap-2 md:gap-4 pt-6 pb-2 px-4 md:pt-8 md:pb-4 md:px-10 border-[3px] md:border-[4px] border-[#5e300b] rounded-lg md:rounded-xl relative">
+
               {/* Optional tiny icon element at top right of border like in screenshot */}
               <div className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-6 md:w-10 md:h-7 bg-[#091255] border-[1.5px] border-[#d9a05b] rounded-[3px] opacity-90 shadow-sm flex items-center justify-center">
                 <div className="w-[60%] h-[50%] border border-[#d9a05b]/60 rounded-[1px]"></div>
@@ -114,8 +172,18 @@ export default function GameResult() {
               </div>
 
               {/* The Result Title */}
-              <div className="text-center w-full px-2">
-                <h1 className="text-[clamp(24px,5vw,40px)] sm:text-3xl md:text-5xl font-bold text-[#3B170B] leading-tight drop-shadow-sm uppercase" style={{ fontFamily: "var(--font-efco-brookshire), serif" }}>
+              <div className="text-center w-full px-2 flex flex-col items-center gap-4">
+                {resultImage && (
+                  <div className="relative w-[220px] h-[110px] md:w-[400px] md:h-[180px] mb-2 animate-fadeIn">
+                    <Image
+                      src={resultImage}
+                      alt={resultType}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                )}
+                <h1 className="text-[clamp(22px,5vw,32px)] sm:text-2xl md:text-4xl font-bold text-[#3B170B] leading-tight drop-shadow-sm uppercase" style={{ fontFamily: "var(--font-efco-brookshire), serif" }}>
                   {resultType}
                 </h1>
               </div>
@@ -125,7 +193,7 @@ export default function GameResult() {
 
               {/* The Result Description */}
               <div className="text-center w-full px-2 md:px-8">
-                <p className="text-[clamp(13px,2.5vw,18px)] sm:text-sm md:text-base lg:text-lg text-[#4B2100] font-medium leading-relaxed" style={{ fontFamily: "var(--font-merriweather), serif" }}>
+                <p className="text-[clamp(13px,2.5vw,18px)] sm:text-sm md:text-base lg:text-lg text-[#4B2100] font-bold leading-relaxed" style={{ fontFamily: "var(--font-merriweather), serif" }}>
                   "{description}"
                 </p>
               </div>

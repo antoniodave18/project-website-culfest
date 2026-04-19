@@ -29,14 +29,6 @@ export default function Home() {
     },
   ];
 
-  const gamePhotos = [
-    "/images/home/game/game1.png",
-    "/images/home/game/game2.png",
-    "/images/home/game/game3.png",
-    "/images/home/game/game4.png",
-    "/images/home/game/game5.png",
-    "/images/home/game/game6.png",
-  ];
 
   return (
     <main className="relative mb-20 md:mb-10 lg:mb-0">
@@ -63,7 +55,7 @@ export default function Home() {
             className="object-contain z-10 w-full h-[30vh] mt-30"
           />
         </div>
-        
+
       </div>
 
       {/* PAPER SCROLL SECTION */}
@@ -94,7 +86,7 @@ export default function Home() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center top",
             }}>
-           
+
           </div>
 
           {/* About Culfest */}
@@ -663,25 +655,24 @@ export default function Home() {
           shadow-2xl flex flex-col gap-6
         "
               >
-                {/* Description */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 w-full mx-auto">
-                  {gamePhotos.map((src, i) => (
-                    <div
-                      key={src}
-                      className="
-                            relative w-[80%] mx-auto aspect-4/5 rounded-xl overflow-hidden
-                            border-2 border-amber-700/40 shadow-md
-                          "
-                    >
-                      <Image
-                        src={src}
-                        alt={`Game activity ${i + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 42vw"
-                      />
-                    </div>
-                  ))}
+                {/* Description and Action Button */}
+                <div className="flex flex-col items-center gap-8 py-5 md:py-10">
+                  <p
+                    className="text-center text-sm md:text-xl lg:text-3xl font-bold text-[#461500] leading-relaxed max-w-4xl"
+                    style={{ fontFamily: "var(--font-merriweather), serif" }}
+                  >
+                    Check Your Character (CYC) adalah inovasi interaktif berupa karakter identitas terhubung budaya Sumatera Selatan. CYC memiliki mekanisme menyerupai MBTI yang mana screening penentuan karakter identitas
+                  </p>
+
+                  <Link
+                    href="/home/game"
+                    className="group flex items-center gap-3 px-8 py-4 bg-[#7a2400] text-white rounded-xl font-bold text-lg md:text-xl hover:bg-[#5a1a00] transition-all duration-300 shadow-lg border-2 border-[#461500]/30 hover:scale-105"
+                  >
+                    Coba Sekarang
+                    <span className="transition-transform duration-300 group-hover:translate-x-2">
+                      &rarr;
+                    </span>
+                  </Link>
                 </div>
               </div>
             </section>
