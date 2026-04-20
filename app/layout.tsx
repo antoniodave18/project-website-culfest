@@ -17,7 +17,7 @@ const merriweather = Merriweather({
 
 export const metadata: Metadata = {
   title: "Cultural Festival",
-  description: "Culfest Web 2025",
+  description: "Culfest Web 2026",
   icons: {
     icon: "/images/logo-culfest.png",
   },
