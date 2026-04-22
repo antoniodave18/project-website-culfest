@@ -24,9 +24,17 @@ export default function Header() {
         setIsMobileMenuOpen(false);
     };
 
+    const hideHeaderOn = [
+        "/",
+        "/home/faq",
+        "/home/jelajah/asrama",
+        "/home/game",
+        "/home/game/result"
+    ];
+
     const pathname = usePathname();
 
-    if (pathname === '/' || pathname === '/home/faq' || pathname === '/home/jelajah/asrama') {
+    if (hideHeaderOn.includes(pathname)) {
         return null;
     }
 

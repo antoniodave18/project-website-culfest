@@ -5,11 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
-  const pathname = usePathname();
+  const hideFooterOn = [
+        "/home/game",
+        "/home/game/result"
+    ];
 
-  if (pathname === "/") {
-    return null;
-  }
+    const pathname = usePathname();
+
+    if (hideFooterOn.includes(pathname)) {
+        return null;
+    }
 
   return (
     <footer

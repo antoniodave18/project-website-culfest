@@ -76,16 +76,7 @@ export default function GameResult() {
   }, []);
 
   return (
-    <main className="relative w-full h-screen min-h-screen overflow-hidden bg-[#091255]">
-      {/* Background Image */}
-      <Image
-        src="/images/game/background.png"
-        alt="Background Game"
-        fill
-        className="object-cover z-0"
-        quality={100}
-        priority
-      />
+    <main className="relative w-full h-screen min-h-screen overflow-hidden bg-[url('/images/bg-motif.png')] bg-repeat bg-contain bg-[#9f0505]">
 
       {/* Ombak / Waves at the bottom */}
       <div className="absolute bottom-0 left-0 w-full z-10 animate-waveFloat pointer-events-none">
