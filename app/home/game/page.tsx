@@ -146,7 +146,7 @@ export default function Game() {
       </div>
 
       {/* Awan Kiri / Left Cloud */}
-      <div className="absolute hidden md:block top-32 md:top-40 -left-10 md:-left-20 z-10 animate-cloudLeft pointer-events-none">
+      <div className="absolute top-15 md:top-40 -left-10 md:-left-20 z-10 animate-cloudLeft pointer-events-none">
         <Image
           src="/images/game/awan kiri.png"
           alt="Awan Kiri"
@@ -157,7 +157,7 @@ export default function Game() {
       </div>
 
       {/* Awan Kanan / Right Cloud */}
-      <div className="absolute hidden md:block top-48 md:top-56 -right-10 md:-right-20 z-10 animate-cloudRight pointer-events-none">
+      <div className="absolute top-20 md:top-56 -right-10 md:-right-20 z-10 animate-cloudRight pointer-events-none">
         <Image
           src="/images/game/awan kanan.png"
           alt="Awan Kanan"
@@ -171,7 +171,7 @@ export default function Game() {
         <NavActionButton href="/home" label="Kembali" icon="←" iconPosition="left" />
       </div>
       
-      <div className="relative w-fit h-fit mx-auto px-6 md:px-10 py-10 md:py-20 my-40 z-20
+      <div className="relative w-fit h-fit mx-auto px-2 md:px-10 py-10 md:py-20 my-40 z-20
         bg-amber-300 bg-linear-to-b from-[#EF9E1E] from-10% via-[#F7C063] via-50% to-[#EF9E1E] to-95%">
         {/* Title holder anchored to the parent container border */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 animate-fadeInUp pointer-events-none">
@@ -211,22 +211,27 @@ export default function Game() {
             className="object-contain"
           />
         </div>
+
+        {/* Tombol pemicu Modal Navigasi (ikon di pojok kanan atas) */}
+        <button 
+          onClick={() => setIsNavOpen(true)}
+          title="Buka Navigasi Soal"
+          className="absolute top-5 right-5 md:right-8 w-8 h-6 md:w-10 md:h-7 bg-[#091255] border-[1.5px] border-[#d9a05b] rounded-[3px] opacity-90 shadow-sm hover:scale-110 hover:opacity-100 transition-all flex items-center justify-center group z-40"
+        >
+          <div className="w-[60%] h-[50%] border border-[#d9a05b]/60 rounded-[1px] group-hover:border-[#d9a05b] transition-colors"></div>
+        </button>
+
         {/* Quiz Content Container - Formatted strictly inside the writable area of the scroll */}
         {/* top 16% and bottom 18% strictly match the parchment visual limits */}
         <div className="relative w-full flex flex-col items-center justify-center z-30">
+
+          
           
           {/* Constraint Text to Viewport on Mobile so it doesn't bleed off with the map! */}
           {/* Py adjusted: massive pt to clear empty space for the absolute corner button! */}
-          <div className="w-[82vw] max-w-[860px] h-auto flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 pt-9 pb-3 px-3 md:pt-12 md:pb-4 md:px-8 border-[3px] md:border-[4px] border-[#5e300b] rounded-lg md:rounded-xl relative">
+          <div className="w-[82vw] max-w-[860px] h-auto flex flex-col items-center justify-center gap-2 md:gap-3 lg:gap-4 pt-9 pb-3 px-3 md:pt-12 md:pb-4 md:px-8 rounded-lg md:rounded-xl relative">
             
-            {/* Tombol pemicu Modal Navigasi (ikon di pojok kanan atas) */}
-            <button 
-              onClick={() => setIsNavOpen(true)}
-              title="Buka Navigasi Soal"
-              className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-6 md:w-10 md:h-7 bg-[#091255] border-[1.5px] border-[#d9a05b] rounded-[3px] opacity-90 shadow-sm hover:scale-110 hover:opacity-100 transition-all flex items-center justify-center group z-40"
-            >
-              <div className="w-[60%] h-[50%] border border-[#d9a05b]/60 rounded-[1px] group-hover:border-[#d9a05b] transition-colors"></div>
-            </button>
+            
 
             {/* Question Text */}
             <div className="text-center w-full px-2 mt-0">
