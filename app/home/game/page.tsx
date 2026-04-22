@@ -146,7 +146,7 @@ export default function Game() {
       </div>
 
       {/* Awan Kiri / Left Cloud */}
-      <div className="absolute top-32 md:top-40 -left-10 md:-left-20 z-10 animate-cloudLeft pointer-events-none">
+      <div className="absolute hidden md:block top-32 md:top-40 -left-10 md:-left-20 z-10 animate-cloudLeft pointer-events-none">
         <Image
           src="/images/game/awan kiri.png"
           alt="Awan Kiri"
@@ -157,7 +157,7 @@ export default function Game() {
       </div>
 
       {/* Awan Kanan / Right Cloud */}
-      <div className="absolute top-48 md:top-56 -right-10 md:-right-20 z-10 animate-cloudRight pointer-events-none">
+      <div className="absolute hidden md:block top-48 md:top-56 -right-10 md:-right-20 z-10 animate-cloudRight pointer-events-none">
         <Image
           src="/images/game/awan kanan.png"
           alt="Awan Kanan"
@@ -171,7 +171,7 @@ export default function Game() {
         <NavActionButton href="/home" label="Kembali" icon="←" iconPosition="left" />
       </div>
       
-      <div className="relative w-fit h-fit mx-auto px-6 md:px-10 py-10 md:py-20 my-20 z-20
+      <div className="relative w-fit h-fit mx-auto px-6 md:px-10 py-10 md:py-20 my-40 z-20
         bg-amber-300 bg-linear-to-b from-[#EF9E1E] from-10% via-[#F7C063] via-50% to-[#EF9E1E] to-95%">
         {/* Title holder anchored to the parent container border */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 animate-fadeInUp pointer-events-none">
