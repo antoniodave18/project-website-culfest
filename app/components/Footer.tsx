@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const hideFooterOn = [
+        "/",
         "/home/game",
         "/home/game/result"
     ];
