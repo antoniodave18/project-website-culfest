@@ -19,15 +19,21 @@ const siteName = "Cultural Festival";
 const rawSiteDescription =
   "Cultural Festival adalah acara tahunan UGM Residence bertema Unity in Diversity yang menampilkan seni, budaya, dan kompetisi interaktif Nusantara.";
 const siteDescription = rawSiteDescription.slice(0, 160);
+const siteUrl = "https://culturalfestivalugmr.id/";
 const previewImage = "/images/logo-culfest.png";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: siteName,
   description: siteDescription,
+  other: {
+    title: siteName,
+  },
   icons: {
     icon: "/images/logo-culfest.png",
   },
   openGraph: {
+    url: siteUrl,
     title: siteName,
     description: siteDescription,
     type: "website",
@@ -36,6 +42,12 @@ export const metadata: Metadata = {
         url: previewImage,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: [previewImage],
   },
 };
 
