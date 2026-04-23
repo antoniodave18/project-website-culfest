@@ -15,11 +15,27 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
 });
 
+const siteName = "Cultural Festival";
+const rawSiteDescription =
+  "Cultural Festival adalah acara tahunan UGM Residence bertema Unity in Diversity yang menampilkan seni, budaya, dan kompetisi interaktif Nusantara.";
+const siteDescription = rawSiteDescription.slice(0, 160);
+const previewImage = "/images/logo-culfest.png";
+
 export const metadata: Metadata = {
-  title: "Cultural Festival",
-  description: "Culfest Web 2026",
+  title: siteName,
+  description: siteDescription,
   icons: {
     icon: "/images/logo-culfest.png",
+  },
+  openGraph: {
+    title: siteName,
+    description: siteDescription,
+    type: "website",
+    images: [
+      {
+        url: previewImage,
+      },
+    ],
   },
 };
 
