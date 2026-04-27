@@ -16,11 +16,11 @@ export async function POST(request: Request) {
         });
 
         if (!activeToken) {
-            return NextResponse.json({ success: false, message: 'Sesi QR code tidak valid atau telah diamankan admin.' }, { status: 403 });
+            return NextResponse.json({ success: false, message: 'Mohon maaf, sesi QR ini sudah ditutup. Silakan scan ulang QR yang baru ya.' }, { status: 403 });
         }
 
         if (new Date() > activeToken.expiresAt) {
-            return NextResponse.json({ success: false, message: 'Masa berlaku QR (1.5 Menit) telah habis.' }, { status: 403 });
+            return NextResponse.json({ success: false, message: 'Mohon maaf, waktu untuk memilih sudah habis. Yuk, silakan scan ulang QR yang baru.' }, { status: 403 });
         }
 
         // 2. Registrasi Vote

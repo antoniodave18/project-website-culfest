@@ -9,7 +9,7 @@ const navLinks = [
     { href: "/home/about-event", label: "Tentang Culfest" },
     { href: "/home/jelajah/ormada", label: "ORMADA" },
     { href: "/home/jelajah/asrama", label: "ASRAMA" },
-    { href: "/home/voting", label: "VOTING" },
+    { href: "/home/leaderboard", label: "LEADERBOARD" },
     { href: "/home/faq", label: "FAQ" },
 ];
 
