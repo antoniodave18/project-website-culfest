@@ -29,12 +29,15 @@ export default function Header() {
         "/home/faq",
         "/home/jelajah/asrama",
         "/home/game",
-        "/home/game/result"
+        "/home/game/result",
+        "/Admin",
+        "/Admin/voting"
+
     ];
 
     const pathname = usePathname();
 
-    if (hideHeaderOn.includes(pathname)) {
+    if (hideHeaderOn.includes(pathname) || pathname.startsWith('/Admin') || pathname.startsWith('/vote')) {
         return null;
     }
 
