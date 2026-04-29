@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Candidate {
+  id        String   @id @default(uuid())
+  name      String
+  imageUrl  String
+  votes     Vote[]
+  createdAt DateTime @default(now())
+}
+
+model VotingToken {
+  id        String   @id @default(uuid())
+  token     String   @unique // Kode unik di QR
+  expiresAt DateTime // Waktu kadaluwarsa token (1.5 menit dari dibuat)
+  createdAt DateTime @default(now())
+  votes     Vote[]   // 1 token tayangan QR bisa menaungi banyak user saat divalidasi
+}
+
+model Vote {
+  id            String      @id @default(uuid())
+  candidateId   String
+  votingTokenId String
+  candidate     Candidate   @relation(fields: [candidateId], references: [id])
+  token         VotingToken @relation(fields: [votingTokenId], references: [id])
+  createdAt     DateTime    @default(now())
+}

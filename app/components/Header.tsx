@@ -9,7 +9,7 @@ const navLinks = [
     { href: "/home/about-event", label: "Tentang Culfest" },
     { href: "/home/jelajah/ormada", label: "ORMADA" },
     { href: "/home/jelajah/asrama", label: "ASRAMA" },
-    { href: "/home/voting", label: "VOTING" },
+    { href: "/home/leaderboard", label: "LEADERBOARD" },
     { href: "/home/faq", label: "FAQ" },
 ];
 
@@ -29,12 +29,15 @@ export default function Header() {
         "/home/faq",
         "/home/jelajah/asrama",
         "/home/game",
-        "/home/game/result"
+        "/home/game/result",
+        "/Admin",
+        "/Admin/voting"
+
     ];
 
     const pathname = usePathname();
 
-    if (hideHeaderOn.includes(pathname)) {
+    if (hideHeaderOn.includes(pathname) || pathname.startsWith('/Admin') || pathname.startsWith('/vote')) {
         return null;
     }
 

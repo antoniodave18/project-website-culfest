@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect, use } from 'react';
 import Image from 'next/image';
 import { VotingCard } from '../../components/VotingCard';
 
@@ -11,9 +10,8 @@ type Candidate = {
     imageUrl: string;
 };
 
-function VotingContent() {
-    const searchParams = useSearchParams();
-    const token = searchParams.get('token');
+export default function VotePage({ params }: { params: Promise<{ token: string }> }) {
+    const { token } = use(params);
 
     const ITEMS_PER_PAGE = 6;
 
@@ -86,7 +84,6 @@ function VotingContent() {
 
     return (
         <main className="vt-page">
-            {/* BG */}
             <div className="vt-bg"><Image src="/images/voting/bg.png" alt="" fill className="object-cover" priority /></div>
 
             {/* CORNER RIBBONS */}
@@ -113,7 +110,6 @@ function VotingContent() {
 
             {/* MAIN CONTENT */}
             <div className="vt-content">
-
                 <div className="vt-title-wrap">
                     <Image src="/images/voting/tittlevoting.png" alt="Voting" width={500} height={150} className="vt-title-img" priority />
                 </div>
@@ -143,7 +139,7 @@ function VotingContent() {
                                         <div key={candidate.id} className="vt-card-row">
                                             <div className={`vt-card-wrap ${isSelected ? 'vt-card-sel' : ''}`}>
                                                 {isSelected && <div className="vt-card-glow"></div>}
-                                                <VotingCard rank={globalIndex + 1} name={candidate.name} imageUrl={candidate.imageUrl || "/images/voting/teratai.png"} onClick={() => setSelectedCandidateId(candidate.id)} />
+                                                <VotingCard rank={globalIndex + 1} name={candidate.name} imageUrl={candidate.imageUrl || "/images/voting/teratai.png"} onClick={() => setSelectedCandidateId(candidate.id)} showVoteDecoration={false} />
                                             </div>
                                         </div>
                                     );
@@ -175,14 +171,13 @@ function VotingContent() {
                 </div>
             </div>
 
-            {/* CONFIRM MODAL */}
             {showConfirmModal && (
                 <div className="vt-modal-overlay">
                     <div className="vt-modal-bg" onClick={() => setShowConfirmModal(false)}></div>
                     <div className="vt-modal animate-fade-in-up">
                         <div className="vt-modal-icon"><span className="text-3xl">🤔</span></div>
                         <h3 className="vt-modal-title">Konfirmasi</h3>
-                        <p className="vt-modal-text">Apakah kamu yakin menyalurkan suara untuk kandidat ini?<br/><span className="vt-modal-warn">Pilihan otomatis tersimpan dan tidak dapat diubah kembali.</span></p>
+                        <p className="vt-modal-text">Apakah kamu yakin menyalurkan suara untuk kandidat ini?<br /><span className="vt-modal-warn">Pilihan otomatis tersimpan dan tidak dapat diubah kembali.</span></p>
                         <div className="vt-modal-acts">
                             <button onClick={() => setShowConfirmModal(false)} className="vt-modal-cancel">Cek Lagi</button>
                             <button onClick={executeVote} className="vt-modal-ok">Yakin!</button>
@@ -211,24 +206,24 @@ function VotingContent() {
 .vt-fl3{top:50%;right:3%;animation-delay:2s}
 .vt-fl4{bottom:7%;left:5%;animation-delay:.5s}
 @keyframes floatF{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(5deg)}}
-.vt-mascot{position:absolute;z-index:4;pointer-events:none}
+.vt-mascot{position:absolute;z-index:4;pointer-events:none;filter:drop-shadow(0 18px 24px rgba(0,0,0,.35))}
 .vt-mascot-left{left:-20px;top:50%;transform:translateY(-50%)}
 .vt-mascot-right{right:-10px;top:50%;transform:translateY(-50%)}
 .vt-content{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;width:100%;max-width:650px;gap:28px}
 .vt-title-wrap{z-index:10;width:100%;display:flex;justify-content:center}
 .vt-title-img{width:80%;max-width:460px;height:auto;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
-.vt-scroll{position:relative;width:100%;background:linear-gradient(to bottom,#EF9E1E,#F7C063,#EF9E1E);box-shadow:0 0 50px rgba(0,0,0,.8);padding:40px 16px}
+.vt-scroll{position:relative;width:100%;background:linear-gradient(to bottom,#EF9E1E,#F7C063,#EF9E1E);box-shadow:0 0 50px rgba(0,0,0,.8);padding:40px 16px;margin-bottom:20pt}
 .vt-rod{position:absolute;left:50%;transform:translateX(-50%);width:115%;height:55px;z-index:20;pointer-events:none}
 .vt-rod-top{top:0;transform:translateX(-50%) translateY(-50%)}
 .vt-rod-bot{bottom:0;transform:translateX(-50%) translateY(50%)}
-.vt-scroll-inner{overflow-y:auto;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 8px}
+.vt-scroll-inner{overflow-y:auto;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 8px 20pt}
 .hide-scrollbar::-webkit-scrollbar{display:none}.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
 .vt-status{padding:60px 16px;display:flex;flex-direction:column;align-items:center;gap:16px}
 .vt-card-row{width:100%;max-width:560px;display:flex;justify-content:center}
 .vt-card-wrap{width:100%;border-radius:12px;transition:all .3s;position:relative;z-index:30}
 .vt-card-sel{box-shadow:0 0 40px rgba(255,183,3,1);transform:scale(1.04);outline:3px solid #ffb703;border-radius:12px}
 .vt-card-glow{position:absolute;inset:0;background:linear-gradient(to right,rgba(255,183,3,.2),transparent,rgba(255,183,3,.2));pointer-events:none;z-index:20;border-radius:12px}
-.vt-konfirmasi{margin-top:24px;display:flex;justify-content:center;width:100%}
+.vt-konfirmasi{margin-top:20pt;display:flex;justify-content:center;width:100%}
 .vt-btn{padding:12px 40px;border-radius:12px;border:2px solid;font-family:serif;font-weight:700;font-size:18px;transition:all .2s}
 .vt-btn-on{background:linear-gradient(to bottom,#6b1e06,#3a0600);color:#fff;border-color:#eab308;box-shadow:0 4px 10px rgba(0,0,0,.5);cursor:pointer}
 .vt-btn-on:hover{transform:scale(1.05)}.vt-btn-on:active{transform:scale(.95)}
@@ -247,49 +242,46 @@ function VotingContent() {
 .vt-modal-ok:hover{filter:brightness(1.1)}.vt-modal-ok:active{transform:scale(.95)}
 @keyframes fade-in-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .animate-fade-in-up{animation:fade-in-up .4s cubic-bezier(.16,1,.3,1) forwards}
-
-/* PHONE: hide mascots */
 .vt-mascot-left,.vt-mascot-right{display:none}
-
-/* TABLET 768+ */
 @media(min-width:768px){
 .vt-page{padding:40px 32px}
 .vt-ribbon-tl{width:400px;height:260px}
 .vt-ribbon-br{width:440px;height:340px}
+.vt-mascot-left,.vt-mascot-right{display:block}
+.vt-mascot-left{left:-6px;top:60%}
+.vt-mascot-right{right:-2px;top:58%}
+.vt-mascot-left img{width:160px!important;height:auto!important}
+.vt-mascot-right img{width:142px!important;height:auto!important}
 .vt-content{max-width:700px;gap:24px}
 .vt-title-img{max-width:500px}
 .vt-scroll{padding:50px 24px}
 .vt-rod{width:118%;height:75px}
-.vt-scroll-inner{gap:18px;padding:20px 16px}
+.vt-scroll-inner{gap:18px;padding:20px 16px 20pt}
 .vt-card-row{max-width:600px}
 .vt-btn{font-size:20px;padding:14px 48px}
 }
-
-/* DESKTOP 1024+ */
 @media(min-width:1024px){
 .vt-page{padding:48px}
 .vt-ribbon-tl{width:460px;height:300px}
 .vt-ribbon-br{width:520px;height:400px}
 .vt-mascot-left,.vt-mascot-right{display:block}
-.vt-mascot-left{left:20px}
-.vt-mascot-right{right:20px}
+.vt-mascot-left{left:28px;top:59%}
+.vt-mascot-right{right:28px;top:58%}
+.vt-mascot-left img{width:240px!important;height:auto!important}
+.vt-mascot-right img{width:210px!important;height:auto!important}
 .vt-content{max-width:750px;gap:28px}
 .vt-title-img{max-width:540px}
 .vt-scroll{padding:60px 32px}
 .vt-rod{width:120%;height:90px}
-.vt-scroll-inner{gap:20px;padding:24px}
+.vt-scroll-inner{gap:20px;padding:24px 24px 20pt}
 .vt-card-row{max-width:640px}
 }
-
-/* LARGE DESKTOP 1400+ */
 @media(min-width:1400px){
-.vt-mascot-left{left:60px}
-.vt-mascot-right{right:60px}
-.vt-mascot-left img{width:240px!important;height:auto!important}
-.vt-mascot-right img{width:200px!important;height:auto!important}
+.vt-mascot-left{left:70px;top:58%}
+.vt-mascot-right{right:70px;top:57%}
+.vt-mascot-left img{width:300px!important;height:auto!important}
+.vt-mascot-right img{width:260px!important;height:auto!important}
 }
-
-/* SMALL PHONE <400 */
 @media(max-width:400px){
 .vt-page{padding:16px 8px}
 .vt-ribbon-tl{width:220px;height:150px}
@@ -298,18 +290,10 @@ function VotingContent() {
 .vt-title-img{width:95%;max-width:300px}
 .vt-scroll{padding:30px 8px}
 .vt-rod{width:112%;height:40px}
-.vt-scroll-inner{gap:10px;padding:10px 4px}
+.vt-scroll-inner{gap:10px;padding:10px 4px 20pt}
 .vt-btn{font-size:15px;padding:10px 32px}
 }
             `}</style>
         </main>
-    );
-}
-
-export default function VotingPage() {
-    return (
-        <Suspense fallback={<div className="min-h-screen bg-[#310602]"></div>}>
-            <VotingContent />
-        </Suspense>
     );
 }

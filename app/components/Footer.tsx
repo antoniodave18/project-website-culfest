@@ -6,16 +6,19 @@ import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const hideFooterOn = [
-        "/",
-        "/home/game",
-        "/home/game/result"
-    ];
+    "/",
+    "/home/game",
+    "/home/game/result",
+    "/Admin",
+    "/Admin/voting"
 
-    const pathname = usePathname();
+  ];
 
-    if (hideFooterOn.includes(pathname)) {
-        return null;
-    }
+  const pathname = usePathname();
+
+  if (hideFooterOn.includes(pathname) || pathname.startsWith('/Admin') || pathname.startsWith('/vote')) {
+    return null;
+  }
 
   return (
     <footer
