@@ -102,23 +102,23 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
 
           <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
             <div className="order-1 md:order-2 flex items-center justify-center mt-10 mx-auto md:mx-0">
-              <div className="relative w-full max-w-78 md:max-w-[90%] lg:max-w-[70%] aspect-312/440">
-                <div className="absolute inset-0 scale-90 overflow-hidden rounded-sm">
+              <div className="relative w-50 h-80 md:w-110 md:h-110 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-[9%] md:inset-x-[15%] md:inset-y-0 overflow-hidden">
                   <Image
-                      src={detail["image-main"]}
-                      alt={`${detail.title} preview`}
+                    src={detail["image-main"]}
+                    alt={`${detail.title} preview`}
                     fill
-                    sizes="(max-width: 768px) 70vw, 25vw"
-                    className="object-cover"
+                    sizes="(max-width: 768px) 200px, 320px"
+                    className="rounded-[50px] object-cover"
                   />
                 </div>
-
+                {/* Overlay frame uses the exact same box as the background image */}
                 <Image
                   src="/images/jelajah/asrama/slug/photo-frame.png"
                   alt="photo frame"
                   fill
-                  sizes="(max-width: 768px) 70vw, 25vw"
-                  preload
+                  sizes="(max-width: 768px) 200px, 320px"
                   className="pointer-events-none object-contain"
                 />
               </div>
@@ -132,7 +132,7 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
           </div>
         </div>
 
-        <div className="w-full -mt-10 md:-mt-55 z-20">
+        <div className="relative w-full -mt-10 md:-mt-55 z-20">
           <Image
             src="/images/jelajah/asrama/slug/gunung-asrama.png"
             alt="title fasilitas"
