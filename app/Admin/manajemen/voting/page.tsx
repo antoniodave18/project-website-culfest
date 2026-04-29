@@ -77,7 +77,7 @@ export default function VotingFormPage() {
                         <h1 className="text-2xl md:text-3xl font-bold text-white">Manajemen Tambah Voting</h1>
                         <p className="text-white/70 text-sm mt-1">Formulir penambahan kandidat acara.</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Link href="/Admin/manajemen/candidates">
                             <button className="text-sm bg-blue-600/80 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors border border-blue-400/50 shadow-md">
                                 📋 Lihat Daftar Kandidat
@@ -86,6 +86,11 @@ export default function VotingFormPage() {
                         <Link href="/Admin/manajemen/voting/qr">
                             <button className="text-sm bg-purple-600/80 hover:bg-purple-600 text-white py-2 px-4 rounded-lg transition-colors border border-purple-400/50 shadow-md">
                                 📷 Tampilkan QR
+                            </button>
+                        </Link>
+                        <Link href="/Admin/manajemen/leaderboard">
+                            <button className="text-sm bg-yellow-600/80 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition-colors border border-yellow-400/50 shadow-md">
+                                Kontrol Leaderboard
                             </button>
                         </Link>
                     </div>

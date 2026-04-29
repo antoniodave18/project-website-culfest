@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import NavActionButton from '../../../../home/components/NavActionButton';
 
@@ -9,19 +9,31 @@ export default function QRGeneratorPage() {
     const [expiresAt, setExpiresAt] = useState<Date | null>(null);
     const [timeLeft, setTimeLeft] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [originUrl, setOriginUrl] = useState('');
+    const [originUrl] = useState(() => typeof window === 'undefined' ? '' : window.location.origin);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [sessionCode, setSessionCode] = useState('');
 
     const voteUrl = token && originUrl ? `${originUrl}/vote/${token}` : '';
     const qrImageSrc = voteUrl ? `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(voteUrl)}` : '';
 
-    const generateNewQR = async () => {
+    const generateNewQR = useCallback(async () => {
+        const normalizedSessionCode = sessionCode.trim().toUpperCase();
+        if (!normalizedSessionCode) {
+            alert('Kode sesi wajib diisi sebelum menampilkan QR.');
+            return;
+        }
+
         setLoading(true);
         try {
-            const res = await fetch('/api/voting-tokens', { method: 'POST' });
+            const res = await fetch('/api/voting-tokens', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionCode: normalizedSessionCode })
+            });
             const data = await res.json();
             if (data.success) {
                 const nextExpiresAt = new Date(data.data.expiresAt);
+                setSessionCode(data.data.sessionCode);
                 setToken(data.data.token);
                 setExpiresAt(nextExpiresAt);
                 setTimeLeft(Math.max(0, Math.floor((nextExpiresAt.getTime() - Date.now()) / 1000)));
@@ -33,21 +45,15 @@ export default function QRGeneratorPage() {
         } finally {
             setLoading(false);
         }
-    };
-
-    useEffect(() => {
-        setOriginUrl(window.location.origin);
-    }, []);
-
-    useEffect(() => {
-        if (!originUrl || token || loading) return;
-        generateNewQR();
-    }, [originUrl, token, loading]);
+    }, [sessionCode]);
 
     useEffect(() => {
         if (!expiresAt || timeLeft <= 0) {
             if (token && timeLeft <= 0 && !loading) {
-                generateNewQR();
+                const timeout = window.setTimeout(() => {
+                    void generateNewQR();
+                }, 0);
+                return () => window.clearTimeout(timeout);
             }
             return;
         }
@@ -59,7 +65,7 @@ export default function QRGeneratorPage() {
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [expiresAt, timeLeft, token, loading]);
+    }, [expiresAt, timeLeft, token, loading, generateNewQR]);
 
     return (
         <main className="qr-page">
@@ -105,14 +111,24 @@ export default function QRGeneratorPage() {
                                     <img src={qrImageSrc} alt="QR Code" />
                                 </button>
                             ) : (
-                                <button
-                                    type="button"
-                                    onClick={generateNewQR}
-                                    disabled={loading}
-                                    className="qr-start"
-                                >
-                                    {loading ? 'Membuat QR...' : 'Mulai QR'}
-                                </button>
+                                <div className="qr-session-form">
+                                    <label htmlFor="session-code">Kode Sesi</label>
+                                    <input
+                                        id="session-code"
+                                        value={sessionCode}
+                                        onChange={(event) => setSessionCode(event.target.value.toUpperCase())}
+                                        placeholder="CONTOH: SESI-1"
+                                        maxLength={32}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={generateNewQR}
+                                        disabled={loading}
+                                        className="qr-start"
+                                    >
+                                        {loading ? 'Membuat QR...' : 'Tampilkan QR'}
+                                    </button>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -158,6 +174,10 @@ export default function QRGeneratorPage() {
 .qr-code:hover{transform:scale(1.025)}
 .qr-code img{display:block;width:min(42vw,330px);height:min(42vw,330px);object-fit:contain}
 .qr-start{position:relative;z-index:4;border:2px solid #f0b83d;background:linear-gradient(to bottom,#7a2608,#3a0600);color:#fff;border-radius:999px;padding:13px 24px;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.qr-session-form{position:relative;z-index:4;width:min(100%,300px);display:flex;flex-direction:column;align-items:center;gap:12px}
+.qr-session-form label{color:#ffd064;font-family:serif;font-size:22px;font-weight:900;text-transform:uppercase;text-shadow:0 2px 4px rgba(0,0,0,.6)}
+.qr-session-form input{width:100%;border:2px solid #f0b83d;border-radius:12px;background:rgba(55,6,0,.82);padding:12px 14px;color:#fff;text-align:center;font-weight:900;letter-spacing:1px;outline:none;box-shadow:inset 0 2px 8px rgba(0,0,0,.35)}
+.qr-session-form input::placeholder{color:rgba(255,255,255,.45)}
 .qr-flower{position:absolute;z-index:14;pointer-events:none;filter:drop-shadow(0 5px 3px rgba(0,0,0,.35));animation:qrFloat 4s ease-in-out infinite}
 .qr-fl1{left:6%;top:27%}.qr-fl2{left:13%;top:41%;animation-delay:.8s}.qr-fl3{left:16%;bottom:27%;animation-delay:1.4s}.qr-fl4{right:13%;top:41%;animation-delay:.5s}.qr-fl5{right:18%;bottom:27%;animation-delay:1.2s}.qr-fl6{right:8%;bottom:18%;animation-delay:1.8s}
 @keyframes qrFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(5deg)}}

@@ -29,6 +29,7 @@ export default function VotePage({
   const [hasVoted, setHasVoted] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [sessionCode, setSessionCode] = useState("");
 
   const totalPages = Math.ceil(candidates.length / ITEMS_PER_PAGE);
   const paginatedCandidates = candidates.slice(
@@ -37,35 +38,55 @@ export default function VotePage({
   );
 
   useEffect(() => {
-    const votedFlag = localStorage.getItem("culfest_voted");
-    if (votedFlag === "true") {
-      setHasVoted(true);
-      setLoading(false);
-      setStatusMessage(
-        "Tindakan Ditolak: Perangkat ini sudah pernah digunakan untuk voting.",
-      );
-      return;
-    }
     if (!token) {
-      setLoading(false);
-      setStatusMessage(
-        "Mohon maaf, tautan ini belum lengkap. Pastikan Anda masuk dengan scan ulang QR yang benar ya.",
-      );
-      return;
+      const timeout = window.setTimeout(() => {
+        setLoading(false);
+        setStatusMessage(
+          "Mohon maaf, tautan ini belum lengkap. Pastikan Anda masuk dengan scan ulang QR yang benar ya.",
+        );
+      }, 0);
+      return () => window.clearTimeout(timeout);
     }
-    const fetchCandidates = async () => {
+
+    const fetchVoteSession = async () => {
       try {
-        const res = await fetch("/api/candidates");
-        const data = await res.json();
-        if (data.success) setCandidates(data.data);
+        const tokenRes = await fetch(`/api/voting-tokens?token=${encodeURIComponent(token)}`);
+        const tokenData = await tokenRes.json();
+
+        if (!tokenData.success) {
+          setStatusMessage(tokenData.message || "Sesi QR tidak ditemukan. Silakan scan ulang.");
+          return;
+        }
+
+        if (tokenData.data.expired) {
+          setStatusMessage("Mohon maaf, waktu untuk memilih sudah habis. Yuk, silakan scan ulang QR yang baru.");
+          return;
+        }
+
+        const nextSessionCode = tokenData.data.sessionCode;
+        setSessionCode(nextSessionCode);
+
+        const votedFlag = localStorage.getItem(`culfest_voted:${nextSessionCode}`);
+        if (votedFlag === "true") {
+          setHasVoted(true);
+          setStatusMessage(
+            `Tindakan Ditolak: Perangkat ini sudah pernah digunakan untuk voting pada sesi ${nextSessionCode}.`,
+          );
+          return;
+        }
+
+        const candidatesRes = await fetch("/api/candidates");
+        const candidatesData = await candidatesRes.json();
+        if (candidatesData.success) setCandidates(candidatesData.data);
         else setStatusMessage("Gagal mengambil data kandidat.");
-      } catch (err) {
+      } catch {
         setStatusMessage("Terjadi kesalahan jaringan.");
       } finally {
         setLoading(false);
       }
     };
-    fetchCandidates();
+
+    fetchVoteSession();
   }, [token]);
 
   const openConfirmModal = () => {
@@ -85,7 +106,10 @@ export default function VotePage({
       });
       const data = await res.json();
       if (data.success) {
-        localStorage.setItem("culfest_voted", "true");
+        const votedSessionCode = data.data?.sessionCode || sessionCode;
+        if (votedSessionCode) {
+          localStorage.setItem(`culfest_voted:${votedSessionCode}`, "true");
+        }
         setHasVoted(true);
         setStatusMessage("Terima kasih! Suara Anda telah berhasil direkam.");
       } else {
@@ -94,7 +118,7 @@ export default function VotePage({
             "Mohon maaf, suara Anda gagal tersimpan karena sedikit kendala.",
         );
       }
-    } catch (error) {
+    } catch {
       setStatusMessage(
         "Mohon maaf, sedang ada sedikit kendala. Silakan coba kembali atau scan ulang ya.",
       );

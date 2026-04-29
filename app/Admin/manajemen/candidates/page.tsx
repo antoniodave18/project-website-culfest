@@ -65,7 +65,7 @@ export default function CandidatesListPage() {
                         <h1 className="text-2xl md:text-3xl font-bold text-white">Daftar Kandidat</h1>
                         <p className="text-white/70 text-sm mt-1">Kelola data kandidat yang ada pada database.</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <Link href="/Admin/manajemen/voting">
                             <button className="text-sm bg-green-600/80 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition-colors border border-green-400/50 shadow-md">
                                 ➕ Tambah Kandidat
@@ -74,6 +74,11 @@ export default function CandidatesListPage() {
                         <Link href="/Admin/manajemen/voting/qr">
                             <button className="text-sm bg-white/10 hover:bg-white/20 text-white py-2 px-4 rounded-lg transition-colors border border-white/20">
                                 Tampilkan Qr
+                            </button>
+                        </Link>
+                        <Link href="/Admin/manajemen/leaderboard">
+                            <button className="text-sm bg-yellow-600/80 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition-colors border border-yellow-400/50 shadow-md">
+                                Kontrol Leaderboard
                             </button>
                         </Link>
                     </div>

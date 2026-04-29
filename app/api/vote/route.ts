@@ -27,13 +27,44 @@ export async function POST(request: Request) {
         const vote = await prisma.vote.create({
             data: {
                 candidateId,
-                votingTokenId: activeToken.id
+                votingTokenId: activeToken.id,
+                sessionCode: activeToken.sessionCode
             }
         });
 
-        return NextResponse.json({ success: true, data: vote });
+        return NextResponse.json({
+            success: true,
+            data: {
+                ...vote,
+                sessionCode: activeToken.sessionCode
+            }
+        });
     } catch (error) {
         console.error("POST Vote Error:", error);
         return NextResponse.json({ success: false, message: 'Gagal melakukan voting akibat gangguan server.' }, { status: 500 });
+    }
+}
+
+export async function DELETE(request: Request) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const sessionCode = searchParams.get('sessionCode')?.trim().toUpperCase();
+
+        if (!sessionCode) {
+            return NextResponse.json({ success: false, message: 'Kode sesi wajib diisi.' }, { status: 400 });
+        }
+
+        const result = await prisma.vote.deleteMany({
+            where: { sessionCode }
+        });
+
+        return NextResponse.json({
+            success: true,
+            sessionCode,
+            deletedCount: result.count
+        });
+    } catch (error) {
+        console.error("DELETE Vote Error:", error);
+        return NextResponse.json({ success: false, message: 'Gagal mereset hasil voting.' }, { status: 500 });
     }
 }
