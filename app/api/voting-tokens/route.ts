@@ -6,9 +6,9 @@ export async function POST() {
     try {
         // Token lama akan dibiarkan kadaluwarsa sendiri sesuai pengecekan (expiresAt) di saat orang mau vote
 
-        // 2. Generate token unik & waktu expire (5 menit dari sekarang)
+        // 2. Generate token unik & waktu expire (3 menit dari sekarang)
         const rawToken = crypto.randomBytes(16).toString('hex');
-        const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 300 seconds
+        const expiresAt = new Date(Date.now() + 3 * 60 * 1000); // 180 seconds
 
         const newToken = await prisma.votingToken.create({
             data: {

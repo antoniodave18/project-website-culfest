@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import NavActionButton from '../../../../home/components/NavActionButton';
 
 export default function QRGeneratorPage() {
     const [token, setToken] = useState<string | null>(null);
     const [expiresAt, setExpiresAt] = useState<Date | null>(null);
-    const [timeLeft, setTimeLeft] = useState<number>(0);
+    const [timeLeft, setTimeLeft] = useState(0);
     const [loading, setLoading] = useState(false);
     const [originUrl, setOriginUrl] = useState('');
     const [isFullscreen, setIsFullscreen] = useState(false);
 
-    useEffect(() => {
-        setOriginUrl(window.location.origin);
-    }, []);
+    const voteUrl = token && originUrl ? `${originUrl}/vote/${token}` : '';
+    const qrImageSrc = voteUrl ? `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(voteUrl)}` : '';
 
     const generateNewQR = async () => {
         setLoading(true);
@@ -21,26 +21,32 @@ export default function QRGeneratorPage() {
             const res = await fetch('/api/voting-tokens', { method: 'POST' });
             const data = await res.json();
             if (data.success) {
+                const nextExpiresAt = new Date(data.data.expiresAt);
                 setToken(data.data.token);
-                setExpiresAt(new Date(data.data.expiresAt));
-                // Set sisa waktu
-                const remaining = Math.max(0, Math.floor((new Date(data.data.expiresAt).getTime() - Date.now()) / 1000));
-                setTimeLeft(remaining);
+                setExpiresAt(nextExpiresAt);
+                setTimeLeft(Math.max(0, Math.floor((nextExpiresAt.getTime() - Date.now()) / 1000)));
             } else {
                 alert('Gagal menghasilkan QR: ' + data.message);
             }
-        } catch (error) {
+        } catch {
             alert('Kesalahan jaringan.');
         } finally {
             setLoading(false);
         }
     };
 
-    // Countdown Timer logic
+    useEffect(() => {
+        setOriginUrl(window.location.origin);
+    }, []);
+
+    useEffect(() => {
+        if (!originUrl || token || loading) return;
+        generateNewQR();
+    }, [originUrl, token, loading]);
+
     useEffect(() => {
         if (!expiresAt || timeLeft <= 0) {
-            // Jika expired dan ada token sebelumnya, generate ulang otomatis
-            if (token && timeLeft <= 0) {
+            if (token && timeLeft <= 0 && !loading) {
                 generateNewQR();
             }
             return;
@@ -49,119 +55,143 @@ export default function QRGeneratorPage() {
         const interval = setInterval(() => {
             const remaining = Math.max(0, Math.floor((expiresAt.getTime() - Date.now()) / 1000));
             setTimeLeft(remaining);
-
-            if (remaining === 0) {
-                clearInterval(interval);
-            }
+            if (remaining === 0) clearInterval(interval);
         }, 1000);
 
         return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [expiresAt, timeLeft]);
-
-
-    const voteUrl = token && originUrl ? `${originUrl}/vote/${token}` : '';
-    const qrImageSrc = voteUrl ? `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(voteUrl)}` : '';
+    }, [expiresAt, timeLeft, token, loading]);
 
     return (
-        <main className="min-h-screen relative flex flex-col items-center justify-center bg-[#5c0a00] p-6 lg:p-12 font-montserrat">
-            <div className="z-10 w-full max-w-2xl space-y-8 flex flex-col items-center">
-                {/* Header Section */}
-                <div className="flex justify-between items-center bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl w-full">
-                    <div>
-                        <h1 className="text-2xl font-bold text-white">QR Code Berjalan</h1>
-                        <p className="text-white/70 text-sm mt-1">Valid 1.5 Menit. Otomatis Generate Baru.</p>
-                    </div>
-                    <Link href="/Admin/manajemen/voting">
-                        <button className="text-sm bg-white/10 hover:bg-white/20 text-white py-2 px-4 rounded-lg transition-colors border border-white/20">
-                            Kembali
-                        </button>
-                    </Link>
-                </div>
+        <main className="qr-page">
+            <div className="qr-bg" />
+            <Image src="/images/voting/border.png" alt="" fill priority className="qr-frame" />
 
-                <div className="bg-black/60 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl border border-white/30 text-center w-full flex flex-col items-center">
-                    {!token ? (
-                        <div className="py-20 flex flex-col items-center justify-center">
-                            <button 
-                                onClick={generateNewQR}
-                                disabled={loading}
-                                className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-bold py-4 px-8 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.4)] text-xl transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50"
-                            >
-                                {loading ? 'Membuat QR...' : '▶ MULAI SESI VOTING QR'}
-                            </button>
-                            <p className="text-white/50 text-sm mt-4">Akan menganulir semua token lama tipe QR.</p>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center animate-fadeIn w-full">
-                            <h2 className="text-white text-2xl font-bold mb-8">Scan QR di Bawah Ini Untuk Voting</h2>
-                            
-                            <div 
-                                className="bg-white p-4 rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.2)] cursor-pointer hover:scale-105 transition-transform"
-                                onClick={() => setIsFullscreen(true)}
-                                title="Klik untuk memperbesar QR"
-                            >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                {qrImageSrc && <img src={qrImageSrc} alt="QR Code" className="w-[300px] h-[300px] object-contain" />}
-                            </div>
-
-                            <p className="text-white/60 text-xs mt-3 italic mb-4">Klik gambar QR untuk tampilan penuh layar</p>
-
-                            <div className="mt-4 mb-4 border-2 border-white/20 rounded-full px-6 py-2 bg-black/40">
-                                <p className="text-white text-lg font-mono flex items-center gap-2">
-                                    <span className={timeLeft <= 10 ? 'text-red-500 animate-pulse' : 'text-green-400'}>
-                                        ⏱ {timeLeft}s tersisa
-                                    </span>
-                                </p>
-                            </div>
-
-                            <p className="text-white/40 text-xs w-full break-all mb-8 max-w-sm">
-                                {voteUrl}
-                            </p>
-
-                            <button 
-                                onClick={generateNewQR}
-                                className="text-sm bg-white/5 hover:bg-white/10 text-white py-2 px-4 rounded-lg transition-colors border border-white/10"
-                            >
-                                🔄 Generate Baru Sekarang (Force Refresh)
-                            </button>
-                        </div>
-                    )}
-                </div>
+            <div className="qr-back">
+                <NavActionButton href="/Admin/manajemen/voting" label="Kembali" icon="←" iconPosition="left" />
             </div>
 
-            {/* Overlay Fullscreen QR */}
-            {isFullscreen && token && (
-                <div 
-                    className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-lg flex flex-col items-center justify-center p-4 cursor-pointer"
-                    onClick={() => setIsFullscreen(false)}
-                >
-                    <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[0_0_100px_rgba(255,255,255,0.3)] animate-fadeIn">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={qrImageSrc} alt="QR Code Besar" className="w-[80vw] max-w-[600px] object-contain" />
-                    </div>
-                    <div className="mt-8 text-white text-2xl font-bold border-2 border-white/20 rounded-full px-8 py-3 bg-black/50 backdrop-blur-md">
-                        <span className={timeLeft <= 10 ? 'text-red-500 animate-pulse' : 'text-green-400'}>
-                            ⏱ {timeLeft}s
-                        </span>
-                    </div>
-                    <p className="text-white/60 mt-8 text-xl text-center">Klik dimana saja untuk un-zoom kembali</p>
+            <div className="qr-flower qr-fl1"><Image src="/images/voting/bunga(1).png" alt="" width={66} height={66} /></div>
+            <div className="qr-flower qr-fl2"><Image src="/images/voting/bunga(1).png" alt="" width={62} height={62} /></div>
+            <div className="qr-flower qr-fl3"><Image src="/images/voting/bunga(1).png" alt="" width={58} height={58} /></div>
+            <div className="qr-flower qr-fl4"><Image src="/images/voting/bunga(1).png" alt="" width={60} height={60} /></div>
+            <div className="qr-flower qr-fl5"><Image src="/images/voting/bunga(1).png" alt="" width={58} height={58} /></div>
+            <div className="qr-flower qr-fl6"><Image src="/images/voting/bunga(1).png" alt="" width={54} height={54} /></div>
+
+            <section className="qr-stage">
+                <div className="qr-curtain">
+                    <Image src="/images/voting/bg-merah.png" alt="" fill className="object-fill" priority />
                 </div>
+                <div className="qr-ellipse">
+                    <Image src="/images/voting/Ellipse 149.png" alt="" fill className="object-fill" />
+                </div>
+
+                <div className="qr-scroll">
+                    <div className="qr-rod qr-rod-top">
+                        <Image src="/images/jelajah/asrama/Gulungan atas.png" alt="" fill className="object-fill" />
+                    </div>
+
+                    <div className="qr-scroll-body">
+                        <div className="qr-window">
+                            <div className="qr-banner">SCAN QR BERIKUT!</div>
+
+                            {qrImageSrc ? (
+                                <button
+                                    type="button"
+                                    className="qr-code"
+                                    onClick={() => setIsFullscreen(true)}
+                                    title="Klik untuk memperbesar QR"
+                                >
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={qrImageSrc} alt="QR Code" />
+                                </button>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={generateNewQR}
+                                    disabled={loading}
+                                    className="qr-start"
+                                >
+                                    {loading ? 'Membuat QR...' : 'Mulai QR'}
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="qr-rod qr-rod-bot">
+                        <Image src="/images/jelajah/asrama/Gulungan atas.png" alt="" fill className="object-fill rotate-180" />
+                    </div>
+                </div>
+            </section>
+
+            {isFullscreen && token && (
+                <button
+                    type="button"
+                    className="qr-fullscreen"
+                    onClick={() => setIsFullscreen(false)}
+                    aria-label="Tutup QR besar"
+                >
+                    <span className="qr-fullscreen-card">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={qrImageSrc} alt="QR Code Besar" />
+                    </span>
+                </button>
             )}
 
-            {/* Decorative background elements */}
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20 overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-red-600 rounded-full blur-[120px] mix-blend-screen"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-orange-600 rounded-full blur-[150px] mix-blend-screen"></div>
-            </div>
-            
-            <style jsx>{`
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: scale(0.95); }
-                    to { opacity: 1; transform: scale(1); }
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-                }
+            <style jsx global>{`
+.qr-page{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#103b8f;padding:38px 18px}
+.qr-bg{position:absolute;inset:0;background:#123f95;background-image:linear-gradient(135deg,rgba(255,255,255,.12) 12.5%,transparent 12.5%,transparent 50%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.12) 62.5%,transparent 62.5%,transparent);background-size:34px 34px;opacity:.72;z-index:0}
+.qr-frame{z-index:12;object-fit:fill;pointer-events:none}
+.qr-back{position:absolute;left:22px;top:22px;z-index:20}
+.qr-stage{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center}
+.qr-curtain{position:absolute;z-index:1;left:3.7%;right:3.7%;top:3.6%;bottom:6.2%;filter:drop-shadow(0 18px 26px rgba(0,0,0,.38))}
+.qr-ellipse{position:absolute;z-index:2;left:9%;right:9%;bottom:5.8%;height:24%;filter:drop-shadow(0 0 14px rgba(255,255,160,.45));pointer-events:none}
+.qr-scroll{position:relative;z-index:6;width:min(58vw,820px);min-width:310px}
+.qr-scroll-body{position:relative;z-index:2;background:linear-gradient(to bottom,#EF9E1E,#F7C063,#EF9E1E);box-shadow:0 0 34px rgba(0,0,0,.55);padding:78px 72px}
+.qr-scroll-body:after{content:"";position:absolute;inset:0;background-image:url('/images/voting/bg.png');background-size:400px auto;opacity:.1;pointer-events:none}
+.qr-rod{position:absolute;left:50%;width:132%;height:82px;z-index:4;pointer-events:none}
+.qr-rod-top{top:0;transform:translateX(-50%) translateY(-50%)}
+.qr-rod-bot{bottom:0;transform:translateX(-50%) translateY(50%)}
+.qr-window{position:relative;z-index:3;aspect-ratio:1/1;width:min(100%,500px);margin:0 auto;border:10px solid #f3c34b;border-radius:44px;background:#9b0400;background-image:url('/images/voting/bg-merah.png');background-size:520px auto;background-position:center;display:flex;align-items:center;justify-content:center;padding:72px 42px 42px;box-shadow:inset 0 0 56px rgba(255,205,96,.24),0 14px 28px rgba(0,0,0,.38);overflow:visible}
+.qr-window:before{content:"";position:absolute;inset:8%;border-radius:34px;background:rgba(244,190,75,.32);filter:blur(18px)}
+.qr-banner{position:absolute;z-index:5;top:28px;left:50%;transform:translateX(-50%);width:calc(100% + 26px);height:58px;display:flex;align-items:center;justify-content:center;background:linear-gradient(to bottom,#f7c46c,#d9902f);color:#8a1b09;font-size:30px;font-weight:900;letter-spacing:.4px;text-shadow:0 3px 0 rgba(255,227,120,.58),0 4px 6px rgba(0,0,0,.32);clip-path:polygon(0 0,8% 50%,0 100%,100% 100%,92% 50%,100% 0)}
+.qr-code{position:relative;z-index:4;background:#fff;border-radius:16px;padding:12px;box-shadow:0 4px 18px rgba(0,0,0,.28);transition:transform .2s}
+.qr-code:hover{transform:scale(1.025)}
+.qr-code img{display:block;width:min(42vw,330px);height:min(42vw,330px);object-fit:contain}
+.qr-start{position:relative;z-index:4;border:2px solid #f0b83d;background:linear-gradient(to bottom,#7a2608,#3a0600);color:#fff;border-radius:999px;padding:13px 24px;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.qr-flower{position:absolute;z-index:14;pointer-events:none;filter:drop-shadow(0 5px 3px rgba(0,0,0,.35));animation:qrFloat 4s ease-in-out infinite}
+.qr-fl1{left:6%;top:27%}.qr-fl2{left:13%;top:41%;animation-delay:.8s}.qr-fl3{left:16%;bottom:27%;animation-delay:1.4s}.qr-fl4{right:13%;top:41%;animation-delay:.5s}.qr-fl5{right:18%;bottom:27%;animation-delay:1.2s}.qr-fl6{right:8%;bottom:18%;animation-delay:1.8s}
+@keyframes qrFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(5deg)}}
+.qr-fullscreen{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;padding:24px;cursor:pointer}
+.qr-fullscreen-card{display:block;background:#fff;border-radius:28px;padding:24px;box-shadow:0 0 80px rgba(255,255,255,.28)}
+.qr-fullscreen-card img{display:block;width:min(82vw,600px);height:auto}
+@media(max-width:900px){
+.qr-page{padding:76px 14px 32px}
+.qr-back{top:18px;left:18px}
+.qr-stage{position:absolute;inset:0}
+.qr-curtain{left:4.2%;right:4.2%;top:4%;bottom:6.5%}
+.qr-ellipse{left:6%;right:6%;bottom:6%;height:22%}
+.qr-scroll{width:min(78vw,620px)}
+.qr-scroll-body{padding:62px 34px}
+.qr-rod{width:132%;height:62px}
+.qr-window{border-width:8px;border-radius:34px;padding:52px 18px 28px}
+.qr-banner{top:22px;height:44px;font-size:22px}
+.qr-code img{width:min(54vw,280px);height:min(54vw,280px)}
+.qr-flower img{width:46px!important;height:auto!important}
+}
+@media(max-width:480px){
+.qr-page{padding:74px 8px 24px}
+.qr-stage{position:absolute;inset:0}
+.qr-curtain{left:4.5%;right:4.5%;top:4.5%;bottom:7%}
+.qr-ellipse{left:3%;right:3%;bottom:6.5%;height:20%}
+.qr-scroll{width:86vw}
+.qr-scroll-body{padding:48px 16px}
+.qr-rod{height:44px}
+.qr-window{border-width:7px;border-radius:26px;padding:44px 12px 22px}
+.qr-banner{height:36px;font-size:16px}
+.qr-code{border-radius:12px;padding:8px}
+.qr-code img{width:min(64vw,210px);height:min(64vw,210px)}
+.qr-fl1{left:4%;top:27%}.qr-fl2{left:8%;top:43%}.qr-fl3{left:14%;bottom:25%}.qr-fl4{right:7%;top:43%}.qr-fl5{right:13%;bottom:25%}.qr-fl6{right:5%;bottom:17%}
+}
             `}</style>
         </main>
     );

@@ -8,9 +8,10 @@ export type VotingCardProps = {
     imageUrl: string;
     onClick?: () => void;
     voteCount?: number;
+    showVoteDecoration?: boolean;
 };
 
-export function VotingCard({ rank = 1, name, imageUrl, onClick, voteCount }: VotingCardProps) {
+export function VotingCard({ rank = 1, name, imageUrl, onClick, voteCount, showVoteDecoration = true }: VotingCardProps) {
     return (
         <div
             onClick={onClick}
@@ -40,30 +41,29 @@ export function VotingCard({ rank = 1, name, imageUrl, onClick, voteCount }: Vot
                 </h3>
             </div>
 
-            {/* 4. Right Custom Button / Decorative lotus */}
-            <div className="relative shrink-0 w-[110px] md:w-[130px] lg:w-[160px] h-full flex items-center justify-end pr-3 md:pr-5">
+            {showVoteDecoration && (
+                <div className="relative shrink-0 w-[110px] md:w-[130px] lg:w-[160px] h-full flex items-center justify-end pr-3 md:pr-5">
 
-                {/* The Golden outline shape */}
-                <div className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-[65px] md:w-[90px] lg:w-[110px] h-[22px] md:h-[28px] lg:h-[35px] border-[1.5px] md:border-[2px] border-yellow-500/90 rounded-r-full rounded-l-md bg-gradient-to-r from-transparent to-yellow-900/40 group-hover:bg-yellow-900/60 transition-colors z-0 flex items-center justify-end pr-3 lg:pr-4">
-                    {voteCount !== undefined && (
-                        <span className="text-white text-[10px] md:text-xs lg:text-sm font-bold opacity-90 drop-shadow-md">
-                            {voteCount} Suara
-                        </span>
-                    )}
-                </div>
+                    <div className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-[65px] md:w-[90px] lg:w-[110px] h-[22px] md:h-[28px] lg:h-[35px] border-[1.5px] md:border-[2px] border-yellow-500/90 rounded-r-full rounded-l-md bg-gradient-to-r from-transparent to-yellow-900/40 group-hover:bg-yellow-900/60 transition-colors z-0 flex items-center justify-end pr-3 lg:pr-4">
+                        {voteCount !== undefined && (
+                            <span className="text-white text-[10px] md:text-xs lg:text-sm font-bold opacity-90 drop-shadow-md">
+                                {voteCount} Suara
+                            </span>
+                        )}
+                    </div>
 
-                {/* The Lotus Flower */}
-                <div className="absolute right-[55px] md:right-[75px] lg:right-[95px] top-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-xl flex items-center">
-                    <div className="relative w-[50px] h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] group-hover:scale-110 transition-transform origin-center">
-                        <Image
-                            src="/images/voting/teratai.png"
-                            alt="Teratai"
-                            fill
-                            className="object-contain"
-                        />
+                    <div className="absolute right-[55px] md:right-[75px] lg:right-[95px] top-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-xl flex items-center">
+                        <div className="relative w-[50px] h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] group-hover:scale-110 transition-transform origin-center">
+                            <Image
+                                src="/images/voting/teratai.png"
+                                alt="Teratai"
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }
