@@ -50,7 +50,7 @@ const Page = () => {
               key={item.slug}
               title={item.title}
               slug={item.slug}
-              imageSrc={item.image}
+              imageSrc={item["image-main"]}
               summary={item.summary}
             />
           ))}

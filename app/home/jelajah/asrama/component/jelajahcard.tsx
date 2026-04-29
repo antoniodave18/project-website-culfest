@@ -15,7 +15,7 @@ export default function JelajahCard({
   summary,
 }: JelajahCardProps) {
   return (
-    <article className="relative mx-auto flex w-full max-w-225 items-center justify-center px-2 font-serif sm:px-4">
+    <article className="relative mx-auto flex w-full max-w-225 items-center justify-center px-2 font-serif sm:px-4 hover:scale-102 duration-500">
       <div
         className="relative z-10 w-full rounded-3xl backdrop-blur-xs px-4 pt-10 pb-10 sm:px-8 md:rounded-4xl md:px-12
           bg-linear-to-r from-[#461500]/20 from-10% via-white/10 via-50% to-[#461500]/20 to-90%"
