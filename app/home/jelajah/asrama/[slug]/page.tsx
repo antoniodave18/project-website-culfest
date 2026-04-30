@@ -58,7 +58,7 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
           />
         </div>
 
-        <div className="relative mt-2 lg:mt-5 ml-2 lg:ml-5 z-30">
+        <div className="relative mt-0 lg:mt-5 ml-5 lg:ml-5 z-30">
           <NavActionButton
             href="/home/jelajah/asrama"
             label="Kembali"
@@ -76,14 +76,14 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
             className="object-contain"
           />
           <h1 className="absolute left-1/2 top-[40%] md:top-[35%] z-10 w-full -translate-x-1/2 -translate-y-1/2 px-6
-           text-center text-2xl font-bold text-[#ffd700] md:text-5xl">
+           text-center text-lg font-bold text-[#ffd700] md:text-5xl">
             {detail.title}
           </h1>
         </div>
 
         <div
           className="
-              relative w-[calc(100%-5rem)] rounded-2xl mx-auto mt-[5%] px-5 md:px-8 lg:px-15 pt-7 md:pt-25 pb-10 md:pb-40
+              relative w-[calc(100%-2rem)] md:w-[calc(100%-5rem)] rounded-2xl mx-auto mt-[5%] px-5 md:px-8 lg:px-15 pt-7 md:pt-25 pb-20 md:pb-50
               border-4 border-[#4d1101]
               shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
               flex flex-col items-center gap-6
@@ -104,7 +104,7 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
             <div className="order-1 md:order-2 flex items-center justify-center mt-10 mx-auto md:mx-0">
               <div className="relative w-50 h-80 md:w-110 md:h-110 overflow-hidden">
                 {/* Background Image */}
-                <div className="absolute inset-[9%] md:inset-x-[15%] md:inset-y-0 overflow-hidden">
+                <div className="absolute inset-[9%] md:inset-x-[5%] lg:inset-x-[15%] md:inset-y-[10%] lg:inset-y-0 overflow-hidden">
                   <Image
                     src={detail["image-main"]}
                     alt={`${detail.title} preview`}
@@ -132,17 +132,18 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
           </div>
         </div>
 
-        <div className="relative w-full -mt-10 md:-mt-55 z-20">
-          <Image
-            src="/images/jelajah/asrama/slug/gunung-asrama.png"
-            alt="title fasilitas"
-            width={1920}
-            height={420}
-            className="w-full h-auto"
-          />
-        </div>
+        <div className="relative w-full">
+          <div className="pointer-events-none absolute inset-x-0 bottom-full z-20">
+            <Image
+              src="/images/jelajah/asrama/slug/gunung-asrama.png"
+              alt="title fasilitas"
+              width={1920}
+              height={420}
+              className="w-full h-auto"
+            />
+          </div>
 
-        <div className="w-full bg-[#03005e] py-4 flex items-center justify-center">
+          <div className="relative z-10 w-full bg-[#03005e] py-4 flex items-center justify-center">
           <div className="relative w-full h-13 md:h-20">
             <Image
               src="/images/jelajah/asrama/slug/fasilitas-title.png"
@@ -153,8 +154,9 @@ export default async function DetailAsramaPage({ params }: DetailPageProps) {
             />
           </div>
         </div>
+        </div>
 
-        <div className="relative w-[calc(100%-5rem)] md:w-[calc(100%-20rem)] mx-auto my-5">
+        <div className="relative w-[calc(100%-2rem)] lg:w-[calc(100%-20rem)] mx-auto my-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
               className="
