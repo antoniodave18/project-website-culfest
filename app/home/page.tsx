@@ -359,6 +359,7 @@ export default function Home() {
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-[#253378] border-4 border-black/25
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+            hover:scale-103 transition-transform duration-500
           "
                   >
                     <div
@@ -406,6 +407,7 @@ export default function Home() {
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-[#253378] border-4 border-black/25
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+            hover:scale-103 transition-transform duration-500
           "
                   >
                     <div
@@ -452,6 +454,7 @@ export default function Home() {
             relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
             bg-[#253378] border-4 border-black/25 
             shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
+            hover:scale-103 transition-transform duration-500
           "
                   >
                     <div
@@ -664,15 +667,7 @@ export default function Home() {
                     Check Your Character (CYC) adalah inovasi interaktif berupa karakter identitas terhubung budaya Sumatera Selatan. CYC memiliki mekanisme menyerupai MBTI yang mana screening penentuan karakter identitas
                   </p>
 
-                  <Link
-                    href="/home/game"
-                    className="group flex items-center gap-3 px-8 py-4 bg-[#7a2400] text-white rounded-xl font-bold text-lg md:text-xl hover:bg-[#5a1a00] transition-all duration-300 shadow-lg border-2 border-[#461500]/30 hover:scale-105"
-                  >
-                    Coba Sekarang
-                    <span className="transition-transform duration-300 group-hover:translate-x-2">
-                      &rarr;
-                    </span>
-                  </Link>
+                  <NavActionButton href="/home/game" label="Mainkan Sekarang →" />
                 </div>
               </div>
             </section>
