@@ -45,13 +45,8 @@ const Page = () => {
 
         <div className="relative w-full md:hidden">
           <div
-            className="hide-scrollbar flex snap-x snap-mandatory gap-6 md:gap-30 overflow-x-auto overscroll-x-contain px-[7vw] md:px-[17vw] py-10"
-            style={{
-              backgroundImage: "url('/images/jelajah/ormada/Bg.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
+            className="hide-scrollbar flex snap-x snap-mandatory gap-6 md:gap-30 overflow-x-auto overscroll-x-contain px-[7vw] md:px-[17vw] py-10
+            bg-linear-to-b from-[#EF9E1E] from-10% via-[#F7C063] via-50% to-[#EF9E1E] rounded-b-xl"
           >
             {ORMADA_DETAILS.map((item: OrmadaDetail) => (
               <div
