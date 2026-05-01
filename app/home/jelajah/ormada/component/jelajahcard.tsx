@@ -4,16 +4,11 @@ import Image from "next/image";
 export interface JelajahCardProps {
   title: string;
   slug: string;
-  imageSrc?: string;
-  summary?: string;
+  imageSrc: string;
+  summary: string;
 }
 
-export default function JelajahCard({
-  title,
-  slug,
-  imageSrc = "/images/tentang/penari.png",
-  summary,
-}: JelajahCardProps) {
+export default function JelajahCard({ title, slug, imageSrc, summary }: JelajahCardProps) {
   return (
     <article className="relative mx-auto flex w-full max-w-225 items-center justify-center px-2 font-serif sm:px-4 hover:scale-102 duration-500">
       <div
@@ -44,7 +39,7 @@ export default function JelajahCard({
                 alt={`Foto ${title}`}
                 fill
                 sizes="(max-width: 768px) 92vw, 480px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
@@ -59,7 +54,7 @@ export default function JelajahCard({
 
           <div className="flex justify-center sm:justify-end">
             <NavActionButton
-              href={`/home/jelajah/asrama/${slug}`}
+              href={`/home/jelajah/ormada/${slug}`}
               label="Lihat Detail"
               icon="→"
               iconPosition="right"
