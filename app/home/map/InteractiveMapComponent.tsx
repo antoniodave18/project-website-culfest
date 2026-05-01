@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useRef, Suspense } from "react";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, Environment } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
+import { Component, ReactNode, Suspense, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { Canvas, ThreeEvent, useLoader } from "@react-three/fiber";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import * as THREE from "three";
+
+const MAP_MODEL_MTL_URL = "/images/map/Bahan%20Denah%203D.mtl?v=1";
+const MAP_MODEL_OBJ_URL = "/images/map/Bahan%20Denah%203D.obj?v=1";
+const MAP_MODEL_POSITION: [number, number, number] = [-69.54, -10.04, 40.33];
+const MAP_CONTROL_TARGET: [number, number, number] = [0, 0, 0];
+const MAP_PREVIEW_CAMERA: [number, number, number] = [0, 55, 120];
+const MAP_FULLSCREEN_CAMERA: [number, number, number] = [0, 70, 145];
 
 type SelectedObjectData = {
   title: string;
@@ -18,191 +25,69 @@ type ColorDetailData = {
   description: string;
 };
 
+function MapLoadingFallback() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-black text-[#F5A623]">
+      <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#F5A623]" />
+    </div>
+  );
+}
+
+function MapErrorFallback() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center bg-black px-4 text-center text-sm font-bold uppercase tracking-wider text-[#F5A623]">
+      Map gagal dimuat
+    </div>
+  );
+}
+
+class MapErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <MapErrorFallback />;
+    }
+
+    return this.props.children;
+  }
+}
+
 const COLOR_DETAIL_DATA: Record<string, ColorDetailData> = {
-  // "#FFFFFF": {
-  //   name: "Putih",
-  //   description:
-  //     "Melambangkan kebersihan, netralitas, dan area terbuka yang terang.",
-  // },
-  "#FFFF00": {
-    name: "Kuning Terang",
-    description: "Memberi aksen energik untuk titik yang ingin lebih menonjol.",
-  },
   "#6565FF": {
-    name: "Biru Cerah",
+    name: "Stand Sponsor",
     description:
       "Merepresentasikan nuansa teknologi, informasi, dan area sejuk.",
   },
   "#99FF32": {
-    name: "Hijau Lime",
+    name: "Expo Asrama",
     description:
       "Menggambarkan area aktif, segar, atau jalur interaksi pengguna.",
   },
   "#FF99CC": {
-    name: "Pink Muda",
-    description: "Memberi kesan ramah dan playful pada elemen dekoratif.",
+    name: "Expo Ormada",
+    description: "true",
   },
-  "#000000": {
-    name: "Hitam",
-    description:
-      "Digunakan untuk kontras tinggi dan memperkuat kedalaman visual.",
-  },
+
   "#663300": {
-    name: "Cokelat Tua",
+    name: "Stand Fundra",
     description: "Mewakili elemen tanah, kayu, atau area bernuansa natural.",
   },
-  "#FF8C65": {
-    name: "Oranye Salmon",
-    description: "Cocok untuk area yang ingin terlihat hangat dan komunikatif.",
-  },
+
   "#3A3A3A": {
-    name: "Abu Gelap",
+    name: "Area Parkir",
     description: "Membantu membentuk bayangan, struktur, dan batas objek.",
   },
-  "#FFB265": {
-    name: "Oranye Muda",
-    description: "Menghadirkan nuansa hangat yang tetap lembut dan bersahabat.",
-  },
-  "#CCCCFF": {
-    name: "Lavender Pale",
-    description: "Memberi tone lembut untuk area pendukung yang tidak dominan.",
-  },
-  "#CCFFFF": {
-    name: "Cyan Pale",
-    description: "Memberi kesan sejuk, ringan, dan terbuka pada elemen map.",
-  },
-  "#4C9900": {
-    name: "Hijau Daun",
-    description: "Identik dengan area vegetasi, taman, atau zona eco.",
-  },
-  "#32FFFF": {
-    name: "Cyan Terang",
-    description: "Warna aksen kontras untuk objek yang perlu cepat dikenali.",
-  },
-  "#CC6600": {
-    name: "Oranye Cokelat",
-    description: "Menguatkan tema hangat pada elemen struktur dan furnitur.",
-  },
-  "#FF9932": {
-    name: "Oranye Kunyit",
-    description:
-      "Menonjolkan area penting tanpa terlalu agresif terhadap mata.",
-  },
-  "#FF6565": {
-    name: "Merah Muda",
-    description: "Menandai area perhatian dengan nuansa lembut.",
-  },
-  "#FF00FF": {
-    name: "Magenta",
-    description: "Aksen kuat untuk objek yang ingin dibuat sangat menonjol.",
-  },
-  "#660066": {
-    name: "Ungu Tua",
-    description: "Memberikan kesan eksklusif dan fokus pada detail tertentu.",
-  },
-  "#FF6532": {
-    name: "Oranye Merah",
-    description:
-      "Digunakan untuk penanda zona aktif atau titik prioritas tinggi.",
-  },
-  "#304F49": {
-    name: "Hijau Kehitaman",
-    description: "Warna natural gelap untuk objek karakter atau pakaian.",
-  },
-  "#2A4F77": {
-    name: "Biru Denim",
-    description: "Memberi identitas kuat pada elemen karakter dan kostum.",
-  },
-  "#8C8378": {
-    name: "Taupe",
-    description: "Netral hangat untuk detail aksesori dan elemen sekunder.",
-  },
-  "#617057": {
-    name: "Olive Gray",
-    description: "Mendukung gaya earthy dengan kesan kalem dan stabil.",
-  },
-  "#995172": {
-    name: "Mauve",
-    description: "Aksen artistik untuk elemen yang ingin tampil unik.",
-  },
-  "#9F732C": {
-    name: "Cokelat Emas",
-    description: "Warna hangat untuk detail rambut, ornamen, atau kayu.",
-  },
-  "#1E1E1E": {
-    name: "Hitam Arang",
-    description: "Mempertegas kontur objek dengan intensitas tinggi.",
-  },
-  "#567593": {
-    name: "Steel Blue",
-    description: "Mewakili elemen modern dengan nuansa dingin dan stabil.",
-  },
-  "#9B9477": {
-    name: "Khaki",
-    description: "Cocok untuk aksesori dan elemen kain bernuansa vintage.",
-  },
-  "#6F7E89": {
-    name: "Abu Kebiruan",
-    description: "Warna transisi yang menyatukan area terang dan gelap.",
-  },
-  "#6B4743": {
-    name: "Cokelat Bata",
-    description: "Memberi kesan kuat pada elemen material keras.",
-  },
-  "#634429": {
-    name: "Cokelat Kayu",
-    description: "Relevan untuk objek bernuansa kayu dan properti natural.",
-  },
-  "#2B2D22": {
-    name: "Hijau Lumut Gelap",
-    description: "Menambah kedalaman pada area shadow atau lipatan objek.",
-  },
-  "#E59B79": {
-    name: "Peach Tan",
-    description: "Warna kulit hangat yang membuat karakter terasa hidup.",
-  },
-  "#CCA66D": {
-    name: "Gold Sand",
-    description: "Warna pirang hangat untuk detail rambut dan ornamen.",
-  },
-  "#F7F7C5": {
-    name: "Krem Pucat",
-    description: "Memberi highlight lembut pada area terang.",
-  },
-  "#442A26": {
-    name: "Cokelat Gelap",
-    description: "Digunakan untuk kontras dan elemen detail berkarakter kuat.",
-  },
-  "#49321F": {
-    name: "Cokelat Kopi",
-    description: "Warna earthy untuk elemen trim dan penegas bentuk.",
-  },
-  "#FFFFCC": {
-    name: "Kuning Krem",
-    description: "Membangun suasana hangat dan terang di area penanda.",
-  },
-  "#FFF2CC": {
-    name: "Peach Krem",
-    description: "Warna lembut untuk transisi antar elemen terang.",
-  },
-  "#FF0000": {
-    name: "Merah",
-    description: "Penanda paling kuat untuk area penting atau peringatan.",
-  },
-  "#FFE5CC": {
-    name: "Krem Jingga",
-    description: "Memberi nuansa ramah pada area informatif.",
-  },
-  "#9932FF": {
-    name: "Ungu Elektrik",
-    description: "Aksen visual kuat untuk titik interaktif spesial.",
-  },
-  "#AAAAAA": {
-    name: "Abu Netral",
-    description: "Warna utilitas untuk area struktur yang netral.",
-  },
+
   "#808080": {
-    name: "Abu Medium",
+    name: "Parkir Panitia",
     description:
       "Menyeimbangkan komposisi visual antara warna hangat dan gelap.",
   },
@@ -212,52 +97,35 @@ function getObjectDetail(
   objectName: string,
   materialName: string,
   colorHex: string,
-): SelectedObjectData | null {
+): SelectedObjectData {
   const normalizedColorHex = `#${colorHex.toUpperCase()}`;
   const colorDetail = COLOR_DETAIL_DATA[normalizedColorHex];
 
   if (colorDetail) {
     return {
-      title: `${objectName} (${colorDetail.name})`,
-      description: `${colorDetail.description} Material: ${materialName}. Kode warna: ${normalizedColorHex}.`,
+      title: `${colorDetail.name}`,
+      description: "",
     };
   }
 
-  return null;
+  return {
+    title: `${normalizedColorHex}`,
+    description: "",
+  };
 }
 
-// ==========================================
-// 1. THE 3D SCENE CONFIGURATION
-// ==========================================
 function SpinningModelScene({
   isFullscreen,
   onObjectSelect,
 }: {
   isFullscreen: boolean;
-  onObjectSelect: (data: SelectedObjectData | null) => void;
+  onObjectSelect?: (data: SelectedObjectData) => void;
 }) {
-  // Load material library first so OBJ can use original SketchUp colors.
-  const materials = useLoader(MTLLoader, "/images/game/Test%203D%202.mtl");
-
-  // Apply the loaded MTL materials to OBJLoader before reading the model.
-  const obj = useLoader(
-    OBJLoader,
-    "/images/game/Test%203D%202.obj",
-    (loader) => {
-      materials.preload();
-      loader.setMaterials(materials);
-    },
-  );
-  const modelRef = useRef<THREE.Group>(null);
-
-  // Spin the model automatically when NOT in fullscreen
-  useFrame((state, delta) => {
-    if (!isFullscreen && modelRef.current) {
-      modelRef.current.rotation.y += delta * 0.3;
-    }
+  const materials = useLoader(MTLLoader, MAP_MODEL_MTL_URL);
+  const obj = useLoader(OBJLoader, MAP_MODEL_OBJ_URL, (loader) => {
+    materials.preload();
+    loader.setMaterials(materials);
   });
-
-  // Apply basic material to the OBJ if missing so it looks better than stark white
   obj.traverse((child) => {
     if (child instanceof THREE.Mesh) {
       child.castShadow = true;
@@ -274,27 +142,58 @@ function SpinningModelScene({
 
   const handleObjectClick = (event: ThreeEvent<MouseEvent>) => {
     event.stopPropagation();
+    if (!isFullscreen || !onObjectSelect) return;
+    // Periksa semua intersections (dari depan ke belakang) dan pilih objek pertama
+    // yang bukan berwarna putih (#ffffff). Jika tidak ada, abaikan klik.
+    const intersections = (event as any).intersections as
+      | Array<{ object: THREE.Object3D }>
+      | undefined;
+    let targetMesh: THREE.Mesh | null = null;
+    let targetColorHex = "";
+    let targetMaterialName = "";
+    let targetObjectName = "";
 
-    const clickedMesh = event.object as THREE.Mesh;
-    const material = Array.isArray(clickedMesh.material)
-      ? clickedMesh.material[0]
-      : clickedMesh.material;
+    const tryUse = (mesh: THREE.Mesh | null) => {
+      if (!mesh) return false;
+      const mat = Array.isArray(mesh.material)
+        ? mesh.material[0]
+        : mesh.material;
+      const colorHex =
+        mat instanceof THREE.Material && "color" in mat
+          ? (mat as THREE.MeshStandardMaterial).color.getHexString()
+          : "";
+      if (!colorHex || colorHex.toLowerCase() === "ffffff") return false;
+      const normalizedColor = `#${colorHex.toUpperCase()}`;
+      if (!(normalizedColor in COLOR_DETAIL_DATA)) return false; // Warna tidak ada di list
+      targetMesh = mesh;
+      targetColorHex = colorHex;
+      targetMaterialName = mat?.name || "Default Material";
+      targetObjectName = mesh.name || mesh.parent?.name || "Bagian Map";
+      return true;
+    };
 
-    const objectName =
-      clickedMesh.name || clickedMesh.parent?.name || "Unnamed Part";
-    const materialName = material?.name || "Default Material";
-    const colorHex =
-      material instanceof THREE.Material && "color" in material
-        ? (material as THREE.MeshStandardMaterial).color.getHexString()
-        : "ffffff";
+    if (intersections && intersections.length > 0) {
+      for (const inter of intersections) {
+        const mesh = inter.object as THREE.Mesh;
+        if (tryUse(mesh)) break;
+      }
+    }
 
-    const objectDetail = getObjectDetail(objectName, materialName, colorHex);
-    onObjectSelect(objectDetail);
+    // Fallback: gunakan event.object jika belum menemukan target
+    if (!targetMesh) {
+      const clickedMesh = event.object as THREE.Mesh;
+      tryUse(clickedMesh);
+    }
+
+    if (!targetMesh) return; // tidak ada objek non-putih ditemukan
+
+    onObjectSelect(
+      getObjectDetail(targetObjectName, targetMaterialName, targetColorHex),
+    );
   };
 
   return (
     <>
-      {/* Soft lighting for the scene */}
       <ambientLight intensity={0.6} />
       <directionalLight
         position={[10, 20, 10]}
@@ -303,119 +202,127 @@ function SpinningModelScene({
         shadow-mapSize={[1024, 1024]}
       />
       <directionalLight position={[-10, -10, -10]} intensity={0.5} />
-
-      {/* Environmental reflection (adds significant realism to standard materials) */}
       <Environment preset="sunset" />
 
-      <group ref={modelRef}>
+      <group>
         <primitive
           object={obj}
           scale={1}
-          position={[0, -2, 0]}
+          position={MAP_MODEL_POSITION}
           onClick={handleObjectClick}
         />
       </group>
 
-      {/* Control the camera only when expanded */}
-      {isFullscreen && (
-        <OrbitControls
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          autoRotate={true}
-          autoRotateSpeed={1.0}
-          maxPolarAngle={Math.PI / 2 + 0.2} // Prevent looking directly from below
-          minDistance={1}
-          maxDistance={50}
-        />
-      )}
+      <OrbitControls
+        target={MAP_CONTROL_TARGET}
+        enablePan
+        enableZoom
+        enableRotate
+        maxPolarAngle={Math.PI / 2 + 0.2}
+        minDistance={8}
+        maxDistance={260}
+      />
     </>
   );
 }
 
-// ==========================================
-// 2. THE MAIN WRAPPER & FULLSCREEN LOGIC
-// ==========================================
 export default function InteractiveMapComponent() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [selectedObject, setSelectedObject] =
     useState<SelectedObjectData | null>(null);
 
-  return (
-    <>
-      {/* Preview Container Size is controlled by the parent div in page.tsx */}
-      <div className="relative w-full h-full">
-        {/* Loading Fallback */}
-        <Suspense
-          fallback={
-            <div className="absolute inset-0 flex items-center justify-center text-[#F5A623]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F5A623]"></div>
-            </div>
-          }
-        >
-          <Canvas shadows camera={{ position: [0, 5, 15], fov: 45 }}>
-            <SpinningModelScene
-              isFullscreen={false}
-              onObjectSelect={setSelectedObject}
-            />
-          </Canvas>
-        </Suspense>
+  useEffect(() => {
+    if (!isFullscreen) return;
 
-        {/* Preview Button Overlay */}
-        <button
-          onClick={() => setIsFullscreen(true)}
-          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 px-6 py-2.5 bg-gradient-to-r from-[#D4AF37] to-[#F5A623] hover:from-[#e1bf61] hover:to-[#fcf9c4] text-[#5c0a00] text-sm font-bold rounded-full shadow-[0_4px_14px_rgba(212,175,55,0.5)] transition-all uppercase tracking-wider z-10"
-        >
-          View Full
-        </button>
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isFullscreen]);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setIsFullscreen(false);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const openFullscreen = () => {
+    setIsFullscreen(true);
+    document.documentElement.requestFullscreen?.().catch(() => undefined);
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    setSelectedObject(null);
+    if (document.fullscreenElement) {
+      document.exitFullscreen?.().catch(() => undefined);
+    }
+  };
+
+  const fullscreenOverlay = (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 2147483647,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100vw",
+        height: "100dvh",
+        overflow: "hidden",
+        background: "#000",
+      }}
+    >
+      <button
+        onClick={closeFullscreen}
+        className="absolute left-4 top-4 z-50 flex h-11 items-center justify-center rounded-full border-2 border-[#f0b83d] bg-[linear-gradient(to_bottom,#7a2608,#3a0600)] px-5 text-sm font-black uppercase tracking-wider text-white shadow-lg transition-transform hover:scale-105 md:left-6 md:top-6"
+        aria-label="Back from fullscreen"
+      >
+        Back
+      </button>
+
+      <div style={{ width: "100vw", height: "100dvh" }}>
+        <MapErrorBoundary>
+          <Suspense fallback={<MapLoadingFallback />}>
+            <Canvas
+              shadows
+              dpr={[1, 1.5]}
+              gl={{
+                alpha: false,
+                antialias: true,
+                powerPreference: "high-performance",
+              }}
+              camera={{ position: MAP_FULLSCREEN_CAMERA, fov: 45 }}
+              onCreated={({ gl }) => {
+                gl.setClearColor("#000000");
+              }}
+            >
+              <SpinningModelScene
+                isFullscreen
+                onObjectSelect={setSelectedObject}
+              />
+            </Canvas>
+          </Suspense>
+        </MapErrorBoundary>
       </div>
 
-      {/* FULLSCREEN MODAL INTERACTION */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md">
-          <button
-            onClick={() => {
-              setIsFullscreen(false);
-              setSelectedObject(null);
-            }}
-            className="absolute top-6 right-6 z-50 flex items-center justify-center w-12 h-12 bg-red-600 hover:bg-red-500 text-white rounded-full font-bold shadow-lg transition-transform hover:scale-105"
-            aria-label="Close fullscreen"
-          >
-            ✕
-          </button>
-
-          <div className="w-full h-full">
-            <Suspense
-              fallback={
-                <div className="absolute inset-0 flex items-center justify-center text-[#F5A623]">
-                  <span className="animate-pulse text-xl">
-                    Loading 3D Engine...
-                  </span>
-                </div>
-              }
-            >
-              <Canvas shadows camera={{ position: [0, 10, 20], fov: 45 }}>
-                <SpinningModelScene
-                  isFullscreen={true}
-                  onObjectSelect={setSelectedObject}
-                />
-              </Canvas>
-            </Suspense>
-          </div>
-
-          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/50 text-sm tracking-widest animate-pulse pointer-events-none">
-            DRAG TO ROTATE • SCROLL TO ZOOM
-          </div>
-        </div>
-      )}
-
       {selectedObject && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/35 px-4">
+        <div className="absolute inset-0 z-[60] flex items-center justify-center bg-black/35 px-4">
           <div className="w-full max-w-2xl rounded-3xl border border-[#f5c67a]/35 bg-[linear-gradient(145deg,rgba(48,26,11,0.95),rgba(21,10,4,0.95))] p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.45)] backdrop-blur-sm md:p-8">
             <div className="flex items-start justify-between gap-4 border-b border-white/15 pb-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#f5c67a]">
-                  Detail Objek
+                  Detail Tempat
                 </p>
                 <h3 className="mt-2 text-2xl font-bold tracking-wide">
                   Informasi Lokasi
@@ -424,13 +331,13 @@ export default function InteractiveMapComponent() {
               <button
                 onClick={() => setSelectedObject(null)}
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-sm text-white hover:bg-white/30"
-                aria-label="Close object detail"
+                aria-label="Close place detail"
               >
-                ✕
+                X
               </button>
             </div>
 
-            <div className="mt-5 space-y-4">
+            <div className="mt-5">
               <div className="rounded-xl border border-white/10 bg-black/20 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                   Judul
@@ -440,18 +347,81 @@ export default function InteractiveMapComponent() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                  Penjelasan
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-white/85">
-                  {selectedObject.description}
-                </p>
-              </div>
+              {/* Conditionally show description: when selectedObject.description is the boolean/string "true",
+                  use the description stored in COLOR_DETAIL_DATA for the current color code; otherwise show
+                  the description string if it exists. */}
+              {(() => {
+                const descFlag = selectedObject.description;
+                let descriptionContent = "";
+
+                if (descFlag === "true") {
+                  const colorKey = String(selectedObject.title)
+                    .split(" ")[0]
+                    .toUpperCase();
+                  const detail =
+                    COLOR_DETAIL_DATA[
+                      colorKey as keyof typeof COLOR_DETAIL_DATA
+                    ];
+                  descriptionContent = detail?.description ?? "";
+                } else if (
+                  typeof descFlag === "string" &&
+                  descFlag.trim() !== ""
+                ) {
+                  descriptionContent = descFlag;
+                }
+
+                return descriptionContent ? (
+                  <div className="mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                      Detail
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/85">
+                      {descriptionContent}
+                    </p>
+                  </div>
+                ) : null;
+              })()}
             </div>
           </div>
         </div>
       )}
+    </div>
+  );
+
+  return (
+    <>
+      <div className="relative h-full w-full">
+        <MapErrorBoundary>
+          <Suspense fallback={<MapLoadingFallback />}>
+            <Canvas
+              shadows
+              dpr={[1, 1.5]}
+              gl={{
+                alpha: false,
+                antialias: true,
+                powerPreference: "high-performance",
+              }}
+              camera={{ position: MAP_PREVIEW_CAMERA, fov: 45 }}
+              onCreated={({ gl }) => {
+                gl.setClearColor("#000000");
+              }}
+            >
+              <SpinningModelScene isFullscreen={false} />
+            </Canvas>
+          </Suspense>
+        </MapErrorBoundary>
+
+        <button
+          onClick={openFullscreen}
+          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F5A623] px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-[#5c0a00] shadow-[0_4px_14px_rgba(212,175,55,0.5)] transition-all hover:from-[#e1bf61] hover:to-[#fcf9c4]"
+        >
+          View Full
+        </button>
+      </div>
+
+      {isFullscreen &&
+        typeof document !== "undefined" &&
+        createPortal(fullscreenOverlay, document.body)}
     </>
   );
 }
