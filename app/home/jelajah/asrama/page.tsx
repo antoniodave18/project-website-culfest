@@ -37,7 +37,7 @@ const Page = () => {
         </div>
 
         <div
-          className="hidden w-full grid-cols-2 gap-8 px-10 py-15 lg:gap-15 lg:grid"
+          className="hidden w-full grid-cols-2 gap-8 px-10 py-15 md:gap-8 lg:gap-15 md:grid"
           style={{
             backgroundImage: "url('/images/jelajah/asrama/Bg.png')",
             backgroundSize: "cover",
@@ -56,7 +56,7 @@ const Page = () => {
           ))}
         </div>
 
-        <div className="relative w-full lg:hidden">
+        <div className="relative w-full md:hidden">
           <div
             className="hide-scrollbar flex snap-x snap-mandatory gap-6 md:gap-30 overflow-x-auto overscroll-x-contain px-[7vw] md:px-[17vw] py-10"
             style={{
