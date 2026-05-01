@@ -12,45 +12,17 @@ type CandidateRanking = {
     voteCount: number;
 };
 
-function LeaderboardChampionFrame({ candidate }: { candidate: CandidateRanking }) {
-    return (
-        <div className="lb-frame-card">
-            <div className="lb-frame">
-                <div className="lb-frame-photo">
-                    <Image
-                        src={candidate.imageUrl || "/images/voting/teratai.png"}
-                        alt={candidate.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 62vw, 260px"
-                        quality={100}
-                        priority
-                    />
-                </div>
-                <Image src="/images/voting/frame.png" alt="" fill className="lb-frame-img" priority />
-                <div className="lb-frame-title">
-                    <Image src="/images/voting/tittle.png" alt="" fill className="object-fill" priority />
-                    <span>{candidate.name}</span>
-                </div>
-            </div>
-        </div>
-    );
-}
+
 
 function LeaderboardRankRow({ candidate, rank }: { candidate: CandidateRanking; rank: number }) {
+    let rankClass = "";
+    if (rank === 1) rankClass = "lb-rank-gold";
+    else if (rank === 2) rankClass = "lb-rank-silver";
+    else if (rank === 3) rankClass = "lb-rank-bronze";
+
     return (
-        <div className="lb-rank-row">
+        <div className={`lb-rank-row ${rankClass}`}>
             <div className="lb-rank-number">{rank}</div>
-            <div className="lb-rank-photo">
-                <Image
-                    src={candidate.imageUrl || "/images/voting/teratai.png"}
-                    alt={candidate.name}
-                    fill
-                    className="object-cover"
-                    sizes="70px"
-                    quality={100}
-                />
-            </div>
             <p className="lb-rank-name">{candidate.name}</p>
             <div className="lb-rank-votes">
                 <Image src="/images/voting/teratai.png" alt="" width={86} height={86} className="lb-rank-lotus" />
@@ -69,12 +41,12 @@ export default function LeaderboardPage() {
     const [errorMsg, setErrorMsg] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
 
-    const champion = rankings[0];
-    const remainingRankings = rankings.slice(1);
-    const totalPages = rankings.length <= 1 ? 1 : 1 + Math.ceil(Math.max(0, remainingRankings.length - FIRST_PAGE_ROWS) / NEXT_PAGE_ROWS);
+    const totalPages = rankings.length <= FIRST_PAGE_ROWS
+        ? 1
+        : 1 + Math.ceil((rankings.length - FIRST_PAGE_ROWS) / NEXT_PAGE_ROWS);
     const paginatedRankings = currentPage === 0
-        ? remainingRankings.slice(0, FIRST_PAGE_ROWS)
-        : remainingRankings.slice(
+        ? rankings.slice(0, FIRST_PAGE_ROWS)
+        : rankings.slice(
             FIRST_PAGE_ROWS + (currentPage - 1) * NEXT_PAGE_ROWS,
             FIRST_PAGE_ROWS + currentPage * NEXT_PAGE_ROWS
         );
@@ -162,24 +134,12 @@ export default function LeaderboardPage() {
                             </div>
                         ) : (
                             <>
-                                {champion && currentPage === 0 && (
-                                    <div className="lb-feature">
-                                        <div className="lb-feature-mascot lb-feature-left">
-                                            <Image src="/images/tentang/chileko.png" alt="" width={150} height={210} className="object-contain" />
-                                        </div>
-                                        <LeaderboardChampionFrame candidate={champion} />
-                                        <div className="lb-feature-mascot lb-feature-right">
-                                            <Image src="/images/tentang/chitala.png" alt="" width={140} height={200} className="object-contain" />
-                                        </div>
-                                    </div>
-                                )}
-
                                 <div className="lb-rank-list">
                                     {paginatedRankings.map((candidate, index) => (
                                         <LeaderboardRankRow
                                             key={candidate.id}
                                             candidate={candidate}
-                                            rank={currentPage === 0 ? index + 2 : FIRST_PAGE_ROWS + (currentPage - 1) * NEXT_PAGE_ROWS + index + 2}
+                                            rank={currentPage === 0 ? index + 1 : FIRST_PAGE_ROWS + (currentPage - 1) * NEXT_PAGE_ROWS + index + 1}
                                         />
                                     ))}
                                 </div>
@@ -250,20 +210,15 @@ export default function LeaderboardPage() {
 .lb-status-title{color:#5c2408;font-family:serif;font-size:26px;font-weight:900}
 .lb-status-text{color:#6b2b08;font-weight:700;line-height:1.6;max-width:360px}
 .lb-card-row{width:100%;max-width:640px;display:flex;justify-content:center}
-.lb-feature{position:relative;width:100%;display:grid;grid-template-columns:1fr minmax(190px,260px) 1fr;align-items:center;justify-items:center;margin:10px 0 22px}
-.lb-feature-mascot{filter:drop-shadow(0 12px 12px rgba(0,0,0,.35));pointer-events:none}
-.lb-feature-left{justify-self:end;transform:translateX(-10px)}
-.lb-feature-right{justify-self:start;transform:translateX(10px)}
-.lb-frame-card{position:relative;width:min(46vw,260px)}
-.lb-frame{position:relative;aspect-ratio:331/462;width:100%;border-radius:26px;overflow:hidden;filter:drop-shadow(0 16px 18px rgba(0,0,0,.45))}
-.lb-frame-photo{position:absolute;z-index:1;inset:0;overflow:hidden;background:#083058}
-.lb-frame-img{z-index:10;object-fit:contain;pointer-events:none}
-.lb-frame-title{position:absolute;left:50%;top:3.6%;z-index:30;width:88%;height:13.5%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;padding:0 12%;filter:drop-shadow(0 4px 5px rgba(0,0,0,.38))}
-.lb-frame-title span{position:relative;z-index:2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#ffd064;font-family:serif;font-size:22px;font-weight:900;text-transform:uppercase;text-shadow:0 2px 4px rgba(0,0,0,.65)}
-.lb-rank-list{width:100%;display:flex;flex-direction:column;align-items:center;gap:18px}
-.lb-rank-row{width:100%;max-width:650px;height:92px;border-radius:12px;background:linear-gradient(90deg,#4a0802,#6e0a03 58%,#4a0802);box-shadow:0 8px 16px rgba(0,0,0,.34);display:grid;grid-template-columns:72px 74px minmax(0,1fr) 178px;align-items:center;overflow:hidden;border:1px solid rgba(255,222,106,.08)}
-.lb-rank-number{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:serif;font-size:30px;font-weight:900;font-style:italic;text-shadow:0 2px 4px rgba(0,0,0,.55)}
-.lb-rank-photo{position:relative;width:58px;height:68px;background:#551a0e;border:2px solid #ca8b14;border-radius:3px;overflow:hidden}
+.lb-rank-list{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;padding-top:10px}
+.lb-rank-row{width:100%;max-width:650px;height:92px;border-radius:12px;background:linear-gradient(90deg,#4a0802,#6e0a03 58%,#4a0802);box-shadow:0 8px 16px rgba(0,0,0,.34);display:grid;grid-template-columns:72px minmax(0,1fr) 178px;align-items:center;overflow:hidden;border:1px solid rgba(255,222,106,.08);transition:all .3s ease}
+.lb-rank-gold{background:linear-gradient(90deg,#6f4e00 0%,#f5c542 18%,#a87400 50%,#f5c542 82%,#6f4e00 100%);border:2px solid #ffd700;box-shadow:0 0 28px rgba(255,215,0,.55),inset 0 0 16px rgba(255,255,180,.18);transform:scale(1.04);z-index:10}
+.lb-rank-gold .lb-rank-number{color:#fff4b2;text-shadow:0 0 10px #ffdf70,0 0 22px #ffb700;font-size:38px;font-style:normal;transform:scale(1.08)}
+.lb-rank-silver{background:linear-gradient(90deg,#24272e 0%,#7d8696 20%,#4b525e 50%,#7d8696 80%,#24272e 100%);border:2px solid #d1d5db;box-shadow:0 0 20px rgba(209,213,219,.5),inset 0 0 12px rgba(209,213,219,.2);transform:scale(1.02);z-index:9}
+.lb-rank-silver .lb-rank-number{color:#f3f4f6;text-shadow:0 0 10px #d1d5db,0 0 20px #9ca3af;font-size:34px;font-style:normal}
+.lb-rank-bronze{background:linear-gradient(90deg,#3d1c02 0%,#ad5a1f 20%,#70360d 50%,#ad5a1f 80%,#3d1c02 100%);border:2px solid #f97316;box-shadow:0 0 18px rgba(249,115,22,.5),inset 0 0 10px rgba(249,115,22,.2);transform:scale(1.01);z-index:8}
+.lb-rank-bronze .lb-rank-number{color:#ffedd5;text-shadow:0 0 10px #fdba74,0 0 20px #f97316;font-size:32px;font-style:normal}
+.lb-rank-number{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:serif;font-size:30px;font-weight:900;font-style:italic;text-shadow:0 2px 4px rgba(0,0,0,.55);transition:all .3s ease}
 .lb-rank-name{min-width:0;padding:0 18px;color:#fff;font-family:serif;font-size:22px;font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 4px rgba(0,0,0,.65)}
 .lb-rank-votes{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-start;color:#fff;font-size:12px;font-weight:900;text-shadow:0 2px 3px rgba(0,0,0,.65)}
 .lb-rank-votes:before{content:"";position:absolute;right:20px;top:50%;width:96px;height:32px;transform:translateY(-50%);border:2px solid #d99712;border-left-width:1px;border-radius:4px 999px 999px 4px;background:linear-gradient(90deg,transparent,rgba(103,42,0,.28))}
@@ -277,14 +232,21 @@ export default function LeaderboardPage() {
 .lb-page-dot{width:32px;height:32px;border-radius:50%;border:2px solid #5c2408;background:transparent;color:#5c2408;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
 .lb-page-dot:hover{background:rgba(92,36,8,.1)}
 .lb-page-dot-active{background:linear-gradient(to bottom,#6b1e06,#3a0600);color:#fff;border-color:#eab308;box-shadow:0 2px 8px rgba(0,0,0,.4)}
-.lb-mascot-left,.lb-mascot-right{display:none}
 @media(max-width:767px){
-.lb-feature{grid-template-columns:1fr;gap:10px;margin:4px 0 16px}
-.lb-feature-mascot{display:none}
+.lb-mascot-left,.lb-mascot-right{display:none}
+.lb-rank-list{gap:12px}
+.lb-rank-row{height:78px;grid-template-columns:46px minmax(0,1fr) 100px;border-radius:10px}
+.lb-rank-number{font-size:22px}
+.lb-rank-gold .lb-rank-number{font-size:25px}
+.lb-rank-silver .lb-rank-number{font-size:23px}
+.lb-rank-bronze .lb-rank-number{font-size:22px}
+.lb-rank-name{padding:0 10px;font-size:14px}
+.lb-rank-votes:before{right:10px;width:64px;height:24px}
+.lb-rank-lotus{width:52px}
+.lb-rank-votes span{font-size:9px;margin-left:-2px;margin-right:8px}
 }
 @media(min-width:768px){
 .lb-page{padding:128px 32px 60px}
-.lb-back{left:32px;top:96px}
 .lb-ribbon-tl{width:400px;height:260px}
 .lb-ribbon-br{width:440px;height:340px}
 .lb-mascot-left,.lb-mascot-right{display:none}
@@ -297,7 +259,6 @@ export default function LeaderboardPage() {
 .lb-scroll{padding:50px 24px}
 .lb-rod{width:118%;height:75px}
 .lb-scroll-inner{gap:18px;padding:20px 16px 20pt}
-.lb-frame-card{width:min(38vw,260px)}
 .lb-rank-row{max-width:680px}
 }
 @media(min-width:1024px){
@@ -315,8 +276,6 @@ export default function LeaderboardPage() {
 .lb-rod{width:120%;height:90px}
 .lb-scroll-inner{gap:20px;padding:24px 24px 20pt}
 .lb-scroll{padding:70px 32px}
-.lb-frame-card{width:270px}
-}
 @media(min-width:1400px){
 .lb-page{padding-top:156px}
 .lb-mascot-left{left:70px;top:58%}
@@ -334,15 +293,12 @@ export default function LeaderboardPage() {
 .lb-scroll{padding:30px 8px}
 .lb-rod{width:112%;height:40px}
 .lb-scroll-inner{gap:10px;padding:10px 4px 20pt}
-.lb-feature{grid-template-columns:1fr;gap:10px;margin:4px 0 16px}
+.lb-feature{flex-direction:column;gap:10px;margin:4px 0 16px}
 .lb-feature-mascot{display:none}
 .lb-feature .lb-feature-mascot{display:none}
-.lb-frame-card{width:min(72vw,230px)}
-.lb-frame-title span{font-size:17px}
 .lb-rank-list{gap:12px}
-.lb-rank-row{height:76px;grid-template-columns:48px 52px minmax(0,1fr) 104px;border-radius:10px}
+.lb-rank-row{height:76px;grid-template-columns:48px minmax(0,1fr) 104px;border-radius:10px}
 .lb-rank-number{font-size:24px}
-.lb-rank-photo{width:42px;height:52px}
 .lb-rank-name{padding:0 10px;font-size:15px}
 .lb-rank-votes:before{right:10px;width:64px;height:24px}
 .lb-rank-lotus{width:54px}

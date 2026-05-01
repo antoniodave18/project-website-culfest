@@ -24,14 +24,7 @@ export function VotingCard({ rank = 1, name, imageUrl, onClick, voteCount, showV
                 </span>
             </div>
 
-            {/* 2. Portrait Frame */}
-            <div className="relative shrink-0 w-[45px] h-[55px] md:w-[60px] md:h-[70px] lg:w-[70px] lg:h-[80px] bg-[#3d130d] border-[1px] md:border-[2px] border-yellow-500/80 rounded-sm overflow-hidden z-10 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                {imageUrl && (
-                    <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
-                )}
-            </div>
-
-            {/* 3. Candidate Name */}
+            {/* 2. Candidate Name */}
             <div className="flex-1 px-3 md:px-5 lg:px-6 z-10 flex items-center">
                 <h3
                     className="text-white font-serif uppercase text-sm md:text-base lg:text-xl font-bold tracking-wider line-clamp-2 md:line-clamp-1"
