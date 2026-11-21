@@ -28,7 +28,7 @@ export default function AboutEventPage() {
                 textShadow: "0 2px 8px rgba(0,0,0,0.5)",
               }}
             >
-              Jelajah Asrama
+              Anthem Culfest
             </h2>
           </div>
 
