@@ -444,52 +444,6 @@ export default function Home() {
                   </div>
                 </AnimateOnView>
 
-                {/* Card — Fakultas */}
-                <AnimateOnView
-                  animation="animate-fadeInUp"
-                  className="w-full md:w-[80%] self-start"
-                >
-                  <div
-                    className="
-            relative w-full rounded-xl px-2 md:px-6 py-2 md:py-4
-            bg-[#253378] border-4 border-black/25 
-            shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
-            hover:scale-103 transition-transform duration-500
-          "
-                  >
-                    <div
-                      className="absolute inset-0 z-0 pointer-events-none"
-                      style={{
-                        backgroundImage:
-                          "url('/images/home/jelajah/motif.png')",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    />
-
-                    <div className="absolute w-[10%] -translate-y-1/2 translate-x-1/2 top-0 right-0 -z-1">
-                      <Image
-                        src="/images/home/jelajah/leaf.png"
-                        alt="leaf"
-                        width={125}
-                        height={125}
-                        className="object-fill w-full h-auto"
-                      />
-                    </div>
-
-                    <h3
-                      className="relative z-10 text-center text-5xl md:text-7xl lg:text-9xl text-yellow-300 font-bold tracking-widest mb-6"
-                      style={{
-                        fontFamily: "var(--font-efco-brookshire), serif",
-                      }}
-                    >
-                      Fakultas
-                    </h3>
-                    <div className="relative z-10 flex justify-center md:justify-end mt-3">
-                      <NavActionButton href="/home/jelajah/fakultas" label="Lihat Detail →" />
-                    </div>
-                  </div>
-                </AnimateOnView>
               </div>
             </section>
           </div>
@@ -551,14 +505,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                <Link
-                  href="/home/kompetisi"
-                  className="w-fit rounded-lg bg-linear-to-r from-[#ab3400] to-[#451500]
-                                     px-7 py-4 mt-0 md:mt-10 text-xs md:text-1xl uppercase tracking-widest
-                                     text-yellow-100 transition-colors duration-200 hover:from-[#451500] cursor-pointer z-6"
-                >
-                  Baca Selengkapnya
-                </Link>
               </div>
 
               <AnimateOnView
