@@ -66,7 +66,7 @@
 }
 .admin-nav a { font-weight: 650; }
 .admin-nav a:hover { background: #60262a; }
-.admin-nav a[aria-current="page"] { background: #74333a; box-shadow: inset 3px 0 #e2ae6d; }
+.admin-nav a[aria-current] { background: #74333a; box-shadow: inset 3px 0 #e2ae6d; }
 .admin-nav-planned { color: #ead1c5; }
 .admin-nav-planned small { color: #e4b99f; font-size: .66rem; }
 

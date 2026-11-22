@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
-import { ORMADA_DETAILS } from "../data";
-import ComingSoon from "@/app/components/ComingSoon";
+import { publicCommunity } from "@/lib/communities";
+import { communityDirectory, communityLogoPlaceholder } from "@/lib/community-fields";
 import Image from "next/image";
 import Link from "next/link";
 import NavActionButton from "@/app/home/components/NavActionButton";
 import DescriptionScrollable from "../components/DescriptionScrollable";
+
+export const dynamic = "force-dynamic";
 
 type DetailPageProps = {
   params: Promise<{
@@ -14,25 +16,23 @@ type DetailPageProps = {
 
 export default async function DetailOrmadaPage({ params }: DetailPageProps) {
   const { slug } = await params;
-  const detail = ORMADA_DETAILS.find((item) => item.slug === slug);
-
-  if (!detail) {
-    console.error(`Detail ormada dengan slug "${slug}" tidak ditemukan.`);
-    notFound();
+  const result = await publicCommunity(slug);
+  if (!result) notFound();
+  if (!result.profile) {
+    return (
+      <main className="min-h-[65vh] bg-[#6e0f04] px-6 pb-16 pt-40 text-center text-amber-50">
+        <h1 className="text-3xl font-bold">Profil komunitas diarsipkan</h1>
+        <p className="my-5">Profil ini sudah tidak tersedia di Jelajah Ormada.</p>
+        <NavActionButton href={communityDirectory} label="Kembali ke Jelajah Ormada" icon="←" iconPosition="left" />
+      </main>
+    );
   }
-  const igHandle = detail["ig-link"].replace(/https?:\/\/w{0,3}\.?instagram\.com\//, "").replace(/\/$/, "");
-  const gmapQuery = (() => {
-    try {
-      const url = new URL(detail["gmap-link"]);
-      return url.searchParams.get("query") || "";
-    } catch (e) {
-      return "";
-    }
-  })();
+  const detail = result.profile;
+  const igHandle = detail.instagramUrl ? new URL(detail.instagramUrl).pathname.replace(/^\/|\/$/g, "") : "";
+  const gmapQuery = detail.locationUrl ? new URL(detail.locationUrl).searchParams.get("query") : null;
   const gmapEmbed = gmapQuery
     ? `https://www.google.com/maps?q=${encodeURIComponent(gmapQuery)}&output=embed`
-    : detail["gmap-link"];
-  // return <ComingSoon />;
+    : null;
   return (
     <main className="relative isolate overflow-hidden pt-30 lg:pt-50 bg-[url('/images/home/bg-motif.png')] bg-repeat bg-contain bg-[#6e0f04]">
       <div className="relative w-[80vw] mx-auto pt-10 md:pt-20 mb-20 bg-amber-300
@@ -61,7 +61,7 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
 
         <div className="relative mt-0 lg:mt-5 ml-5 lg:ml-5 z-30">
           <NavActionButton
-            href="/home/jelajah/ormada"
+            href={communityDirectory}
             label="Kembali"
             icon="←"
             iconPosition="left"
@@ -78,7 +78,7 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
           />
           <h1 className="absolute left-1/2 top-[40%] md:top-[35%] z-10 w-full -translate-x-1/2 -translate-y-1/2 px-6
            text-center text-lg font-bold text-[#ffd700] md:text-5xl">
-            {detail.title}
+            {detail.name}
           </h1>
         </div>
 
@@ -105,8 +105,8 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
             <div className="order-1 md:order-2 flex items-center justify-center mt-10 mx-auto md:mx-0">
               <div className="relative w-full h-50 lg:h-100">
                 <Image
-                  src={detail["image-main"]}
-                  alt="photo frame"
+                  src={detail.logoUrl ?? communityLogoPlaceholder}
+                  alt={`Logo ${detail.name}`}
                   height={440}
                   width={312}
                   preload
@@ -133,7 +133,7 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
           </div>
 
           <div className="relative z-10 w-full bg-[#03005e] py-5 flex items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#ef9e1e]">Detail</h1>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#ef9e1e]">Detail</h2>
           </div>
         </div>
 
@@ -147,12 +147,12 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
     "
             >
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ef9e1e] text-center">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ef9e1e] text-center">
                 Tanggal Berdiri
-              </h1>
+              </h3>
 
               <p className="text-base md:text-xl lg:text-2xl font-bold text-white text-center mt-5 md:mt-10">
-                6/22/2011</p>
+                {detail.established || "Belum tersedia"}</p>
             </div>
 
             <div
@@ -162,34 +162,36 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
       shadow-[10px_10px_20px_rgba(0,0,0,0.5)]
     "
             >
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ef9e1e] text-center">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ef9e1e] text-center">
                 Kenal Lebih Dekat
-              </h1>
+              </h3>
 
-              <Link
-                href={detail["gmap-link"]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block mt-4"
-                aria-label={`Buka lokasi ${detail.title} di Google Maps`}
-              >
-                <div className="relative h-40 md:h-52 w-full overflow-hidden rounded-lg border-2 border-[#ef9e1e]">
+              {gmapEmbed ? (
+                <div className="relative mt-4 h-40 overflow-hidden rounded-lg border-2 border-[#ef9e1e] md:h-52">
                   <iframe
-                    title={`Lokasi ${detail.title}`}
+                    title={`Lokasi ${detail.name}`}
                     src={gmapEmbed}
                     className="h-full w-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-                  <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
                 </div>
-                {gmapQuery ? (
-                  <p className="mt-2 text-center text-ms md:text-lg font-semibold text-white">{gmapQuery}</p>
-                ) : null}
-              </Link>
-
+              ) : null}
+              {detail.locationUrl ? (
               <Link
-                href={detail["ig-link"]}
+                href={detail.locationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 block text-center font-semibold text-white underline"
+                aria-label={`Buka lokasi ${detail.name} di Google Maps`}
+              >
+                {gmapQuery || "Buka Google Maps"}
+              </Link>
+              ) : null}
+
+              {detail.instagramUrl ? (
+              <Link
+                href={detail.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 mx-auto flex w-fit items-center justify-center gap-2 rounded-md bg-linear-to-r from-[#EF9E1E] from-10% via-[#F7C063] via-50% to-[#EF9E1E] to-95% px-4 py-2 font-semibold text-[#461500] shadow-md transition hover:brightness-95"
@@ -206,7 +208,16 @@ export default async function DetailOrmadaPage({ params }: DetailPageProps) {
                 </svg>
                 <span className="text-sm md:text-base font-semibold">{igHandle}</span>
               </Link>
-
+              ) : null}
+              {detail.websiteUrl ? (
+                <Link href={detail.websiteUrl} target="_blank" rel="noopener noreferrer"
+                  className="mt-3 block text-center font-semibold text-white underline">
+                  Buka situs web
+                </Link>
+              ) : null}
+              {!detail.locationUrl && !detail.instagramUrl && !detail.websiteUrl ? (
+                <p className="my-4 text-center text-white">Belum ada tautan komunitas.</p>
+              ) : null}
             </div>
           </div>
         </div>

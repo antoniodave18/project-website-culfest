@@ -17,7 +17,9 @@ function Navigation({ pathname }: { pathname: string }) {
             {group.items.map(item => (
               <li key={item.label}>
                 {item.href ? (
-                  <Link href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+                  <Link href={item.href} aria-current={pathname === item.href ? 'page'
+                    : item.href === adminRoutes.communities.href && pathname.startsWith(item.href + '/')
+                      ? 'location' : undefined}>
                     {item.label}
                   </Link>
                 ) : (
@@ -45,7 +47,8 @@ export default function AdminWorkspace({
   administrator, children,
 }: { administrator: string; children: ReactNode }) {
   const pathname = usePathname();
-  const page = Object.values(adminRoutes).find(route => route.href === pathname);
+  const page = pathname.startsWith(adminRoutes.communities.href + '/') ? adminRoutes.communities
+    : Object.values(adminRoutes).find(route => route.href === pathname);
 
   return (
     <div className="admin-workspace" lang="id">

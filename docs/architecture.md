@@ -27,7 +27,7 @@ for the current admin design and validation status.
 | `/`, `/home` | `app/page.tsx`, `app/home/page.tsx` | Functional festival entrance and home page. Timeline, sponsor and media partner sections are inline presentation content. |
 | `/home/about-event`, `/home/faq` | `app/home/about-event/page.tsx`, `app/home/faq/page.tsx` | Static festival background and FAQ, with video embed and interactive FAQ controls. |
 | `/home/jelajah/asrama`, `/home/jelajah/asrama/[slug]` | `app/home/jelajah/asrama/{page.tsx,[slug]/page.tsx,data.ts}` | Static directory and detail pages for eight residences. Unknown slugs call `notFound()`. |
-| `/home/jelajah/ormada`, `/home/jelajah/ormada/[slug]` | `app/home/jelajah/ormada/{page.tsx,[slug]/page.tsx,data.ts}` | Static directory and detail pages for 25 Ormada. Unknown slugs call `notFound()`. There are no organization accounts, claims, or editing workflows. |
+| `/home/jelajah/ormada`, `/home/jelajah/ormada/[slug]` | `app/home/jelajah/ormada/{page.tsx,[slug]/page.tsx}` | MySQL directory and detail pages for published communities. Archive URLs show an unavailable notice. Draft and unknown slugs return 404. |
 | `/home/jelajah/fakultas`, `/home/kompetisi`, `/home/linimasa` | Corresponding `app/home/**/page.tsx` files | Placeholder pages. The home page has its own inline festival sections. |
 | `/home/game`, `/home/game/result` | `app/home/game/page.tsx`, `app/home/game/result/page.tsx` | Client-side quiz and result, connected by `localStorage`. |
 | `/home/map` | `app/home/map/page.tsx`, `app/home/map/InteractiveMapComponent.tsx` | Client-side 3D event map with object selection and a fullscreen view. Depends on browser WebGL. |
@@ -279,3 +279,61 @@ voting HTTP 403. Responsive results are from Chrome emulation.
 
 M2.0 admin and authorization checks pass locally. Candidate images remain a
 known issue. Deployment verification remains open before release.
+
+## M2.1 community database and CRUD
+
+The additive migration `20261122100000_add_community` creates a generic
+`Community` table. It uses UUID IDs, a unique normalized slug, required name,
+summary and description, optional establishment text and profile URLs,
+ordering, and timestamps. MySQL indexes the public publication/order/slug
+query and the admin update-time ordering. The four earlier migrations retain
+their original checksums.
+
+New records default to draft, unclaimed, and unverified. Publication requires
+a valid name, slug, summary, and description. The first publication locks the
+slug, including after unpublishing. Archiving is final in M2.1 and preserves
+the slug. Claim and verification are independent admin fields.
+
+The explicit [seed command](../README.md#community-directory-and-administration)
+imports the 25 original profiles as published, unclaimed, and unverified.
+`prisma/ormada-seed.json` preserves the original field values and order. The
+seed skips existing slugs without modifying their records. All 25 original logo
+files exist. Missing seed logos or profiles without a logo use the CulFest logo.
+
+The admin sidebar links to `/Admin/manajemen/komunitas`, with name search,
+status filters, and pagination. The `/new` and `/[id]/edit` pages share a
+form. The admin API supports GET and POST at `/api/admin/communities`, GET
+and PATCH at `/api/admin/communities/[id]`, and PATCH at
+`/api/admin/communities/[id]/archive`. PATCH for editing accepts all editable
+profile fields and statuses. The separate archive endpoint takes no body.
+
+Admin pages call `requireAdminPage`. APIs use `guardAdmin` and private
+no-store responses. The existing role and origin rules apply to every
+mutation. The API bounds JSON and field lengths, validates IDs and enum values,
+allows HTTPS links and existing image files under `/images/`, and maps slug
+conflicts to HTTP 409. The database enforces uniqueness, and update predicates
+protect locked slugs and archived records during concurrent requests.
+
+The public directory and detail routes render dynamically and select only
+public fields. Published edits appear on the next server request, and no
+database query is needed at build time. Public URLs, logo paths, original
+content, directory order, desktop grid, and mobile carousel are preserved.
+The detail page displays the original establishment value for each community.
+The inherited candidate image issue is tracked separately.
+
+### M2.1 local verification
+
+| Check | Result |
+| --- | --- |
+| Lint, typecheck, Prisma validate, production build | **Passed.** Lint reported 5 inherited warnings and zero errors. The Turbopack build also passed with an unreachable database URL. |
+| Migration replay and upgrade | **Passed.** Replayed all migrations in the disposable shadow database and compared its schema with the upgraded M1.1 test database. Prisma reported no difference. Test and development matched the datamodel after applying the additive migration. |
+| Seed and asset audit | **Passed.** Local development inserted 25 rows, then skipped all 25 on rerun. The disposable integration test preserved an edited record on reseed. No original logo was missing. |
+| HTTP integration | **Passed.** Covered all 25 public URLs and original content, CRUD, duplicate and invalid inputs, status changes, archived and draft visibility, administrator and unauthorized sessions, origin checks, and disabled voting. |
+| Playwright | **Passed.** Chrome emulation at 1440 × 960, 768 × 1024, and 390 × 844 on the built app and disposable MySQL. Checked list, filtering, pagination, creation, edit, status changes, archive confirmation, validation, keyboard navigation, access denial, and public navigation. Google Maps iframe markup and links were checked. External map tiles were excluded from the browser run. |
+
+The optional in-place Prisma Client regeneration hit a Windows engine file
+lock after writing the new model bindings. Its replacement engine had the same
+checksum as the installed engine used for the passing tests.
+
+M2.1 is ready for human review before M2.2. M2.2 owns community memberships
+and scoped permissions. Local checks do not cover a deployment environment.

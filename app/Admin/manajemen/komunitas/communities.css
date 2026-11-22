@@ -1,0 +1,89 @@
+.community-admin { display: grid; gap: 1rem; overflow-wrap: anywhere; }
+.community-admin h1 { font: 800 clamp(1.65rem, 4vw, 2.3rem) var(--font-merriweather), Georgia, serif; }
+.community-admin h2 { font-size: 1.05rem; font-weight: 750; }
+.community-admin a { color: var(--admin-red); font-weight: 650; text-decoration: underline; text-underline-offset: .18em; }
+.community-admin a:hover { color: var(--admin-dark); }
+.community-admin :is(select, textarea):focus-visible { outline: 2px solid #bd7427; outline-offset: 3px; }
+.community-heading, .community-actions { display: flex; flex-wrap: wrap; gap: .7rem 1rem; align-items: center; }
+.community-heading { justify-content: space-between; }
+.community-filters, .community-fields {
+  display: grid;
+  gap: .8rem;
+  padding: 1rem;
+  border: 1px solid var(--admin-line);
+  border-radius: .45rem;
+  background: #fffdf9;
+}
+.community-filters { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); align-items: end; }
+.community-filters > .community-actions, .community-wide { grid-column: 1 / -1; }
+.community-form { display: grid; gap: 1rem; max-width: 52rem; }
+.community-fields { grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); min-width: 0; }
+.community-fields legend { padding-inline: .4rem; font-weight: 750; }
+.community-admin label { display: grid; gap: .3rem; align-content: start; min-width: 0; font-size: .9rem; font-weight: 650; }
+.community-admin :is(input, select, textarea) {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: .55rem .65rem;
+  border: 1px solid #a38d81;
+  border-radius: .35rem;
+  background: #fff;
+  color: var(--admin-ink);
+  font: 400 1rem system-ui, sans-serif;
+}
+.community-admin textarea { resize: vertical; }
+.community-admin :is(input[readonly], fieldset:disabled :is(input, select, textarea)) { background: #f3ece3; }
+.community-admin [aria-invalid="true"] { border-color: var(--admin-red); }
+.community-admin small { color: var(--admin-muted); font-size: .82rem; }
+.community-admin [id$="-error"], .community-error { color: var(--admin-red); font-weight: 650; }
+.community-feedback:empty { display: none; }
+.community-admin :is(.community-button, .community-outline) {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: .55rem .9rem;
+  border: 1px solid var(--admin-red);
+  border-radius: .35rem;
+  color: #fffdf9;
+  background: var(--admin-red);
+  font-weight: 700;
+  text-decoration: none;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+.community-admin .community-button:hover { background: var(--admin-dark); }
+.community-admin .community-outline { color: var(--admin-red); background: #fffdf9; }
+.community-admin .community-outline:hover { background: #f3ece3; }
+.community-admin button:disabled { opacity: .65; cursor: wait; }
+.community-list { display: grid; gap: .65rem; }
+.community-list > li, .community-empty {
+  display: grid;
+  gap: .7rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--admin-line);
+  border-radius: .45rem;
+  background: #fffdf9;
+}
+.community-list > li > a { justify-self: start; display: inline-flex; align-items: center; min-height: 2.75rem; }
+.community-identity p, .community-statuses dt { color: var(--admin-muted); font-size: .82rem; }
+.community-statuses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
+.community-statuses dd { font-size: .92rem; font-weight: 650; }
+.community-statuses time { font-variant-numeric: tabular-nums; }
+.community-dialog {
+  width: min(28rem, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  margin: auto;
+  padding: 1.25rem;
+  border: 1px solid var(--admin-line);
+  border-radius: .45rem;
+  background: #fffdf9;
+  color: var(--admin-ink);
+}
+.community-dialog p { margin-block: .65rem 1rem; }
+.community-dialog::backdrop { background: #26100bd0; }
+@media (min-width: 1120px) {
+  .community-list > li { grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) auto; align-items: center; }
+  .community-statuses { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

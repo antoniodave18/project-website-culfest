@@ -27,9 +27,12 @@ export default function DescriptionScrollable({ description }: DescriptionScroll
     <div className="relative">
       <div
         ref={containerRef}
-        className="order-2 md:order-1 max-h-50 md:max-h-100 overflow-scroll flex flex-col gap-10"
+        tabIndex={0}
+        role="region"
+        aria-label="Deskripsi komunitas"
+        className="order-2 md:order-1 max-h-50 md:max-h-100 hide-scrollbar overflow-y-auto overflow-x-hidden flex flex-col gap-10"
       >
-        <p className="text-justify text-sm md:text-xl lg:text-2xl text-[#461500] font-bold tracking-wide">
+        <p className="text-center [overflow-wrap:anywhere] text-sm md:text-xl lg:text-2xl text-[#461500] font-bold tracking-wide">
           {description}
         </p>
       </div>
