@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import styles from "../section-title.module.css";
 
 const fullText =
   "Cultural Festival yang dikenal sebagai Culfest merupakan sebuah kegiatan yang diselenggarakan setiap tahunnya oleh UGM Residence dengan nuansa Nusantara. Dimulai dari Culfest 7 hingga kini, tema dan nuansa yang dipilih selalu mengusung kebudayaan daerah tertentu yang berbeda setiap tahunnya. Culfest diselenggarakan dalam bentuk kegiatan kebudayaan yang meliputi pameran, penampilan putra-putri, pagelaran seni, dan esai budaya yang kemudian dikemas dalam bentuk kompetisi. Selama beberapa tahun terakhir, Culfest telah berkolaborasi dengan berbagai tokoh, seperti akademisi, budayawan, penggiat seni, duta budaya, dan lain sebagainya dalam rangkaian acara ini sebagai pembicara, juri, dan pemateri. Pada tahun ini, Cultural Festival dalam penyelenggaraannya yang ke-15 kembali mengajak setiap pihak di antaranya civitas akademika UGM, masyarakat umum, penggiat budaya, dan lain sebagainya untuk kembali turut serta mengapresiasi kekayaan budaya Nusantara yang akan tertuang dalam satu rangkaian penuh Cultural Festival 15.";
@@ -116,14 +117,13 @@ export default function SejarahSection() {
               {/* Title */}
               <div className="relative w-full pb-5 sm:pb-6 md:pb-7 lg:pb-8 flex justify-center items-center gap-2">
                 <h2
-                  className="text-[#a8321a] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-center font-bold"
+                  className={`${styles.title} text-[#a8321a]`}
                   style={{
-                    fontFamily: "var(--font-efco-brookshire)",
                     fontSize: "clamp(24px, 5vw, 60px)",
                     lineHeight: "1.2",
                   }}
                 >
-                  SEJARAH CULTURAL FESTIVAL
+                  Sejarah Cultural Festival
                 </h2>
               </div>
 

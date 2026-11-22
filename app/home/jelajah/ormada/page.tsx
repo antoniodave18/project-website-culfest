@@ -1,4 +1,5 @@
 import JelajahCard from "./component/jelajahcard";
+import NavActionButton from "../../components/NavActionButton";
 import { listPublishedCommunities } from "@/lib/communities";
 import { communityLogoPlaceholder } from "@/lib/community-fields";
 
@@ -11,6 +12,9 @@ export default async function Page() {
       className="relative overflow-hidden flex flex-col items-center bg-[url('/images/home/bg-motif.png')] bg-repeat-y bg-contain bg-[#6e0f04]"
     >
       <div className="relative mt-30 mb-10 z-10 w-[90%]">
+        <div className="mb-4">
+          <NavActionButton href="/home" label="Kembali" icon="←" iconPosition="left" />
+        </div>
         <div className="flex h-auto w-full items-center justify-center bg-[#03005E] px-4 py-4 rounded-t-xl">
           <h1
             className="text-center"

@@ -28,6 +28,7 @@ export default function Header() {
   const hideHeaderOn = [
     "/",
     "/home/faq",
+    "/home/map",
     "/home/jelajah/asrama",
     "/home/game",
     "/home/game/result",

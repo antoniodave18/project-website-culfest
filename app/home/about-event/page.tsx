@@ -2,6 +2,7 @@ import TentangSection from "./components/TentangSection";
 import TransisiAwan from "./components/TransisiAwan";
 import SejarahSection from "./components/SejarahSection";
 import MaskotSection from "./components/MaskotSection";
+import styles from "./section-title.module.css";
 
 export default function AboutEventPage() {
   return (
@@ -19,14 +20,8 @@ export default function AboutEventPage() {
         <div className="relative z-20 w-full">
           <div className="flex h-auto w-full items-center justify-center bg-[#03005E] px-4 py-4">
             <h2
-              className="text-center"
-              style={{
-                fontFamily: "var(--font-efco-brookshire), serif",
-                fontSize: "clamp(40px, 8vw, 80px)",
-                color: "#F5A623",
-                letterSpacing: "0.05em",
-                textShadow: "0 2px 8px rgba(0,0,0,0.5)",
-              }}
+              className={styles.title}
+              style={{ fontSize: "clamp(40px, 8vw, 80px)", color: "#F5A623" }}
             >
               Anthem Culfest
             </h2>

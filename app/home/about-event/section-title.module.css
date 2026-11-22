@@ -1,0 +1,7 @@
+.title {
+  font-family: var(--font-efco-brookshire), serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 50%);
+}

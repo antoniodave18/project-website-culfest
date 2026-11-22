@@ -58,7 +58,7 @@ export default function TentangSection() {
 
         <div className="relative mt-15 md:mt-25 lg:mt-30 xl:mt-40 mx-4 sm:mx-6 md:mx-12">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-full flex justify-center pointer-events-none">
-            <PitaJudul judul="TENTANG CULTURAL FESTIVAL 15" />
+            <PitaJudul judul="Tentang Cultural Festival 15" />
           </div>
 
           <div className="relative z-10 px-4 sm:px-6 md:px-8 pb-8 sm:pb-12 md:pb-16 flex flex-col items-center border-4 sm:border-[6px] md:border-8 border-[#5e240c] border-b-0 rounded-t-xl bg-[#e4ab53]/10">
