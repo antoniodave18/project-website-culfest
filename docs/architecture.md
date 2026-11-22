@@ -335,5 +335,11 @@ The optional in-place Prisma Client regeneration hit a Windows engine file
 lock after writing the new model bindings. Its replacement engine had the same
 checksum as the installed engine used for the passing tests.
 
-M2.1 is ready for human review before M2.2. M2.2 owns community memberships
-and scoped permissions. Local checks do not cover a deployment environment.
+The approved M2.1 revision passed lint, typecheck, Prisma validation, the
+production build, and the auth and community suite with Playwright at all
+three viewport sizes. Local development and test migration ledgers matched
+all five files. Human approval covers integration into `develop`.
+
+Production release still requires verification of the target migration ledger
+and schema, ingress and security configuration, and deployment smoke checks.
+M2.2 owns community memberships and scoped permissions.
