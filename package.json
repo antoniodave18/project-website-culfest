@@ -7,16 +7,20 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "db:verify": "node --env-file=.env scripts/check-local-db.mjs",
+    "admin:account": "node --env-file=.env scripts/admin-account.mjs",
+    "test:admin-auth": "node --env-file=.env tests/admin-auth.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
+    "@better-auth/prisma-adapter": "1.7.27",
     "@prisma/client": "5.22.0",
+    "@react-three/drei": "^10.7.7",
+    "better-auth": "1.7.27",
     "next": "^16.2.4",
     "postcss": "^8.5.8",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1",
     "three-stdlib": "^2.36.1"
   },

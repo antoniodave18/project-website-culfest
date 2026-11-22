@@ -2,6 +2,10 @@
 
 Audited on 22 November 2026 (Asia/Jakarta) in `antoniodave18/project-website-culfest`, branch `main` at `e794570`. The checkout already had a one-line `package-lock.json` change when the audit began. Local checks used that working copy and the installed dependencies where needed. The audit used source, Git history, and disposable local test inputs.
 
+The original audit and inventories below describe the M1.0 baseline. See
+[M1.1 authentication and authorization](#m11-authentication-and-authorization)
+for the current admin design and validation status.
+
 ## Architecture and dependencies
 
 | Layer | Current implementation |
@@ -133,7 +137,10 @@ The one-line pre-existing `fsevents` flag change was reverted to the committed l
 
 ## M1.1 pre-implementation validation
 
-**Blocked before implementation.** The candidate pair is `better-auth@1.7.27`
+This section records the earlier environment check. Manual installation unblocked
+implementation. See the [current validation results](#m11-authentication-and-authorization).
+
+**Blocked at this checkpoint.** The candidate pair was `better-auth@1.7.27`
 and `@better-auth/prisma-adapter@1.7.27`. The tagged manifests admit Next.js
 `16.4.6`, React and React DOM `19.2.3`, and Prisma CLI and Client `5.22.0`.
 Better Auth publishes TypeScript declarations. Compiling those declarations with
@@ -160,7 +167,68 @@ creating a migration. [Tagged schema](https://github.com/better-auth/better-auth
 | Auth adapter typecheck, migration replay, session and authorization integration tests | **Unexecuted.** No auth dependencies, schema, or routes were added. M1.0 MySQL SQL replay remains the baseline. |
 | Production build and socket-level checks | **Unexecuted for M1.1.** The M1.0 Turbopack worker failure, webpack filesystem workaround, and loopback restriction still apply. |
 
-The authorization boundary remains missing. Resume on a runner with npm
-registry access and TCP access to disposable MySQL. Verify the exact pinned
-graph, typecheck, and run the sign-in, throttling, and revocation checks before
-reviewing M1.1 for rollout. M2 depends on that review.
+## M1.1 authentication and authorization
+
+Better Auth and its Prisma adapter are pinned at `1.7.27`. The Node runtime
+uses the existing Prisma 5.22.0 client and MySQL. Only email/password sign-in
+and sign-out are exposed. Registration is closed. The sign-in response sends
+the session token only in a host-only, HttpOnly, SameSite=Lax cookie that is
+Secure on HTTPS. The eight-hour database session has no rolling refresh or
+cookie cache. Sign-out revokes the verified session row before clearing cookies.
+
+`User.role` defaults to `USER`. Local provisioning assigns `PLATFORM_ADMIN`,
+hashes with Better Auth, and refuses duplicate accounts. Each protected page
+and API operation verifies the server-backed session and current role. Protected
+responses use private, no-store caching. Protected mutations and auth requests
+require the configured origin. Browser-supplied roles and redirect targets are
+ignored. `POST /api/login` returns 410.
+
+Anonymous admin API requests return 401. Signed-in users without the platform
+role receive 403. All four management pages require the platform role. The
+admin session inventory is available to platform admins. Voting mutations return
+the disabled response after their authorization checks. Public candidate and
+leaderboard reads keep their static payloads. Public vote submission and QR
+lookup remain disabled.
+
+The database-backed sign-in limiter allows five attempts within a 60-second
+window per verified ingress IP. On direct loopback HTTP it uses one shared
+bucket. HTTPS sign-in requires an ingress header configured in
+`AUTH_CLIENT_IP_HEADER`. The ingress must overwrite that header and prevent
+direct public access to the app. [Better Auth rate limiting](https://better-auth.com/docs/concepts/rate-limit)
+
+The additive migration `20261122093000_add_admin_auth` adds `User`,
+`Account`, `Session`, `Verification`, and `RateLimit`. The dedicated Prisma
+shadow URL comes from `SHADOW_DATABASE_URL`. Keep the shadow schema disposable.
+The local validation scripts constrain TCP endpoints to the named local
+development, test, and shadow databases. See [local MySQL and admin setup](../README.md#local-mysql).
+
+### Sharp remediation
+
+The app had no direct Sharp imports. Removed its vulnerable direct `0.34.5`
+dependency. Next.js 16.4.6 already declares `0.35.5`, now the sole Sharp
+version in the lockfile. Reviewed the Node 20.9+ requirement, prebuilt binary
+installation, and removed legacy API properties in 0.35. Node 24 and the
+existing Next.js optimizer path passed local image checks. [Sharp 0.35 changes](https://sharp.pixelplumbing.com/changelog/v0.35.0/) · [Patched librsvg advisory](https://github.com/advisories/GHSA-wq5f-xc86-pv6w)
+
+### M1.1 validation
+
+| Check | Result |
+| --- | --- |
+| Lint, typecheck, Prisma generate and validate | **Passed.** Lint reported zero errors and 9 inherited warnings. |
+| Migration files and isolated MySQL replay | **Passed.** Existing migration file hashes matched. All four migrations replayed on a fresh MySQL 8.0.46 instance over Windows shared memory. 133 schema metadata rows matched Prisma-generated DDL, excluding physical column order. |
+| Adapter initialization and schema contract | **Passed without database queries.** The pinned adapter initialized, generated Prisma models covered Better Auth's expected fields, and password hash verification passed. |
+| Configured MySQL TCP | **Passed in the developer's PowerShell.** `npm run db:verify` connected to dev, test, and shadow. Dev and test were empty before the suite. The managed sandbox still returned `EACCES`. |
+| Disposable MySQL migration and auth integration | **Passed in the developer's PowerShell.** The suite applied test migrations, verified the migration ledger and deployed schema, and passed admin guards, sign-in, session persistence, origin checks, role removal, expiry, revocation, logout, and throttling. Voting stayed disabled, and public route checks passed. |
+| Standard Turbopack and webpack builds | **Failed in the sandbox.** Turbopack could not connect to its worker. Webpack prerendering hit `EPERM` creating a directory. |
+| Webpack production build with local workaround | **Passed**, using one worker and temporary directory-creation retries under `.next`. |
+| Production smoke checks in process | **Passed**, 26 checks. Covered public routes and snapshots, anonymous admin page and API denials, closed registration and legacy login, malformed and cross-origin auth requests, disabled public voting, and Next.js PNG-to-WebP optimization. |
+| Sharp image handling and production audit | **Image checks passed** for PNG and JPEG decoding and resize to WebP. **Audit blocked** by registry DNS (`ENOTFOUND`). |
+
+### Deployment and rollback
+
+Review the target migration ledger before applying migrations to any initialized
+database. The local integration run applied migrations to disposable MySQL only. Confirm
+the HTTPS origin and trusted ingress configuration. If rollback is needed,
+deny admin paths at ingress or deploy a fail-closed admin revision. Retain the
+additive tables and their migration ledger. Returning to the mock login would
+expose the old authorization gap. M2 starts only after M1.1 review.

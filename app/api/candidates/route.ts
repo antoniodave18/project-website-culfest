@@ -1,3 +1,4 @@
+import { guardedVotingMutation } from '@/lib/admin-auth';
 import { NextResponse } from "next/server";
 import { LEADERBOARD_DATA } from "@/lib/leaderboard-data";
 
@@ -13,17 +14,4 @@ export async function GET() {
   }
 }
 
-export async function POST(_request: Request) {
-  try {
-    return NextResponse.json(
-      { success: false, message: "Voting sedang dinonaktifkan." },
-      { status: 403 },
-    );
-  } catch (error) {
-    console.error("POST Candidate Error:", error);
-    return NextResponse.json(
-      { success: false, message: "Gagal menyimpan kandidat" },
-      { status: 500 },
-    );
-  }
-}
+export const POST = guardedVotingMutation;

@@ -26,22 +26,27 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:3000**. The current public pages and disabled voting
-endpoints run without MySQL. On a fresh machine, `npm ci` needs access to the
+Open **http://localhost:3000**. Public pages, public snapshots, and the
+disabled public voting endpoints run without MySQL. Admin sign-in uses MySQL.
+On a fresh machine, `npm ci` needs access to the
 public npm registry or a populated cache. Prisma Client generation may also
 need the Prisma engine download on a cold cache. With a populated npm cache,
 `npm ci --offline --no-audit --no-fund` can install the locked dependencies.
 
 ### Local MySQL
 
-1. Start a local MySQL 8 instance. On that instance, create an empty
-   `culfest_dev` database and a local user with permissions on that database.
-2. Copy `.env.example` to `.env`. Set `DATABASE_URL` to the local database
-   using your chosen password. Percent-encode special characters in the URL
-   username or password. Keep `.env` out of Git.
+1. Start local MySQL 8 on port 3306. Create separate `culfest_dev`,
+   `culfest_test`, and `culfest_shadow` databases. Restrict the local user's
+   permissions to its intended databases.
+2. Copy `.env.example` to `.env`. Point `DATABASE_URL` at development,
+   `TEST_DATABASE_URL` at disposable tests, and `SHADOW_DATABASE_URL` at the
+   dedicated shadow database. Prisma can reset the shadow database during
+   migration validation. Keep its data disposable. Percent-encode special
+   characters in URL credentials and keep `.env` out of Git.
 3. Apply and verify the migrations from the project root.
 
 ```bash
+npm run db:verify
 npx prisma validate
 npx prisma migrate deploy
 npx prisma migrate status
@@ -65,13 +70,37 @@ npm run build
 Merriweather and EFCO Brookshire are bundled locally. If Turbopack cannot start
 its workers in a restricted environment, try `npm run build -- --webpack`.
 
-### Admin authentication status
+### Admin authentication
 
-M1.1 is blocked at dependency validation. The Windows sandbox cannot resolve
-the npm registry or reach local MySQL over TCP. The existing admin login is a
-mock and management pages have no server-side authorization. Keep these routes
-private until the replacement passes its staging checks. See the
-[M1.1 preflight results](docs/architecture.md#m11-pre-implementation-validation).
+Set `BETTER_AUTH_URL` to the app's origin and `BETTER_AUTH_SECRET` to a
+random secret of at least 32 characters. Use HTTPS for deployment. Set
+`AUTH_CLIENT_IP_HEADER` to a header that your trusted ingress overwrites with
+the verified client IP. Restrict direct access to the app so clients cannot
+spoof that header. Direct loopback HTTP shares one five-attempt limit without
+the header.
+
+From PowerShell 7, after applying the migration to `culfest_dev`, provision or
+revoke a local administrator. Use 12–128 characters for the masked password.
+
+```powershell
+Read-Host -MaskInput "Admin password" | npm run admin:account -- provision admin@example.test
+npm run admin:account -- revoke admin@example.test
+```
+
+Provisioning refuses duplicate emails. Revocation demotes the account and
+removes its sessions. Visit `/Admin` to sign in. Public registration is closed.
+
+Run these checks in a normal PowerShell session that can reach local MySQL.
+The integration test verifies and applies migrations only on `culfest_test`,
+checks schema drift, and starts a loopback server against the production build.
+
+```powershell
+npm run db:verify
+npm run build
+npm run test:admin-auth
+```
+
+[M1.1 architecture, validation, and rollout](docs/architecture.md#m11-authentication-and-authorization)
 
 ## Project structure
 
