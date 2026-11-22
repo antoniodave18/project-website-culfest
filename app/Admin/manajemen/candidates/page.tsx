@@ -15,25 +15,24 @@ export default function CandidatesListPage() {
     const [loading, setLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const fetchCandidates = async () => {
-        setLoading(true);
-        try {
-            const res = await fetch('/api/candidates');
-            const data = await res.json();
-            if (data.success) {
-                setCandidates(data.data);
-            } else {
-                setErrorMsg(data.message);
-            }
-        } catch (error) {
-            setErrorMsg('Gagal mengambil data kandidat dari server.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
-        fetchCandidates();
+        const fetchCandidates = async () => {
+            try {
+                const res = await fetch('/api/candidates');
+                const data = await res.json();
+                if (data.success) {
+                    setCandidates(data.data);
+                } else {
+                    setErrorMsg(data.message);
+                }
+            } catch {
+                setErrorMsg('Gagal mengambil data kandidat dari server.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        void fetchCandidates();
     }, []);
 
     const handleDelete = async (id: string, name: string) => {
@@ -51,7 +50,7 @@ export default function CandidatesListPage() {
             } else {
                 alert('Gagal menghapus: ' + data.message);
             }
-        } catch (error) {
+        } catch {
             alert('Terjadi kesalahan saat menghapus.');
         }
     };
@@ -91,7 +90,7 @@ export default function CandidatesListPage() {
                         <div className="bg-red-500/80 text-white p-4 rounded-lg text-center">{errorMsg}</div>
                     ) : candidates.length === 0 ? (
                         <div className="text-center text-white/50 py-10 italic">
-                            Belum ada kandidat di database. Silakan klik "Tambah Kandidat".
+                            Belum ada kandidat di database. Silakan klik &quot;Tambah Kandidat&quot;.
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -12,7 +12,12 @@ type CandidateRanking = {
     voteCount: number;
 };
 
+const FIRST_PAGE_ROWS = 3;
+const NEXT_PAGE_ROWS = 6;
 
+function getPageCount(rowCount: number) {
+    return 1 + Math.max(0, Math.ceil((rowCount - FIRST_PAGE_ROWS) / NEXT_PAGE_ROWS));
+}
 
 function LeaderboardRankRow({ candidate, rank }: { candidate: CandidateRanking; rank: number }) {
     let rankClass = "";
@@ -33,17 +38,12 @@ function LeaderboardRankRow({ candidate, rank }: { candidate: CandidateRanking; 
 }
 
 export default function LeaderboardPage() {
-    const FIRST_PAGE_ROWS = 3;
-    const NEXT_PAGE_ROWS = 6;
-
     const [rankings, setRankings] = useState<CandidateRanking[]>([]);
     const [loading, setLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState('');
     const [currentPage, setCurrentPage] = useState(0);
 
-    const totalPages = rankings.length <= FIRST_PAGE_ROWS
-        ? 1
-        : 1 + Math.ceil((rankings.length - FIRST_PAGE_ROWS) / NEXT_PAGE_ROWS);
+    const totalPages = getPageCount(rankings.length);
     const paginatedRankings = currentPage === 0
         ? rankings.slice(0, FIRST_PAGE_ROWS)
         : rankings.slice(
@@ -51,33 +51,28 @@ export default function LeaderboardPage() {
             FIRST_PAGE_ROWS + currentPage * NEXT_PAGE_ROWS
         );
 
-    const fetchLeaderboard = async () => {
-        try {
-            const res = await fetch('/api/leaderboard', { cache: 'no-store' });
-            const data = await res.json();
-            if (data.success) {
-                setRankings(data.data);
-            } else {
-                setErrorMsg('Gagal memuat papan klasemen.');
-            }
-        } catch {
-            setErrorMsg('Kesalahan jaringan, mencoba ulang...');
-        } finally {
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
-        fetchLeaderboard();
+        const fetchLeaderboard = async () => {
+            try {
+                const res = await fetch('/api/leaderboard', { cache: 'no-store' });
+                const data = await res.json();
+                if (data.success) {
+                    setRankings(data.data);
+                    setCurrentPage(page => Math.min(page, getPageCount(data.data.length) - 1));
+                } else {
+                    setErrorMsg('Gagal memuat papan klasemen.');
+                }
+            } catch {
+                setErrorMsg('Kesalahan jaringan, mencoba ulang...');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        void fetchLeaderboard();
         const interval = setInterval(fetchLeaderboard, 10000);
         return () => clearInterval(interval);
     }, []);
-
-    useEffect(() => {
-        if (totalPages > 0 && currentPage > totalPages - 1) {
-            setCurrentPage(totalPages - 1);
-        }
-    }, [currentPage, totalPages]);
 
     return (
         <main className="lb-page">

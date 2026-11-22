@@ -145,9 +145,7 @@ function SpinningModelScene({
     if (!isFullscreen || !onObjectSelect) return;
     // Periksa semua intersections (dari depan ke belakang) dan pilih objek pertama
     // yang bukan berwarna putih (#ffffff). Jika tidak ada, abaikan klik.
-    const intersections = (event as any).intersections as
-      | Array<{ object: THREE.Object3D }>
-      | undefined;
+    const intersections = event.intersections;
     let targetMesh: THREE.Mesh | null = null;
     let targetColorHex = "";
     let targetMaterialName = "";

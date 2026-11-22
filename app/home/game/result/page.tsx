@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const RESULT_MAPPING: Record<string, { title: string; desc: string; image?: string }> = {
   A: {
@@ -21,58 +21,40 @@ const RESULT_MAPPING: Record<string, { title: string; desc: string; image?: stri
   }
 };
 
-export default function GameResult() {
-  const [resultType, setResultType] = useState<string>("Menghitung...");
-  const [description, setDescription] = useState<string>("Mohon tunggu sebentar...");
-  const [resultImage, setResultImage] = useState<string | undefined>(undefined);
-  const [percentages, setPercentages] = useState<{ A: number, B: number, C: number } | null>(null);
+const loadingResult = { title: "Menghitung...", desc: "Mohon tunggu sebentar..." };
+const missingResult = { title: "Data Tidak Ditemukan", desc: "Silakan selesaikan kuis terlebih dahulu." };
+const subscribeToAnswers = () => () => {}; // Answers are saved before navigating here.
+const readAnswers = () => localStorage.getItem("culfest_quiz_answers");
+const readServerAnswers = () => undefined;
 
-  useEffect(() => {
-    const saved = localStorage.getItem("culfest_quiz_answers");
-    if (saved) {
-      try {
-        const answers: Record<number, string> = JSON.parse(saved);
-        const scores = { A: 0, B: 0, C: 0 };
+function getResult(saved: string | null | undefined): (typeof RESULT_MAPPING)[string] {
+  if (saved === undefined) return loadingResult;
+  if (!saved) return missingResult;
 
-        // Hitung total nilai skor untuk 10 pertanyaan (indeks 0 - 9)
-        for (let i = 0; i < 10; i++) {
-          const ans = answers[i];
-          if (ans === "A" || ans === "B" || ans === "C") {
-            // Soal 3 (indeks 2) dan Soal 7 (indeks 6) bernilai 2 poin (+1 base +1 tambahan)
-            const weight = i === 2 || i === 6 ? 2 : 1;
-            scores[ans] += weight;
-          }
-        }
+  try {
+    const answers: Record<number, string> = JSON.parse(saved);
+    const scores = { A: 0, B: 0, C: 0 };
 
-        const totalPoints = 12; // Total keseluruhan poin berdasarkan perhitungan
-
-        setPercentages({
-          A: Math.round((scores.A / totalPoints) * 100),
-          B: Math.round((scores.B / totalPoints) * 100),
-          C: Math.round((scores.C / totalPoints) * 100)
-        });
-
-        // Tentukan jawaban dominan
-        let dominant: "A" | "B" | "C" = "A";
-        let max = -1;
-        for (const [key, val] of Object.entries(scores)) {
-          if (val > max) {
-            max = val;
-            dominant = key as "A" | "B" | "C";
-          }
-        }
-
-        setResultType(RESULT_MAPPING[dominant].title);
-        setDescription(RESULT_MAPPING[dominant].desc);
-        setResultImage(RESULT_MAPPING[dominant].image);
-      } catch (e) {
-        console.error("Error parsing answers", e);
+    for (let i = 0; i < 10; i++) {
+      const answer = answers[i];
+      if (answer === "A" || answer === "B" || answer === "C") {
+        scores[answer] += i === 2 || i === 6 ? 2 : 1;
       }
-    } else {
-      setResultType("Data Tidak Ditemukan");
-      setDescription("Silakan selesaikan kuis terlebih dahulu.");
     }
-  }, []);
+
+    let dominant: keyof typeof scores = "A";
+    for (const answer of ["B", "C"] as const) {
+      if (scores[answer] > scores[dominant]) dominant = answer;
+    }
+    return RESULT_MAPPING[dominant];
+  } catch {
+    return loadingResult;
+  }
+}
+
+export default function GameResult() {
+  const saved = useSyncExternalStore(subscribeToAnswers, readAnswers, readServerAnswers);
+  const { title: resultType, desc: description, image: resultImage } = getResult(saved);
 
   return (
     <main className="relative w-full h-fit min-h-screen overflow-hidden bg-[url('/images/bg-motif.png')] bg-repeat bg-contain bg-[#9f0505]">
@@ -177,7 +159,7 @@ export default function GameResult() {
 
             <div className="text-center w-full px-2 md:px-8">
               <p className="text-[clamp(13px,2.5vw,18px)] sm:text-sm md:text-base lg:text-lg text-[#4B2100] font-bold leading-relaxed" style={{ fontFamily: "var(--font-merriweather), serif" }}>
-                "{description}"
+                &quot;{description}&quot;
               </p>
             </div>
 

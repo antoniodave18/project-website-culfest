@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Merriweather } from "next/font/google";
 import localFont from "next/font/local";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -10,8 +9,11 @@ const efcoBrookshire = localFont({
   variable: "--font-efco-brookshire",
 });
 
-const merriweather = Merriweather({
-  subsets: ["latin"],
+const merriweather = localFont({
+  src: "../public/fonts/merriweather-latin-wght-normal.woff2",
+  weight: "300 900",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
   variable: "--font-merriweather",
 });
 
