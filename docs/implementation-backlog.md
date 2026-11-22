@@ -1,6 +1,6 @@
 # CulFest implementation backlog
 
-M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication checks. M2.0 is implemented and ready for review. [M2.0 architecture and validation](architecture.md#m20-admin-dashboard)
+M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication checks. M2.0 passed local admin and authorization verification, with a known candidate image issue. [M2.0 final verification](architecture.md#m20-final-local-verification)
 
 ## Prioritized technical debt
 
@@ -25,7 +25,7 @@ M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication c
 
 | Milestone | Deliverable and acceptance |
 | --- | --- |
-| M2.0 — Unified Admin Dashboard | Implemented. Protected landing page and shared navigation preserve the existing admin routes. Review before starting M2.1. |
+| M2.0 — Unified Admin Dashboard | Final local review passed for admin flows, responsive navigation, authorization, and disabled voting. Candidate images and their fallback returned 404. See [verification results](architecture.md#m20-final-local-verification). |
 | M2.1 — Community Database & CRUD | Add organizations, public community profiles, and admin CRUD with claim and verification states. Keep all Ormada links working. |
 | M2.2 — Organization Memberships & Permissions | Add scoped membership management and verify editors can update only assigned community profiles. |
 | M3 · Events | Add organization-owned events with draft, published, and cancelled states and one registration flow. Show only published events to public visitors and verify Jakarta time handling. |

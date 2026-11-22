@@ -259,4 +259,23 @@ All public and legacy admin URLs retain their casing.
 | MySQL and auth integration | **Passed in the developer's PowerShell.** The updated suite verified disposable migrations and schema, admin landing redirect and overview, role and session guards, logout, expiry, revocation, origin controls, throttling, and disabled voting. The sandbox run stopped at `DB_UNREACHABLE`. |
 | Playwright visual checks | **Passed on an isolated component preview** at 1440, 768, and 390 px. Checked layout, active navigation, planned entries, keyboard focus, and native disclosures. Authenticated live browser navigation and reload behavior were not exercised by this fixture. |
 
-Review M2.0 before starting M2.1. The existing deployment checks still apply.
+### M2.0 final local verification
+
+The final browser run used the running CulFest production build on a separate
+loopback port, disposable MySQL, and synthetic PLATFORM_ADMIN and USER accounts.
+Chrome passed at desktop (1440 × 900), tablet (768 × 1024), and mobile
+(390 × 844). Admin sign-in landed on `/Admin/manajemen`. Navigation and
+authenticated reloads passed on the dashboard, candidates, leaderboard, voting,
+and QR pages. The tablet and mobile menu opened and closed by touch and keyboard,
+closed on navigation, and returned focus on Escape. Account menu and logout passed
+at all sizes. Anonymous and USER sessions were denied on all five protected pages.
+Public voting showed its disabled state and the token request returned HTTP 403.
+
+Lint passed with nine warnings. Typecheck, local database verification, and the
+disposable MySQL auth suite passed. Browser logs showed no uncaught page errors.
+Candidate upload URLs and the inherited `/fallback.png` returned HTTP 404.
+Chrome also logged request cancellations during navigation and the expected
+voting HTTP 403. Responsive results are from Chrome emulation.
+
+M2.0 admin and authorization checks pass locally. Candidate images remain a
+known issue. Deployment verification remains open before release.
