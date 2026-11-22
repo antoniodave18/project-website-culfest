@@ -59,7 +59,7 @@ export default function CandidatesListPage() {
         <main className="min-h-screen relative flex flex-col items-center bg-[#5c0a00] p-6 lg:p-12 font-montserrat">
             <div className="z-10 w-full max-w-5xl space-y-8">
                 {/* Header Section */}
-                <div className="flex justify-between items-center bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl">
+                <div className="flex flex-wrap items-center justify-between gap-4 bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl">
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold text-white">Daftar Kandidat</h1>
                         <p className="text-white/70 text-sm mt-1">Kelola data kandidat yang ada pada database.</p>
@@ -90,7 +90,7 @@ export default function CandidatesListPage() {
                         <div className="bg-red-500/80 text-white p-4 rounded-lg text-center">{errorMsg}</div>
                     ) : candidates.length === 0 ? (
                         <div className="text-center text-white/50 py-10 italic">
-                            Belum ada kandidat di database. Silakan klik &quot;Tambah Kandidat&quot;.
+                            Belum ada kandidat untuk ditampilkan.
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -72,7 +72,7 @@ export default function VotingFormPage() {
         <main className="min-h-screen relative flex flex-col items-center bg-[#5c0a00] p-6 lg:p-12 font-montserrat">
             <div className="z-10 w-full max-w-4xl space-y-8">
                 {/* Header Section */}
-                <div className="flex justify-between items-center bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl">
+                <div className="flex flex-wrap items-center justify-between gap-4 bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-xl">
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold text-white">Manajemen Tambah Voting</h1>
                         <p className="text-white/70 text-sm mt-1">Formulir penambahan kandidat acara.</p>

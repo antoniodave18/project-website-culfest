@@ -231,4 +231,32 @@ database. The local integration run applied migrations to disposable MySQL only.
 the HTTPS origin and trusted ingress configuration. If rollback is needed,
 deny admin paths at ingress or deploy a fail-closed admin revision. Retain the
 additive tables and their migration ledger. Returning to the mock login would
-expose the old authorization gap. M2 starts only after M1.1 review.
+expose the old authorization gap.
+
+## M2.0 admin dashboard
+
+Successful platform-admin sign-in lands at `/Admin/manajemen`. The shared
+management layout and overview both call `requireAdminPage`. The guard still
+checks the server-backed session and platform role. It passes the display name
+to the workspace for the greeting and account menu. Existing page guards,
+private no-store responses, protected APIs, and session-revoking logout remain
+in force. This milestone adds no schema or dependency changes.
+
+`AdminWorkspace` provides the grouped desktop sidebar, mobile disclosure,
+current-page context, and account menu. `navigation.ts` defines active links
+and planned labels. Workspace groups cover Ruang kerja, Layanan budaya,
+Voting & leaderboard, and Administrasi. The overview links to candidates,
+leaderboard controls, and voting management. It reports voting as disabled
+and gives empty states for unavailable activity, requests, and events.
+Existing public chrome is hidden on admin paths through its pathname checks.
+All public and legacy admin URLs retain their casing.
+
+| Validation | Result |
+| --- | --- |
+| Lint and typecheck | **Passed.** Lint returned 9 inherited warnings and zero errors. |
+| Production build | **Passed** with webpack, one static worker, and the local Windows directory-creation workaround. Default Turbopack was not rerun for M2.0. |
+| Built route smoke checks | **Passed**, 23 checks. Covered anonymous redirects and no-store headers for the five admin pages, public routes and read payloads, retired login, protected APIs, and disabled voting responses. |
+| MySQL and auth integration | **Passed in the developer's PowerShell.** The updated suite verified disposable migrations and schema, admin landing redirect and overview, role and session guards, logout, expiry, revocation, origin controls, throttling, and disabled voting. The sandbox run stopped at `DB_UNREACHABLE`. |
+| Playwright visual checks | **Passed on an isolated component preview** at 1440, 768, and 390 px. Checked layout, active navigation, planned entries, keyboard focus, and native disclosures. Authenticated live browser navigation and reload behavior were not exercised by this fixture. |
+
+Review M2.0 before starting M2.1. The existing deployment checks still apply.

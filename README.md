@@ -88,7 +88,10 @@ npm run admin:account -- revoke admin@example.test
 ```
 
 Provisioning refuses duplicate emails. Revocation demotes the account and
-removes its sessions. Visit `/Admin` to sign in. Public registration is closed.
+removes its sessions. Visit `/Admin` to sign in. Platform administrators land at
+`/Admin/manajemen`, which links to the existing voting management screens.
+The dashboard shows planned modules without links. Public registration is closed
+and voting remains disabled.
 
 Run these checks in a normal PowerShell session that can reach local MySQL.
 The integration test verifies and applies migrations only on `culfest_test`,
@@ -100,7 +103,7 @@ npm run build
 npm run test:admin-auth
 ```
 
-[M1.1 architecture, validation, and rollout](docs/architecture.md#m11-authentication-and-authorization)
+[M2.0 dashboard and validation](docs/architecture.md#m20-admin-dashboard)
 
 ## Project structure
 

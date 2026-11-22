@@ -10,8 +10,10 @@ import { localDatabase, safeFailure, verifyHistory } from '../scripts/local-data
 
 const require = createRequire(import.meta.url);
 const hostname = '127.0.0.1';
+const dashboard = '/Admin/manajemen';
 const fixtures = [];
 const pages = [
+  dashboard,
   '/Admin/manajemen/candidates',
   '/Admin/manajemen/leaderboard',
   '/Admin/manajemen/voting',
@@ -133,7 +135,13 @@ async function run() {
   assert.ok((await (await status('/Admin', 200, { cookie: userCookie })).text()).includes('Akses admin ditolak'));
   const cookie = await login(admin);
   assert.equal(await db.session.count({ where: { userId: admin.id } }), 1);
-  assert.equal((await status('/Admin', 307, { cookie })).headers.get('location'), pages[2]);
+  assert.equal((await status('/Admin', 307, { cookie })).headers.get('location'), dashboard);
+  const overview = await status(dashboard, 200, { cookie });
+  assert.match(overview.headers.get('cache-control') ?? '', /no-store/);
+  const overviewHtml = (await overview.text()).replace(/<!--[\s\S]*?-->/g, '');
+  assert.match(overviewHtml, /<h1\b[^>]*>Selamat datang, PLATFORM_ADMIN<\/h1>/);
+  assert.ok(overviewHtml.includes('Dinonaktifkan'));
+  assert.ok(overviewHtml.includes('Dalam rencana'));
   for (const page of pages) await status(page, 200, { cookie });
   assert.ok((await (await status(adminRead, 200, { cookie })).json()).data.length > 0);
   console.log('Non-admin denial and administrator session persistence: passed.');
@@ -185,7 +193,9 @@ try {
     /^(Disposable MySQL migration deploy|Deployed schema comparison)$/.test(error?.message) ? error.message + ': ' : '';
   const routeCheck = error instanceof assert.AssertionError && /^(GET|POST|PUT|DELETE) \/[\w/-]+$/.test(error.message)
     ? ` (${error.message}, HTTP ${error.actual} expected ${error.expected})` : '';
-  console.error(`Auth integration failed: ${safeCheck}${safeFailure(error)}${routeCheck}.`);
+  const testLocation = error?.stack?.match(/admin-auth\.mjs:\d+:\d+/)?.[0];
+  const location = testLocation ? ` at ${testLocation}` : '';
+  console.error(`Auth integration failed: ${safeCheck}${safeFailure(error)}${routeCheck}${location}.`);
   process.exitCode = 1;
 } finally {
   if (server?.listening) await new Promise(resolve => server.close(resolve));

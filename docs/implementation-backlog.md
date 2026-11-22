@@ -1,6 +1,6 @@
 # CulFest implementation backlog
 
-M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication integration checks and is ready for review. [Architecture and validation](architecture.md#m11-authentication-and-authorization)
+M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication checks. M2.0 is implemented and ready for review. [M2.0 architecture and validation](architecture.md#m20-admin-dashboard)
 
 ## Prioritized technical debt
 
@@ -19,13 +19,15 @@ M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication i
 1. **Passed locally.** The read-only check reached all three databases. The disposable integration suite verified migrations, schema, authentication, authorization, and disabled voting.
 2. Review checksums and reconcile migration history on any initialized deployment target before applying migrations.
 3. Confirm HTTPS, trusted ingress header replacement, and direct app access restrictions before exposing admin routes. Rerun the npm production audit when registry access is available.
-4. Review M1.1 results before M2. Keep voting closed until its separate integrity requirements are met.
+4. Keep voting closed until its separate integrity requirements are met.
 
 ## Later milestones
 
 | Milestone | Deliverable and acceptance |
 | --- | --- |
-| M2 · Community management | Add a shared admin layout, an organization and public community profile, scoped memberships, and profile claim/verification. Keep all Ormada links working and test that editors can update only their assigned profiles. |
+| M2.0 — Unified Admin Dashboard | Implemented. Protected landing page and shared navigation preserve the existing admin routes. Review before starting M2.1. |
+| M2.1 — Community Database & CRUD | Add organizations, public community profiles, and admin CRUD with claim and verification states. Keep all Ormada links working. |
+| M2.2 — Organization Memberships & Permissions | Add scoped membership management and verify editors can update only assigned community profiles. |
 | M3 · Events | Add organization-owned events with draft, published, and cancelled states and one registration flow. Show only published events to public visitors and verify Jakarta time handling. |
 | M3.1 · Cultural Gallery | Replace the public Competition section with a Cultural Gallery after M3. Plan for albums, cultural documentation, attribution to communities, event associations, media management, and moderated community submissions. Preserve existing public links through deliberate routing and publish only approved submissions. |
 | M4 · Cultural bookings | Publish services for verified communities and accept scoped booking requests. Add an organizer inbox and status history. Verify request visibility, input validation, and spam controls before taking real contact data. |

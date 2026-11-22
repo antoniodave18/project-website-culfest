@@ -1,12 +1,8 @@
 import { requireAdminPage } from '@/lib/admin-auth';
-import AdminLogoutButton from '../AdminLogoutButton';
+import AdminWorkspace from './AdminWorkspace';
+import './workspace.css';
 
 export default async function ManagementLayout({ children }: { children: React.ReactNode }) {
-  await requireAdminPage();
-  return (
-    <>
-      <div className="flex justify-end bg-[#5c0a00] p-3 text-white"><AdminLogoutButton /></div>
-      {children}
-    </>
-  );
+  const administrator = await requireAdminPage();
+  return <AdminWorkspace administrator={administrator}>{children}</AdminWorkspace>;
 }

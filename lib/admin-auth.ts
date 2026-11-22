@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { cache } from 'react';
 import { authOrigin, getAuth } from './auth';
 
-export const adminHome = '/Admin/manajemen/voting';
+export const adminHome = '/Admin/manajemen';
 
 export async function adminSession(requestHeaders: Headers) {
   if (!getSessionCookie(requestHeaders)) return null;
@@ -18,6 +18,7 @@ export async function adminSession(requestHeaders: Headers) {
 export const requireAdminPage = cache(async () => {
   const session = await adminSession(await headers());
   if (session?.user.role !== 'PLATFORM_ADMIN') redirect('/Admin');
+  return session.user.name.trim() || 'Administrator';
 });
 
 export function adminJson(body: object, status = 200) {
