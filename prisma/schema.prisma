@@ -66,9 +66,16 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  members       Member[]
+  invitationsSent Invitation[] @relation("inviter")
+  invitationsReceived Invitation[] @relation("recipient")
+  emailChallenge EmailChallenge?
+  verificationLimits VerificationWindow[]
 }
 
 model Session {
+  activeOrganizationId String?
+  activeOrganization Organization? @relation(fields: [activeOrganizationId], references: [id], onDelete: SetNull)
   id        String   @id
   expiresAt DateTime
   token     String   @unique
@@ -141,6 +148,7 @@ enum CommunityVerificationStatus {
 }
 
 model Community {
+  organization Organization?
   id                 String                      @id @default(uuid()) @db.Char(36)
   slug               String                      @unique @db.VarChar(100)
   name               String                      @db.VarChar(160)
@@ -161,4 +169,90 @@ model Community {
 
   @@index([publicationStatus, sortOrder, slug])
   @@index([updatedAt, id])
+}
+
+model Organization {
+  id String @id @default(uuid())
+  communityId String @unique @db.Char(36)
+  community Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  name String @db.VarChar(160)
+  slug String @unique @db.VarChar(100)
+  logo String?
+  metadata String? @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime? @updatedAt
+  members Member[]
+  invitations Invitation[]
+  sessions Session[]
+}
+
+enum WorkspaceRole {
+  owner
+  admin
+  editor
+}
+
+model Member {
+  id String @id @default(uuid())
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  role WorkspaceRole
+  ownerSlot Int?
+  platformBootstrap Boolean @default(false)
+  createdAt DateTime @default(now())
+  @@unique([organizationId, userId])
+  @@unique([organizationId, ownerSlot])
+}
+
+enum InvitationState {
+  pending
+  accepted
+  canceled
+  rejected
+}
+
+model Invitation {
+  id String @id
+  organizationId String
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  inviterId String
+  inviter User @relation("inviter", fields: [inviterId], references: [id], onDelete: Cascade)
+  recipientId String
+  recipient User @relation("recipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  email String
+  role WorkspaceRole
+  status InvitationState @default(pending)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  @@index([organizationId, recipientId, status])
+}
+
+model EmailChallenge {
+  userId String @id
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email String
+  digest String @unique @db.Char(64)
+  issuedAt DateTime
+  expiresAt DateTime
+}
+
+model VerificationWindow {
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purpose String @db.VarChar(12)
+  startedAt DateTime
+  attempts Int
+  @@id([userId, purpose])
+}
+
+model WorkspaceAudit {
+  id String @id @default(uuid())
+  actorId String
+  communityId String? @db.Char(36)
+  action String @db.VarChar(40)
+  targetId String
+  createdAt DateTime @default(now())
+  @@index([communityId, createdAt])
 }

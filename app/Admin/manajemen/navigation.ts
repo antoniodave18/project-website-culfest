@@ -26,6 +26,7 @@ export const adminNavigation: { label: string; items: NavigationItem[] }[] = [
   },
   {
     label: 'Administrasi',
-    items: [{ label: 'Analitik' }, { label: 'Pengaturan' }],
+    items: [{ label: 'Verifikasi email', href: base + '/verifikasi-email' },
+      { label: 'Portal komunitas', href: '/Community' }, { label: 'Analitik' }, { label: 'Pengaturan' }],
   },
 ];

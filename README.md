@@ -139,6 +139,30 @@ installed, run `npm run test:admin-auth -- --browser` for desktop, tablet, and
 mobile checks against disposable MySQL. Screenshots go to
 `.playwright-cli/m21/`. See [M2.1 architecture and verification](docs/architecture.md#m21-community-database-and-crud).
 
+## Community workspaces and email verification
+
+After applying the M2.2 migrations locally, seed the public profiles if needed,
+then provision workspaces for all existing communities.
+
+```powershell
+npm run db:seed:communities
+node --env-file=.env scripts/workspace-provision.mjs
+```
+
+Platform administrators can open **Verifikasi email** in the admin sidebar.
+Enter the address of an existing unverified account and send the generated link
+manually to that exact mailbox. The recipient signs in with their existing account
+and confirms within 15 minutes. Once verified, the recipient can accept a
+community invitation sent through the same manual delivery process.
+
+Open **Portal komunitas** at `/Community` to edit profiles, manage members,
+or transfer ownership according to your role. To invite a first owner, the
+platform administrator first sets the community to **CLAIMED** and **VERIFIED**.
+
+Run `npm run test:admin-auth -- --membership-browser` after a production build
+to repeat the M2.2 browser checks with disposable MySQL. Screenshots go to
+`.playwright-cli/m22/`. See [M2.2 architecture](docs/architecture.md#m22-community-workspaces-and-verification).
+
 ## Project structure
 
 - `app/` — routes and UI (Next.js App Router)

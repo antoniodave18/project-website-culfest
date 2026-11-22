@@ -2,12 +2,12 @@ import { Prisma } from '@prisma/client';
 import { adminJson, guardAdmin } from './admin-auth';
 import { CommunityError, isCommunityId } from './communities';
 
-export async function communityRequest(request: Request, action: () => Promise<Response>, id?: string) {
-  const denied = await guardAdmin(request);
-  if (denied) return denied;
+export async function communityRequest(request: Request, action: (actorId: string) => Promise<Response>, id?: string) {
+  const actor = await guardAdmin(request, true);
+  if (actor instanceof Response) return actor;
   try {
     if (id !== undefined && !isCommunityId(id)) throw new CommunityError('ID komunitas tidak valid.');
-    return await action();
+    return await action(actor);
   } catch (error) {
     if (error instanceof CommunityError) {
       return adminJson({ success: false, message: error.message, field: error.field }, error.status);

@@ -1,7 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient()
+  const client = new PrismaClient()
+  client.$use(async (params, next) => {
+    if (params.model === 'WorkspaceAudit' && ['update', 'updateMany', 'upsert', 'delete', 'deleteMany'].includes(params.action)) {
+      throw new Error('Workspace audit records are append-only.')
+    }
+    return next(params)
+  })
+  return client
 }
 
 declare global {

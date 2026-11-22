@@ -343,3 +343,65 @@ all five files. Human approval covers integration into `develop`.
 Production release still requires verification of the target migration ledger
 and schema, ingress and security configuration, and deployment smoke checks.
 M2.2 owns community memberships and scoped permissions.
+
+## M2.2 community workspaces and verification
+
+Each community maps to one Better Auth organization through a unique
+`Organization.communityId`. New profiles and workspaces are created in the
+same transaction. The local provisioning script links existing profiles without
+changing profile content or replacing membership roles. Platform-admin bootstrap
+memberships depend on the current global role. Slugs and names stay synchronized
+with the canonical Community record.
+
+| Role | Workspace access |
+| --- | --- |
+| OWNER | Edit profile fields, manage admins and editors, and transfer ownership to a verified member. |
+| ADMIN | Edit profile fields, view members, and manage editors. |
+| EDITOR | Edit permitted profile fields and view the member list. |
+| PLATFORM_ADMIN | Access all workspaces, manage global community status, and invite the first owner of a claimed and verified community. |
+
+Better Auth 1.7.27 supplies credential sessions, the Organization plugin schema,
+and static access control. CulFest runs invitation and membership writes through
+its Prisma services so recipient binding, ownership checks, and audit writes
+share a transaction. The auth allowlist stays limited to sign-in and sign-out.
+Workspace mutations require the configured origin and resolve the caller's role
+against the linked organization. Archived profiles reject member access.
+Ownership transfers serialize on the community row and use a unique owner slot.
+
+### Operator-assisted verification
+
+A platform admin generates a challenge for another existing unverified account.
+The operator sends the URL only to the exact account mailbox. The recipient
+signs in and confirms. The server checks the signed-in user ID, normalized email,
+and 15-minute expiry. It stores a SHA-256 digest of a random 256-bit token and
+consumes the challenge atomically with the Better Auth `emailVerified` update.
+Replacing a challenge invalidates the previous link. Issuance allows 20 requests
+per operator per 15-minute window with a 60-second per-recipient cooldown.
+Redemption allows 10 attempts per signed-in account per 15-minute window.
+
+Invitation acceptance requires an existing verified account with the exact
+recipient ID and email. Links expire after 48 hours. Verification and invitation
+URLs carry secrets in the fragment, which the recipient page clears on load.
+Protected responses use private no-store caching and no-referrer headers.
+The app does not send email. Delivery relies on the operator sending the link
+to the correct mailbox, and account provisioning remains separate. Do not
+capture request or response bodies for these endpoints in proxy or APM logs.
+
+Audit records contain action, actor ID, target ID, optional community ID, and
+timestamp. Sensitive writes and their audit events commit together. The
+application's Prisma client rejects updates and deletes to audit entries.
+Database-level enforcement requires granting the runtime database identity
+only the audit-table operations it needs, including INSERT and any approved
+SELECT access. Privileged SQL users can still change audit rows.
+
+### Verification and release gates
+
+Local checks cover migration upgrade and replay, seed idempotence, all 25 public
+profiles, verification and invitation failure paths, cross-community denial,
+and concurrent ownership transfer. Playwright covers email verification,
+acceptance, member management, profile editing, and access denial on desktop,
+tablet, and mobile. Voting is still disabled.
+
+Before production rollout, validate the target migration ledger and runtime
+grants, run workspace provisioning through an approved operation, and confirm
+the manual delivery procedure and existing-account availability.

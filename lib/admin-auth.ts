@@ -25,7 +25,9 @@ export function adminJson(body: object, status = 200) {
   return Response.json(body, { status, headers: { 'Cache-Control': 'private, no-store' } });
 }
 
-export async function guardAdmin(request: Request) {
+export function guardAdmin(request: Request): Promise<Response | null>;
+export function guardAdmin(request: Request, withActor: true): Promise<Response | string>;
+export async function guardAdmin(request: Request, withActor = false) {
   try {
     const session = await adminSession(request.headers);
     if (!session) return adminJson({ success: false, message: 'Silakan masuk.' }, 401);
@@ -35,7 +37,7 @@ export async function guardAdmin(request: Request) {
     if (!['GET', 'HEAD'].includes(request.method) && request.headers.get('origin') !== authOrigin()) {
       return adminJson({ success: false, message: 'Asal permintaan tidak diizinkan.' }, 403);
     }
-    return null;
+    return withActor ? session.user.id : null;
   } catch {
     return adminJson({ success: false, message: 'Layanan autentikasi tidak tersedia.' }, 503);
   }

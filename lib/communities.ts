@@ -2,6 +2,7 @@ import { stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { Prisma } from '@prisma/client';
 import prisma from './prisma';
+import { provision } from './provision-workspace.mjs';
 import {
   claimLabels, isCommunitySlug, profileFields, publicationLabels, verificationLabels,
 } from './community-fields';
@@ -55,7 +56,7 @@ function readUrl(value: string | null, field: 'locationUrl' | 'instagramUrl' | '
   throw new CommunityError('Masukkan URL HTTPS yang valid untuk kolom ini.', 400, field);
 }
 
-async function readProfile(input: Record<string, unknown>) {
+export async function readProfile(input: Record<string, unknown>) {
   const slug = readText(input, 'slug')!.toLowerCase();
   if (!isCommunitySlug(slug)) {
     throw new CommunityError('Gunakan huruf a–z, angka, dan tanda hubung di antara kata.', 400, 'slug');
@@ -83,26 +84,35 @@ async function readProfile(input: Record<string, unknown>) {
 
 export async function createCommunity(input: Record<string, unknown>) {
   const profile = await readProfile(input);
-  return prisma.community.create({ data: profile });
+  return prisma.$transaction(async tx => {
+    const community = await tx.community.create({ data: profile });
+    await provision(tx, community);
+    return community;
+  });
 }
 
-export async function updateCommunity(id: string, input: Record<string, unknown>) {
+export async function updateCommunity(id: string, input: Record<string, unknown>, actorId: string) {
   const profile = await readProfile(input);
   const publicationStatus = readChoice(input.publicationStatus, { DRAFT: '', PUBLISHED: '' }, 'publicationStatus');
   const claimStatus = readChoice(input.claimStatus, claimLabels, 'claimStatus');
   const verificationStatus = readChoice(input.verificationStatus, verificationLabels, 'verificationStatus');
   try {
-    return await prisma.community.update({
-      // Evaluate the slug and archive rules at write time, including during concurrent edits.
-      where: {
-        id,
-        publicationStatus: { not: 'ARCHIVED' },
-        OR: [{ slugLocked: false }, { slug: profile.slug }],
-      },
-      data: {
-        ...profile, publicationStatus, claimStatus, verificationStatus,
-        ...(publicationStatus === 'PUBLISHED' && { slugLocked: true }),
-      },
+    return await prisma.$transaction(async tx => {
+      const community = await tx.community.update({
+        // Evaluate the slug and archive rules at write time, including during concurrent edits.
+        where: {
+          id, publicationStatus: { not: 'ARCHIVED' },
+          OR: [{ slugLocked: false }, { slug: profile.slug }],
+        },
+        data: {
+          ...profile, publicationStatus, claimStatus, verificationStatus,
+          ...(publicationStatus === 'PUBLISHED' && { slugLocked: true }),
+        },
+      });
+      const synced = await tx.organization.updateMany({ where: { communityId: id }, data: { slug: community.slug, name: community.name } });
+      if (!synced.count) throw new CommunityError('Ruang komunitas belum disiapkan.', 409);
+      await tx.workspaceAudit.create({ data: { actorId, communityId: id, action: 'profile.updated', targetId: id } });
+      return community;
     });
   } catch (error) {
     if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== 'P2025') throw error;
@@ -115,14 +125,18 @@ export async function updateCommunity(id: string, input: Record<string, unknown>
   }
 }
 
-export async function archiveCommunity(id: string) {
-  const { count } = await prisma.community.updateMany({
-    where: { id, publicationStatus: { not: 'ARCHIVED' } },
-    data: { publicationStatus: 'ARCHIVED', slugLocked: true },
+export async function archiveCommunity(id: string, actorId: string) {
+  await prisma.$transaction(async tx => {
+    const { count } = await tx.community.updateMany({
+      where: { id, publicationStatus: { not: 'ARCHIVED' } },
+      data: { publicationStatus: 'ARCHIVED', slugLocked: true },
+    });
+    if (count) {
+      await tx.workspaceAudit.create({ data: { actorId, communityId: id, action: 'profile.archived', targetId: id } });
+    } else if (!await tx.community.findUnique({ where: { id }, select: { id: true } })) {
+      throw new CommunityError('Komunitas tidak ditemukan.', 404);
+    }
   });
-  if (!count && !await prisma.community.findUnique({ where: { id }, select: { id: true } })) {
-    throw new CommunityError('Komunitas tidak ditemukan.', 404);
-  }
 }
 
 export function communityFilters(params: URLSearchParams) {

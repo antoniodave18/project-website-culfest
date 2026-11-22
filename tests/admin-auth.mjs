@@ -9,6 +9,8 @@ import next from 'next';
 import { localDatabase, safeFailure, verifyHistory } from '../scripts/local-database.mjs';
 import { verifyCommunities } from './communities.mjs';
 import { verifyCommunityBrowser } from './community-browser.mjs';
+import { verifyMemberships } from './memberships.mjs';
+import { verifyMembershipBrowser } from './memberships-browser.mjs';
 
 const require = createRequire(import.meta.url);
 const hostname = '127.0.0.1';
@@ -76,7 +78,7 @@ async function request(path, { method = 'GET', cookie, body, site = origin, ip =
 
 async function status(path, expected, options) {
   const response = await request(path, options);
-  assert.equal(response.status, expected, `${options?.method ?? 'GET'} ${path}`);
+  assert.equal(response.status, expected, `${options?.method ?? 'GET'} ${path.split('?')[0]}`);
   return response;
 }
 
@@ -171,6 +173,7 @@ async function run() {
   console.log('Disabled voting, origin controls, and public routes: passed.');
 
   await verifyCommunities({ db, status, request, cookie, userCookie });
+  await verifyMemberships({ db, fixture, login, admin, cookie, user, userCookie, status, request });
 
   await db.user.update({ where: { id: admin.id }, data: { role: 'USER' } });
   await denied(cookie, 403);
@@ -197,6 +200,9 @@ async function run() {
   console.log('Database sign-in throttling: passed.');
 
   if (process.argv.includes('--browser')) await verifyCommunityBrowser({ db, origin, admin, user });
+  if (process.argv.includes('--browser') || process.argv.includes('--membership-browser')) {
+    await verifyMembershipBrowser({ db, fixture, login, admin, origin, status });
+  }
 }
 
 try {
@@ -204,9 +210,9 @@ try {
 } catch (error) {
   const safeCheck = error instanceof assert.AssertionError || error instanceof TypeError ? '' :
     /^(Disposable MySQL migration deploy|Deployed schema comparison)$/.test(error?.message) ? error.message + ': ' : '';
-  const routeCheck = error instanceof assert.AssertionError && /^(GET|POST|PUT|DELETE) \/[\w/-]+$/.test(error.message)
-    ? ` (${error.message}, HTTP ${error.actual} expected ${error.expected})` : '';
-  const testLocation = error?.stack?.match(/(?:admin-auth|communities|community-browser)\.mjs:\d+:\d+/)?.[0];
+  const endpoint = error instanceof assert.AssertionError && error.message.match(/^(GET|POST|PATCH|PUT|DELETE) \/[\w/-]+/);
+  const routeCheck = endpoint ? ` (${endpoint[0]}, HTTP ${error.actual} expected ${error.expected})` : '';
+  const testLocation = error?.stack?.match(/(?:admin-auth|memberships(?:-browser)?|communities|community-browser)\.mjs:\d+:\d+/)?.[0];
   const location = testLocation ? ` at ${testLocation}` : '';
   console.error(`Auth integration failed: ${safeCheck}${safeFailure(error)}${routeCheck}${location}.`);
   process.exitCode = 1;
@@ -215,6 +221,7 @@ try {
   await app?.close();
   if (db && fixtures.length) {
     try {
+      await db.member.deleteMany({ where: { userId: { in: fixtures } } });
       await db.user.deleteMany({ where: { id: { in: fixtures } } });
     } catch {
       console.error('Could not clean up test accounts.');

@@ -16,8 +16,8 @@ export async function GET(request: Request, { params }: Context) {
 
 export async function PATCH(request: Request, { params }: Context) {
   const { id } = await params;
-  return communityRequest(request, async () => {
-    const data = await updateCommunity(id, await communityBody(request));
+  return communityRequest(request, async actor => {
+    const data = await updateCommunity(id, await communityBody(request), actor);
     return adminJson({ success: true, data });
   }, id);
 }

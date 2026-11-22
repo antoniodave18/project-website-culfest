@@ -4,8 +4,8 @@ import { archiveCommunity } from '@/lib/communities';
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  return communityRequest(request, async () => {
-    await archiveCommunity(id);
+  return communityRequest(request, async actor => {
+    await archiveCommunity(id, actor);
     return adminJson({ success: true });
   }, id);
 }
