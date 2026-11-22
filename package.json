@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "db:verify": "node --env-file=.env scripts/check-local-db.mjs",
+    "db:seed:communities": "node --env-file=.env scripts/seed-communities.mjs",
     "admin:account": "node --env-file=.env scripts/admin-account.mjs",
     "test:admin-auth": "node --env-file=.env tests/admin-auth.mjs"
   },

@@ -26,7 +26,7 @@ M1.0 is conditionally accepted. M1.1 passed local TCP MySQL and authentication c
 | Milestone | Deliverable and acceptance |
 | --- | --- |
 | M2.0 — Unified Admin Dashboard | Final local review passed for admin flows, responsive navigation, authorization, and disabled voting. Candidate images and their fallback returned 404. See [verification results](architecture.md#m20-final-local-verification). |
-| M2.1 — Community Database & CRUD | Add organizations, public community profiles, and admin CRUD with claim and verification states. Keep all Ormada links working. |
+| M2.1 — Community Database & CRUD | Approved for integration into develop after local verification. MySQL backs the 25 original Ormada profiles and admin CRUD, publication, archive, claim, and verification controls. See [verification and release gates](architecture.md#m21-local-verification). |
 | M2.2 — Organization Memberships & Permissions | Add scoped membership management and verify editors can update only assigned community profiles. |
 | M3 · Events | Add organization-owned events with draft, published, and cancelled states and one registration flow. Show only published events to public visitors and verify Jakarta time handling. |
 | M3.1 · Cultural Gallery | Replace the public Competition section with a Cultural Gallery after M3. Plan for albums, cultural documentation, attribution to communities, event associations, media management, and moderated community submissions. Preserve existing public links through deliberate routing and publish only approved submissions. |

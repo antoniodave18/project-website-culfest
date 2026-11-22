@@ -7,6 +7,8 @@ import { PrismaClient } from '@prisma/client';
 import { hashPassword } from 'better-auth/crypto';
 import next from 'next';
 import { localDatabase, safeFailure, verifyHistory } from '../scripts/local-database.mjs';
+import { verifyCommunities } from './communities.mjs';
+import { verifyCommunityBrowser } from './community-browser.mjs';
 
 const require = createRequire(import.meta.url);
 const hostname = '127.0.0.1';
@@ -99,8 +101,12 @@ async function run() {
   process.env.DATABASE_URL = localDatabase('TEST_DATABASE_URL', 'culfest_test');
   localDatabase('SHADOW_DATABASE_URL', 'culfest_shadow');
   db = new PrismaClient({ datasourceUrl: process.env.DATABASE_URL });
-  const [row] = await db.$queryRaw`SELECT DATABASE() AS schema_name`;
+  const [row] = await db.$queryRaw`
+    SELECT DATABASE() AS schema_name,
+      (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()) AS table_count
+  `;
   assert.equal(row.schema_name, 'culfest_test');
+  if (Number(row.table_count) > 0) await verifyHistory(db, { allowPending: true });
   prismaCommand('Disposable MySQL migration deploy', ['migrate', 'deploy']);
   await verifyHistory(db);
   prismaCommand('Deployed schema comparison', [
@@ -108,7 +114,10 @@ async function run() {
     '--to-schema-datamodel', 'prisma/schema.prisma', '--exit-code',
   ]);
 
-  server = createServer((req, res) => app.getRequestHandler()(req, res));
+  server = createServer((req, res) => {
+    if (req.url === signIn && !req.headers[ingressHeader]) req.headers[ingressHeader] = randomIp();
+    return app.getRequestHandler()(req, res);
+  });
   await new Promise((resolve, reject) => server.once('error', reject).listen(0, hostname, resolve));
   const { port } = server.address();
   origin = `http://${hostname}:${port}`;
@@ -161,6 +170,8 @@ async function run() {
   assert.deepEqual(leaderboard.data, candidates.data);
   console.log('Disabled voting, origin controls, and public routes: passed.');
 
+  await verifyCommunities({ db, status, request, cookie, userCookie });
+
   await db.user.update({ where: { id: admin.id }, data: { role: 'USER' } });
   await denied(cookie, 403);
   await db.user.update({ where: { id: admin.id }, data: { role: 'PLATFORM_ADMIN' } });
@@ -184,6 +195,8 @@ async function run() {
   const throttled = await status(signIn, 429, { method: 'POST', ip, body: { email: admin.email, password: 'incorrect' } });
   assert.ok(Number(throttled.headers.get('retry-after')) > 0);
   console.log('Database sign-in throttling: passed.');
+
+  if (process.argv.includes('--browser')) await verifyCommunityBrowser({ db, origin, admin, user });
 }
 
 try {
@@ -193,7 +206,7 @@ try {
     /^(Disposable MySQL migration deploy|Deployed schema comparison)$/.test(error?.message) ? error.message + ': ' : '';
   const routeCheck = error instanceof assert.AssertionError && /^(GET|POST|PUT|DELETE) \/[\w/-]+$/.test(error.message)
     ? ` (${error.message}, HTTP ${error.actual} expected ${error.expected})` : '';
-  const testLocation = error?.stack?.match(/admin-auth\.mjs:\d+:\d+/)?.[0];
+  const testLocation = error?.stack?.match(/(?:admin-auth|communities|community-browser)\.mjs:\d+:\d+/)?.[0];
   const location = testLocation ? ` at ${testLocation}` : '';
   console.error(`Auth integration failed: ${safeCheck}${safeFailure(error)}${routeCheck}${location}.`);
   process.exitCode = 1;

@@ -18,6 +18,8 @@ This repository contains a web application built with **Next.js (App Router)** a
 
 ## Development
 
+See the [development workflow](docs/development-workflow.md) for branches, milestone pull requests, and release approvals.
+
 M1.0 was tested on Windows with Node.js 24.14.1, npm 11.11.0, and
 MySQL 8.0.46.
 
@@ -26,8 +28,8 @@ npm ci
 npm run dev
 ```
 
-Open **http://localhost:3000**. Public pages, public snapshots, and the
-disabled public voting endpoints run without MySQL. Admin sign-in uses MySQL.
+Open **http://localhost:3000**. Admin sign-in and the public Jelajah Ormada
+directory and profiles use MySQL. Public voting remains disabled.
 On a fresh machine, `npm ci` needs access to the
 public npm registry or a populated cache. Prisma Client generation may also
 need the Prisma engine download on a cold cache. With a populated npm cache,
@@ -104,6 +106,38 @@ npm run test:admin-auth
 ```
 
 [M2.0 dashboard and validation](docs/architecture.md#m20-admin-dashboard)
+
+### Community directory and administration
+
+After verifying the local migration history and schema, apply the Community
+migration and import the 25 original Ormada profiles.
+
+```powershell
+npm run db:verify
+npx prisma migrate deploy
+npx prisma generate
+npm run db:seed:communities
+```
+
+The seed reads [the original profiles](prisma/ormada-seed.json) in their existing
+order. It inserts only missing slugs and preserves administrator edits on reruns.
+It runs explicitly and targets `culfest_dev` by default. Add `-- --test` to the
+seed command to target `culfest_test`.
+
+Platform administrators open **Komunitas** in the admin sidebar. The list is at
+`/Admin/manajemen/komunitas`. Add a draft at `/Admin/manajemen/komunitas/new`
+or edit, publish, unpublish, or archive a profile at
+`/Admin/manajemen/komunitas/[id]/edit`. Publication locks the slug permanently.
+Archiving keeps the record and slug, and the public URL shows an archive notice.
+Claim and verification are administrative statuses. The form accepts existing
+image paths under `/images/`. An empty logo uses the CulFest placeholder.
+
+The admin auth integration command also exercises community CRUD and the 25
+public profiles. Install Playwright separately and set
+`CULFEST_PLAYWRIGHT_MODULE` to the path to its package directory. With Chrome
+installed, run `npm run test:admin-auth -- --browser` for desktop, tablet, and
+mobile checks against disposable MySQL. Screenshots go to
+`.playwright-cli/m21/`. See [M2.1 architecture and verification](docs/architecture.md#m21-community-database-and-crud).
 
 ## Project structure
 
